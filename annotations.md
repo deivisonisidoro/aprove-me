@@ -53,3 +53,21 @@ Enums (ou enumerations) são tipos especiais que permitem a definição de um co
    - Garantir que todos os casos de uso relevantes estejam utilizando os enums apropriados.
 
 </details>
+
+<details>
+<summary>Either</summary>
+
+### Descrição
+A classe `Either` é uma construção de programação funcional que representa um valor com dois possíveis tipos: um "Left" e um "Right". O `Left` é geralmente usado para representar um erro ou um caso inválido, enquanto o `Right` representa um valor correto ou sucesso. Isso permite a modelagem de operações que podem falhar sem recorrer a exceções.
+
+### Tarefas
+1. **Implementar Classes Either**
+   - Implementar as classes `Left` e `Right` para representar os dois lados de um tipo `Either`.
+   - Garantir que ambas as classes possuam métodos para verificar se são `Left` ou `Right`.
+
+2. **Testar Implementações de Either**
+   - Escrever testes usando Jest para garantir o comportamento correto das classes `Left` e `Right`.
+   - Cobrir casos de sucesso e erro, assegurando que os métodos de verificação funcionem corretamente.
+   - Verificar a integridade dos dados armazenados nas instâncias de `Left` e `Right`.
+
+</details>
