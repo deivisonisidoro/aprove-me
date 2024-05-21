@@ -1,3 +1,4 @@
+import { ValidationMessages } from "../../enums/assignor/ValidationMessageEnum";
 import { ValidationError } from "../../errors/ValidationErros";
 import { AssignorEntity } from "../assignor/AssignorEntity";
 
@@ -41,7 +42,7 @@ export class ReceivablesEntity {
     if (id) {
       const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
       if (!uuidRegex.test(id)) {
-        throw new ValidationError("Invalid UUID format.");
+        throw new ValidationError(ValidationMessages.INVALID_UUID);
       }
     }
     this._id = id;

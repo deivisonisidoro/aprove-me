@@ -1,5 +1,6 @@
 import { ReceivablesEntity } from "./ReceivablesEntity";
 import { AssignorEntity } from "../assignor/AssignorEntity";
+import { ValidationMessages } from "../../enums/assignor/ValidationMessageEnum";
 
 describe("ReceivablesEntity", () => {
   describe("constructor", () => {
@@ -37,7 +38,7 @@ describe("ReceivablesEntity", () => {
     it("should throw a ValidationError if the id is not a valid UUID", () => {
       expect(() => {
         receivable.id = "invalid-id";
-      }).toThrow("Invalid UUID format.");
+      }).toThrow(ValidationMessages.INVALID_UUID);
     });
 
     it("should allow setting the id to undefined", () => {
