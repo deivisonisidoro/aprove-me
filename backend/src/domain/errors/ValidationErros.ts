@@ -2,13 +2,34 @@
  * Class representing a validation error.
  * @extends Error
  */
-export class ValidationError extends Error {
+export class ValidationError  extends Error {
+  private _message: string;
+  private _statusCode: number;
+
   /**
-   * Creates an instance of ValidationError.
+   * Constructs a new RequiredParametersError instance.
    * @param {string} message - The error message.
+   * @param {number} statusCode - The status code associated with the error (default is 500).
    */
-  constructor(message: string) {
+  constructor(message: string, statusCode: number = 400) {
     super(message);
-    this.name = "ValidationError";
+    this._message = message;
+    this._statusCode = statusCode;
+  }
+
+  /**
+   * Retrieves the error message.
+   * @returns {string} The error message.
+   */
+  get message(): string {
+    return this._message;
+  }
+
+  /**
+   * Retrieves the status code associated with the error.
+   * @returns {number} The status code.
+   */
+  get statusCode(): number {
+    return this._statusCode;
   }
 }
