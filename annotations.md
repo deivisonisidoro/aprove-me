@@ -22,6 +22,7 @@ Entidades são classes que representam os objetos fundamentais do domínio do si
    - Assegurar que os métodos funcionam conforme o esperado.
 
 </details>
+
 <details>
 <summary>Erros Customizados</summary>
 
@@ -33,5 +34,22 @@ As classes de erro customizadas são utilizadas para representar diferentes tipo
    - Implementar classes de erro personalizadas para diferentes tipos de exceções no domínio da aplicação.
    - Definir propriedades adicionais, como códigos de erro ou mensagens específicas.
    - Garantir que as classes de erro forneçam informações relevantes para facilitar o diagnóstico e a resolução de problemas.
+
+</details>
+
+<details>
+<summary>Enums</summary>
+
+### Descrição
+Enums (ou enumerations) são tipos especiais que permitem a definição de um conjunto de constantes com nomes, facilitando o uso e a manutenção de valores constantes no código. Eles são úteis para representar um conjunto fixo de valores relacionados e são amplamente utilizados para melhorar a legibilidade e a segurança do tipo no código.
+
+### Tarefas
+1. **Criar Enums para Mensagens de Validação**
+   - Definir enums para centralizar mensagens de validação utilizadas em entidades.
+   - Utilizar essas mensagens de validação nas classes de entidades para garantir consistência.
+
+2. **Integrar Enums no Código Existente**
+   - Refatorar classes e testes existentes para utilizar enums em vez de strings literais.
+   - Garantir que todos os casos de uso relevantes estejam utilizando os enums apropriados.
 
 </details>
