@@ -33,6 +33,23 @@ describe("ReceivablesEntity", () => {
       receivable.id = "123e4567-e89b-12d3-a456-426614174000";
       expect(receivable.id).toBe("123e4567-e89b-12d3-a456-426614174000");
     });
+    
+    it("should throw a ValidationError if the id is not a valid UUID", () => {
+      expect(() => {
+        receivable.id = "invalid-id";
+      }).toThrow("Invalid UUID format.");
+    });
+
+    it("should allow setting the id to undefined", () => {
+      receivable.id = undefined;
+      expect(receivable.id).toBeUndefined();
+    });
+    
+    it("should throw a ValidationError if the id is not a valid UUID when setting it to a non-undefined value", () => {
+      expect(() => {
+        receivable.id = "invalid-id";
+      }).toThrow("Invalid UUID format.");
+    });
 
     it("should get the value", () => {
       expect(receivable.value).toBe(100);
