@@ -1,3 +1,5 @@
+import { ValidationError } from "../../errors/ValidationErros";
+
 /**
  * Class representing an assignor entity.
  */
@@ -35,13 +37,13 @@ export class AssignorEntity {
   /**
    * Sets the id of the assignor.
    * @param {string | undefined} id - The new id of the assignor.
-   * @throws {Error} If the id is not a valid UUID.
+   * @throws {ValidationError} If the id is not a valid UUID.
    */
   public set id(id: string | undefined) {
     if (id) {
       const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
       if (!uuidRegex.test(id)) {
-        throw new Error("Invalid UUID format.");
+        throw new ValidationError("Invalid UUID format.");
       }
     }
     this._id = id;
@@ -58,11 +60,11 @@ export class AssignorEntity {
   /**
    * Sets the document number of the assignor.
    * @param {string} document - The new document number of the assignor.
-   * @throws {Error} If the document exceeds 30 characters.
+   * @throws {ValidationError} If the document exceeds 30 characters.
    */
   public set document(document: string) {
     if (document.length > 30) {
-      throw new Error("Document must be 30 characters or less.");
+      throw new ValidationError("Document must be 30 characters or less.");
     }
     this._document = document;
   }
@@ -78,12 +80,12 @@ export class AssignorEntity {
   /**
    * Sets the email address of the assignor.
    * @param {string} email - The new email address of the assignor.
-   * @throws {Error} If the email exceeds 140 characters or is not a valid email format.
+   * @throws {ValidationError} If the email exceeds 140 characters or is not a valid email format.
    */
   public set email(email: string) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (email.length > 140 || !emailRegex.test(email)) {
-      throw new Error("Email must be 140 characters or less and in a valid format.");
+      throw new ValidationError("Email must be 140 characters or less and in a valid format.");
     }
     this._email = email;
   }
