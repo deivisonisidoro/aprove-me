@@ -22,3 +22,16 @@ Entidades são classes que representam os objetos fundamentais do domínio do si
    - Assegurar que os métodos funcionam conforme o esperado.
 
 </details>
+<details>
+<summary>Erros Customizados</summary>
+
+### Descrição
+As classes de erro customizadas são utilizadas para representar diferentes tipos de erros específicos do domínio da aplicação. Elas estendem a classe Error e são projetadas para fornecer informações claras e úteis sobre o erro que ocorreu, facilitando a depuração e o tratamento de exceções.
+
+### Tarefas
+1. **Criar Classes de Erro Customizadas**
+   - Implementar classes de erro personalizadas para diferentes tipos de exceções no domínio da aplicação.
+   - Definir propriedades adicionais, como códigos de erro ou mensagens específicas.
+   - Garantir que as classes de erro forneçam informações relevantes para facilitar o diagnóstico e a resolução de problemas.
+
+</details>
