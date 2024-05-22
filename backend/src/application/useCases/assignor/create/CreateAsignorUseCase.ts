@@ -1,13 +1,13 @@
-import { CreateAssignorDTO } from "../../domain/dtos/CreateAssignorDTO";
-import { Left } from "../../domain/either/Left";
-import { Right } from "../../domain/either/Right";
-import { Either } from "../../domain/either/either";
-import { ValidationMessages } from "../../domain/enums/assignor/ValidationMessageEnum";
-import { CreateAssignorUseCaseAbstract } from "../../domain/useCases/CreateAssignorUseCaseAbstract ";
-import { AssignorRepositoryAbstract } from "../../domain/repositories/AssignorRepositoryAbstract";
-import { ValidationError } from "../../domain/errors/ValidationErros";
-import { AssignorEntityFactory } from "../../domain/entities/assignor/AssignorEntityFactory";
-import { ReadAssignorDTO } from "../../domain/dtos/ReadAssignorDTO";
+import { CreateAssignorDTO } from "../../../../domain/dtos/CreateAssignorDTO";
+import { Left } from "../../../../domain/either/Left";
+import { Right } from "../../../../domain/either/Right";
+import { Either } from "../../../../domain/either/either";
+import { ValidationMessages } from "../../../../domain/enums/assignor/ValidationMessageEnum";
+import { CreateAssignorUseCaseAbstract } from "../../../../domain/useCases/CreateAssignorUseCaseAbstract ";
+import { AssignorRepositoryAbstract } from "../../../../domain/repositories/AssignorRepositoryAbstract";
+import { ValidationError } from "../../../../domain/errors/ValidationErros";
+import { AssignorEntityFactory } from "../../../../domain/entities/assignor/AssignorEntityFactory";
+import { ReadAssignorDTO } from "../../../../domain/dtos/ReadAssignorDTO";
 
 /**
  * Concrete implementation of the CreateAssignorUseCaseAbstract class.
