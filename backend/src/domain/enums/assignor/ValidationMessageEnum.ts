@@ -29,5 +29,14 @@ export enum ValidationMessages {
   PASSWORD_LENGTH_INVALID = "Password must be between 8 and 20 characters.",
   
   /** Error message when password complexity is invalid. */
-  PASSWORD_COMPLEXITY_INVALID = "Password must include uppercase, lowercase, digit, and special character."
+  PASSWORD_COMPLEXITY_INVALID = "Password must include uppercase, lowercase, digit, and special character.",
+
+  /** Error message when assignor not found. */
+  ASSIGNOR_NOT_FOUND = "Assignor not found.",
+
+  /** Error message when document is required. */
+  DOCUMENT_REQUIRED = "Document is required.",
+  
+  /** Error message when email is required. */
+  EMAIL_REQUIRED = "Email is required."
 }
