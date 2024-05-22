@@ -5,13 +5,13 @@ import { ValidationMessages } from "../../enums/assignor/ValidationMessageEnum";
 describe("PayableEntity", () => {
   describe("constructor", () => {
     it("should create a PayableEntity instance with valid parameters", () => {
-      const assignor = new AssignorEntity("123e4567-e89b-12d3-a456-426614174000", "1234567890", "test@example.com", "John Doe", "1234567890");
+      const assignor = new AssignorEntity("123e4567-e89b-12d3-a456-426614174000", "1234567890", "test@example.com", "John Doe", "1234567890", "login", "password");
       const receivable = new PayableEntity(100, new Date(), assignor);
       expect(receivable).toBeInstanceOf(PayableEntity);
     });
 
     it("should create a PayableEntity instance with an optional id", () => {
-      const assignor = new AssignorEntity("123e4567-e89b-12d3-a456-426614174000", "1234567890", "test@example.com", "John Doe", "1234567890");
+      const assignor = new AssignorEntity("123e4567-e89b-12d3-a456-426614174000", "1234567890", "test@example.com", "John Doe", "1234567890", "login", "password");
       const receivable = new PayableEntity(100, new Date(), assignor, "98765432-ABCD-ABCD-ABCD-ABCDEF012345");
       expect(receivable).toBeInstanceOf(PayableEntity);
     });
@@ -22,7 +22,7 @@ describe("PayableEntity", () => {
     let assignor: AssignorEntity;
 
     beforeEach(() => {
-      assignor = new AssignorEntity("123e4567-e89b-12d3-a456-426614174000", "1234567890", "test@example.com", "John Doe", "1234567890");
+      assignor = new AssignorEntity("123e4567-e89b-12d3-a456-426614174000", "1234567890", "test@example.com", "John Doe", "1234567890", "login", "password");
       receivable = new PayableEntity(100, new Date(), assignor, "98765432-ABCD-ABCD-ABCD-ABCDEF012345");
     });
 
@@ -82,7 +82,7 @@ describe("PayableEntity", () => {
     });
 
     it("should set the assignor", () => {
-      const newAssignor = new AssignorEntity("123e4567-e89b-12d3-a456-426614174000", "0987654321", "new@example.com", "Jane Doe", "0987654321");
+      const newAssignor = new AssignorEntity("123e4567-e89b-12d3-a456-426614174000", "0987654321", "new@example.com", "Jane Doe", "0987654321", "validLogin", "ValidPassword");
       receivable.assignor = newAssignor;
       expect(receivable.assignor).toBe(newAssignor);
     });

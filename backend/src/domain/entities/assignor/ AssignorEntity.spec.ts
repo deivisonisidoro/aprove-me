@@ -1,11 +1,11 @@
 import { ValidationMessages } from "../../enums/assignor/ValidationMessageEnum";
 import { AssignorEntity } from "./AssignorEntity";
-
+import { Left } from "../../either/Left";
 
 describe("AssignorEntity", () => {
   describe("constructor", () => {
     it("should create an AssignorEntity instance with valid parameters", () => {
-      const assignor = new AssignorEntity("123e4567-e89b-12d3-a456-426614174000", "1234567890", "test@example.com", "John Doe", "1234567890");
+      const assignor = new AssignorEntity("123e4567-e89b-12d3-a456-426614174000", "1234567890", "test@example.com", "John Doe", "1234567890", "validLogin", "Valid1@Password");
       expect(assignor).toBeInstanceOf(AssignorEntity);
     });
   });
@@ -14,7 +14,7 @@ describe("AssignorEntity", () => {
     let assignor: AssignorEntity;
 
     beforeEach(() => {
-      assignor = new AssignorEntity("123e4567-e89b-12d3-a456-426614174000", "1234567890", "test@example.com", "John Doe", "1234567890");
+      assignor = new AssignorEntity("123e4567-e89b-12d3-a456-426614174000", "1234567890", "test@example.com", "John Doe", "1234567890", "validLogin", "Valid1@Password");
     });
 
     it("should get the id", () => {
@@ -22,7 +22,8 @@ describe("AssignorEntity", () => {
     });
 
     it("should set the id", () => {
-      assignor.setId("98765432-ABCD-ABCD-ABCD-ABCDEF012345");
+      const result = assignor.setId("98765432-ABCD-ABCD-ABCD-ABCDEF012345");
+      expect(result.isLeft()).toBe(false);
       expect(assignor.id).toBe("98765432-ABCD-ABCD-ABCD-ABCDEF012345");
     });
 
@@ -51,7 +52,7 @@ describe("AssignorEntity", () => {
         expect(result.value.message).toBe(ValidationMessages.DOCUMENT_TOO_LONG);
       }
     });
- 
+
     it("should get the email", () => {
       expect(assignor.email).toBe("test@example.com");
     });
@@ -114,6 +115,50 @@ describe("AssignorEntity", () => {
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
         expect(result.value.message).toBe(ValidationMessages.PHONE_TOO_LONG);
+      }
+    });
+
+    it("should get the login", () => {
+      expect(assignor.login).toBe("validLogin");
+    });
+
+    it("should set the login", () => {
+      const result = assignor.setLogin("newValidLogin");
+      expect(result.isLeft()).toBe(false);
+      expect(assignor.login).toBe("newValidLogin");
+    });
+
+    it("should return a Left with ValidationError if the login is too long", () => {
+      const result = assignor.setLogin("a".repeat(51));
+      expect(result.isLeft()).toBe(true);
+      if (result.isLeft()) {
+        expect(result.value.message).toBe(ValidationMessages.LOGIN_TOO_LONG);
+      }
+    });
+
+    it("should get the password", () => {
+      expect(assignor.password).toBe("Valid1@Password");
+    });
+
+    it("should set the password", () => {
+      const result = assignor.setPassword("NewValid1@Password");
+      expect(result.isLeft()).toBe(false);
+      expect(assignor.password).toBe("NewValid1@Password");
+    });
+
+    it("should return a Left with ValidationError if the password length is invalid", () => {
+      const result = assignor.setPassword("short");
+      expect(result.isLeft()).toBe(true);
+      if (result.isLeft()) {
+        expect(result.value.message).toBe(ValidationMessages.PASSWORD_LENGTH_INVALID);
+      }
+    });
+
+    it("should return a Left with ValidationError if the password complexity is invalid", () => {
+      const result = assignor.setPassword("simplepassword");
+      expect(result.isLeft()).toBe(true);
+      if (result.isLeft()) {
+        expect(result.value.message).toBe(ValidationMessages.PASSWORD_COMPLEXITY_INVALID);
       }
     });
   });
