@@ -20,5 +20,14 @@ export enum ValidationMessages {
   NAME_TOO_LONG = "Name must be 140 characters or less.",
 
   /** Error message when phone length exceeds 20 characters. */
-  PHONE_TOO_LONG = "Phone must be 20 characters or less."
+  PHONE_TOO_LONG = "Phone must be 20 characters or less.",
+  
+  /** Error message when login length exceeds 50 characters. */
+  LOGIN_TOO_LONG = "Login is too long.",
+  
+  /** Error message when password length is invalid. */
+  PASSWORD_LENGTH_INVALID = "Password must be between 8 and 20 characters.",
+  
+  /** Error message when password complexity is invalid. */
+  PASSWORD_COMPLEXITY_INVALID = "Password must include uppercase, lowercase, digit, and special character."
 }
