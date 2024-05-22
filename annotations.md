@@ -70,4 +70,10 @@ A classe `Either` é uma construção de programação funcional que representa 
    - Cobrir casos de sucesso e erro, assegurando que os métodos de verificação funcionem corretamente.
    - Verificar a integridade dos dados armazenados nas instâncias de `Left` e `Right`.
 
+3. **Atualizar Entidades**
+   - Remover a utilização de exceções (`throw`) nas classes de entidades.
+   - Utilizar a classe `Either` para representar casos de sucesso e erro de forma mais expressiva.
+   - Adaptar os testes das entidades para refletir as mudanças e garantir que os casos de uso estejam cobertos.
+
+
 </details>
