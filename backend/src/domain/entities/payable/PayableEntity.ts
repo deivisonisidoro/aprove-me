@@ -8,14 +8,14 @@ import { AssignorEntity } from "../assignor/AssignorEntity";
 /**
  * Class representing a receivable entity.
  */
-export class ReceivablesEntity {
+export class PayableEntity {
   private _id?: string;
   private _value: number;
   private _emissionDate: Date;
   private _assignor: AssignorEntity;
 
   /**
-   * Creates a ReceivablesEntity instance.
+   * Creates a PayableEntity instance.
    * @param {number} value - The value of the receivable.
    * @param {Date} emissionDate - The emission date of the receivable.
    * @param {AssignorEntity} assignor - The assignor associated with the receivable.

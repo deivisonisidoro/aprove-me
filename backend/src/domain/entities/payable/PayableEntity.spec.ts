@@ -1,29 +1,29 @@
-import { ReceivablesEntity } from "./ReceivablesEntity";
+import { PayableEntity } from "./PayableEntity";
 import { AssignorEntity } from "../assignor/AssignorEntity";
 import { ValidationMessages } from "../../enums/assignor/ValidationMessageEnum";
 
-describe("ReceivablesEntity", () => {
+describe("PayableEntity", () => {
   describe("constructor", () => {
-    it("should create a ReceivablesEntity instance with valid parameters", () => {
+    it("should create a PayableEntity instance with valid parameters", () => {
       const assignor = new AssignorEntity("123e4567-e89b-12d3-a456-426614174000", "1234567890", "test@example.com", "John Doe", "1234567890");
-      const receivable = new ReceivablesEntity(100, new Date(), assignor);
-      expect(receivable).toBeInstanceOf(ReceivablesEntity);
+      const receivable = new PayableEntity(100, new Date(), assignor);
+      expect(receivable).toBeInstanceOf(PayableEntity);
     });
 
-    it("should create a ReceivablesEntity instance with an optional id", () => {
+    it("should create a PayableEntity instance with an optional id", () => {
       const assignor = new AssignorEntity("123e4567-e89b-12d3-a456-426614174000", "1234567890", "test@example.com", "John Doe", "1234567890");
-      const receivable = new ReceivablesEntity(100, new Date(), assignor, "98765432-ABCD-ABCD-ABCD-ABCDEF012345");
-      expect(receivable).toBeInstanceOf(ReceivablesEntity);
+      const receivable = new PayableEntity(100, new Date(), assignor, "98765432-ABCD-ABCD-ABCD-ABCDEF012345");
+      expect(receivable).toBeInstanceOf(PayableEntity);
     });
   });
 
   describe("getters and setters", () => {
-    let receivable: ReceivablesEntity;
+    let receivable: PayableEntity;
     let assignor: AssignorEntity;
 
     beforeEach(() => {
       assignor = new AssignorEntity("123e4567-e89b-12d3-a456-426614174000", "1234567890", "test@example.com", "John Doe", "1234567890");
-      receivable = new ReceivablesEntity(100, new Date(), assignor, "98765432-ABCD-ABCD-ABCD-ABCDEF012345");
+      receivable = new PayableEntity(100, new Date(), assignor, "98765432-ABCD-ABCD-ABCD-ABCDEF012345");
     });
 
     it("should get the id", () => {
