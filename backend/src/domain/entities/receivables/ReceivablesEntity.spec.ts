@@ -31,25 +31,29 @@ describe("ReceivablesEntity", () => {
     });
 
     it("should set the id", () => {
-      receivable.id = "123e4567-e89b-12d3-a456-426614174000";
+      receivable.setId("123e4567-e89b-12d3-a456-426614174000");
       expect(receivable.id).toBe("123e4567-e89b-12d3-a456-426614174000");
     });
     
-    it("should throw a ValidationError if the id is not a valid UUID", () => {
-      expect(() => {
-        receivable.id = "invalid-id";
-      }).toThrow(ValidationMessages.INVALID_UUID);
+    it("should return a Left with ValidationError if the id is not a valid UUID", () => {
+      const result = receivable.setId("invalid-id");
+      expect(result.isLeft()).toBe(true);
+      if (result.isLeft()) {
+        expect(result.value.message).toBe(ValidationMessages.INVALID_UUID);
+      }
     });
 
     it("should allow setting the id to undefined", () => {
-      receivable.id = undefined;
+      receivable.setId(undefined);
       expect(receivable.id).toBeUndefined();
     });
-    
-    it("should throw a ValidationError if the id is not a valid UUID when setting it to a non-undefined value", () => {
-      expect(() => {
-        receivable.id = "invalid-id";
-      }).toThrow("Invalid UUID format.");
+
+    it("should return a Left with ValidationError if the id is not a valid UUID when setting it to a non-undefined value", () => {
+      const result = receivable.setId("invalid-id");
+      expect(result.isLeft()).toBe(true);
+      if (result.isLeft()) {
+        expect(result.value.message).toBe(ValidationMessages.INVALID_UUID);
+      }
     });
 
     it("should get the value", () => {

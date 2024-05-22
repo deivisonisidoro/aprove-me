@@ -1,6 +1,9 @@
+import { Either } from "../../either/either";
+import { Left } from "../../either/Left";
 import { ValidationMessages } from "../../enums/assignor/ValidationMessageEnum";
 import { ValidationError } from "../../errors/ValidationErros";
 import { AssignorEntity } from "../assignor/AssignorEntity";
+
 
 /**
  * Class representing a receivable entity.
@@ -36,13 +39,13 @@ export class ReceivablesEntity {
   /**
    * Sets the id of the receivable.
    * @param {string | undefined} id - The new id of the assignor.
-   * @throws {ValidationError} If the id is not a valid UUID.
+   * @returns {Either<ValidationError, void>} Either a ValidationError or void.
    */
-  public set id(id: string | undefined) {    
+  public setId(id: string | undefined): Either<ValidationError, void> {    
     if (id) {
       const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
       if (!uuidRegex.test(id)) {
-        throw new ValidationError(ValidationMessages.INVALID_UUID);
+        return new Left(new ValidationError(ValidationMessages.INVALID_UUID));
       }
     }
     this._id = id;

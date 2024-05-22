@@ -1,5 +1,7 @@
+import { Left } from "../../either/Left";
 import { ValidationMessages } from "../../enums/assignor/ValidationMessageEnum";
 import { ValidationError } from "../../errors/ValidationErros";
+import { Either } from "../../either/either";
 
 /**
  * Class representing an assignor entity.
@@ -21,11 +23,11 @@ export class AssignorEntity {
    * @param {string} phone - The phone number of the assignor.
    */
   constructor(id: string | undefined, document: string, email: string, name: string, phone: string) {
-    this.id = id;
-    this.document = document;
-    this.email = email;
-    this.name = name;
-    this.phone = phone;
+    this._id = id;
+    this._document = document;
+    this._email = email;
+    this._name = name;
+    this._phone = phone;
   }
 
   /**
@@ -43,11 +45,11 @@ export class AssignorEntity {
    * @param {string | undefined} id - The new id of the assignor.
    * @throws {ValidationError} If the id is not a valid UUID.
    */
-  public set id(id: string | undefined) {
+  public setId(id: string | undefined): Either<ValidationError, void> {
     if (id) {
       const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
       if (!uuidRegex.test(id)) {
-        throw new ValidationError(ValidationMessages.INVALID_UUID);
+        return new Left(new ValidationError(ValidationMessages.INVALID_UUID));
       }
     }
     this._id = id;
@@ -68,9 +70,9 @@ export class AssignorEntity {
    * @param {string} document - The new document number of the assignor.
    * @throws {ValidationError} If the document exceeds 30 characters.
    */
-  public set document(document: string) {
+  public setDocument(document: string): Either<ValidationError, void> {
     if (document.length > 30) {
-      throw new ValidationError(ValidationMessages.DOCUMENT_TOO_LONG);
+      return new Left(new ValidationError(ValidationMessages.DOCUMENT_TOO_LONG));
     }
     this._document = document;
   }
@@ -90,13 +92,13 @@ export class AssignorEntity {
    * @param {string} email - The new email address of the assignor.
    * @throws {ValidationError} If the email exceeds 140 characters or is not a valid email format.
    */
-  public set email(email: string) {
+  public setEmail(email: string): Either<ValidationError, void> {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (email.length > 140) {
-      throw new ValidationError(ValidationMessages.EMAIL_TOO_LONG);
+      return new Left(new ValidationError(ValidationMessages.EMAIL_TOO_LONG));
     }
     if (!emailRegex.test(email)) {
-      throw new ValidationError(ValidationMessages.INVALID_EMAIL_FORMAT);
+      return new Left(new ValidationError(ValidationMessages.INVALID_EMAIL_FORMAT));
     }
     this._email = email;
   }
@@ -116,9 +118,9 @@ export class AssignorEntity {
    * @param {string} name - The new name of the assignor.
    * @throws {Error} If the name exceeds 140 characters.
    */
-  public set name(name: string) {
+  public setName(name: string) {
     if (name.length > 140) {
-      throw new Error(ValidationMessages.NAME_TOO_LONG);
+      return new Left(new ValidationError(ValidationMessages.NAME_TOO_LONG));
     }
     this._name = name;
   }
@@ -138,9 +140,9 @@ export class AssignorEntity {
    * @param {string} phone - The new phone number of the assignor.
    * @throws {Error} If the phone number exceeds 20 characters.
    */
-  public set phone(phone: string) {
+  public setPhone(phone: string) {
     if (phone.length > 20) {
-      throw new Error(ValidationMessages.PHONE_TOO_LONG);
+      return new Left(new ValidationError(ValidationMessages.PHONE_TOO_LONG));;
     }
     this._phone = phone;
   }
