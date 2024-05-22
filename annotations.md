@@ -75,5 +75,23 @@ A classe `Either` é uma construção de programação funcional que representa 
    - Utilizar a classe `Either` para representar casos de sucesso e erro de forma mais expressiva.
    - Adaptar os testes das entidades para refletir as mudanças e garantir que os casos de uso estejam cobertos.
 
+</details>
+
+<details>
+<summary>Fábricas</summary>
+
+### Descrição
+As fábricas são classes responsáveis pela criação de instâncias de outras classes, encapsulando a lógica de construção e validação dos objetos. Elas permitem a centralização da lógica de criação, simplificando o código que utiliza essas instâncias e garantindo que todas as validações necessárias sejam realizadas antes da instância ser utilizada.
+
+### Tarefas
+1. **Criar Classes de Fábrica**
+   - Implementar classes de fábrica para criar instâncias de entidades do domínio.
+   - Definir métodos estáticos para criar e validar entidades.
+   - Garantir que as fábricas retornem instâncias válidas ou erros de validação.
+
+2. **Testar Fábricas**
+   - Escrever testes usando Jest para garantir o comportamento correto das fábricas.
+   - Cobrir casos de sucesso e falha nas validações.
+   - Verificar que as instâncias criadas pelas fábricas são válidas e consistentes.
 
 </details>
