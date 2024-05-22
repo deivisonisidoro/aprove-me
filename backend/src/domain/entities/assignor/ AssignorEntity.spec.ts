@@ -39,11 +39,12 @@ describe("AssignorEntity", () => {
     });
 
     it("should set the document", () => {
-      assignor.setDocument("0987654321");
+      const result = assignor.setDocument("0987654321");
+      expect(result.isLeft()).toBe(false);
       expect(assignor.document).toBe("0987654321");
     });
 
-    it("should throw an error if setting a document that exceeds 30 characters", () => {
+    it("should return a Left with ValidationError if setting a document that exceeds 30 characters", () => {
       const result = assignor.setDocument("1234567890123456789012345678901");
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
@@ -56,11 +57,12 @@ describe("AssignorEntity", () => {
     });
 
     it("should set the email", () => {
-      assignor.setEmail("new@example.com");
+      const result = assignor.setEmail("new@example.com");
+      expect(result.isLeft()).toBe(false);
       expect(assignor.email).toBe("new@example.com");
     });
 
-    it("should throw an error if setting an email that exceeds 140 characters", () => {
+    it("should return a Left with ValidationError if setting an email that exceeds 140 characters", () => {
       const longEmail = "a".repeat(141) + "@example.com";
       const result = assignor.setEmail(longEmail);
       expect(result.isLeft()).toBe(true);
@@ -69,7 +71,7 @@ describe("AssignorEntity", () => {
       }
     });
 
-    it("should throw an error if setting an invalid email format", () => {
+    it("should return a Left with ValidationError if setting an invalid email format", () => {
       const result = assignor.setEmail("invalid-email");
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
@@ -82,11 +84,12 @@ describe("AssignorEntity", () => {
     });
 
     it("should set the name", () => {
-      assignor.setName("Jane Doe");
+      const result = assignor.setName("Jane Doe");
+      expect(result.isLeft()).toBe(false);
       expect(assignor.name).toBe("Jane Doe");
     });
 
-    it("should throw an error if setting a name that exceeds 140 characters", () => {
+    it("should return a Left with ValidationError if setting a name that exceeds 140 characters", () => {
       const longName = "John".repeat(36);
       const result = assignor.setName(longName);
       expect(result.isLeft()).toBe(true);
@@ -100,11 +103,12 @@ describe("AssignorEntity", () => {
     });
 
     it("should set the phone", () => {
-      assignor.setPhone("0987654321");
+      const result = assignor.setPhone("0987654321");
+      expect(result.isLeft()).toBe(false);
       expect(assignor.phone).toBe("0987654321");
     });
 
-    it("should throw an error if setting a phone that exceeds 20 characters", () => {
+    it("should return a Left with ValidationError if setting a phone that exceeds 20 characters", () => {
       const longPhone = "123456789012345678901";
       const result = assignor.setPhone(longPhone);
       expect(result.isLeft()).toBe(true);

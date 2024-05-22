@@ -31,7 +31,8 @@ describe("ReceivablesEntity", () => {
     });
 
     it("should set the id", () => {
-      receivable.setId("123e4567-e89b-12d3-a456-426614174000");
+      const result = receivable.setId("123e4567-e89b-12d3-a456-426614174000");
+      expect(result.isLeft()).toBe(false);
       expect(receivable.id).toBe("123e4567-e89b-12d3-a456-426614174000");
     });
     
@@ -44,7 +45,8 @@ describe("ReceivablesEntity", () => {
     });
 
     it("should allow setting the id to undefined", () => {
-      receivable.setId(undefined);
+      const result = receivable.setId(undefined);
+      expect(result.isLeft()).toBe(false);
       expect(receivable.id).toBeUndefined();
     });
 
