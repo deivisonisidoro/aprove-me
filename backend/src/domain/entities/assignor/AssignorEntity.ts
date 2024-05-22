@@ -2,6 +2,7 @@ import { Left } from "../../either/Left";
 import { ValidationMessages } from "../../enums/assignor/ValidationMessageEnum";
 import { ValidationError } from "../../errors/ValidationErros";
 import { Either } from "../../either/either";
+import { Right } from "../../either/Right";
 
 /**
  * Class representing an assignor entity.
@@ -43,7 +44,7 @@ export class AssignorEntity {
    * Sets the id of the assignor.
    *
    * @param {string | undefined} id - The new id of the assignor.
-   * @throws {ValidationError} If the id is not a valid UUID.
+   * @returns {Either<ValidationError, void>} Either containing ValidationError if validation fails, or void if successful.
    */
   public setId(id: string | undefined): Either<ValidationError, void> {
     if (id) {
@@ -53,6 +54,7 @@ export class AssignorEntity {
       }
     }
     this._id = id;
+    return new Right(undefined);
   }
 
   /**
@@ -68,13 +70,14 @@ export class AssignorEntity {
    * Sets the document number of the assignor.
    *
    * @param {string} document - The new document number of the assignor.
-   * @throws {ValidationError} If the document exceeds 30 characters.
+   * @returns {Either<ValidationError, void>} Either containing ValidationError if validation fails, or void if successful.
    */
   public setDocument(document: string): Either<ValidationError, void> {
     if (document.length > 30) {
       return new Left(new ValidationError(ValidationMessages.DOCUMENT_TOO_LONG));
     }
     this._document = document;
+    return new Right(undefined);
   }
 
   /**
@@ -90,7 +93,7 @@ export class AssignorEntity {
    * Sets the email address of the assignor.
    *
    * @param {string} email - The new email address of the assignor.
-   * @throws {ValidationError} If the email exceeds 140 characters or is not a valid email format.
+   * @returns {Either<ValidationError, void>} Either containing ValidationError if validation fails, or void if successful.
    */
   public setEmail(email: string): Either<ValidationError, void> {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -101,6 +104,7 @@ export class AssignorEntity {
       return new Left(new ValidationError(ValidationMessages.INVALID_EMAIL_FORMAT));
     }
     this._email = email;
+    return new Right(undefined);
   }
 
   /**
@@ -116,13 +120,14 @@ export class AssignorEntity {
    * Sets the name of the assignor.
    *
    * @param {string} name - The new name of the assignor.
-   * @throws {Error} If the name exceeds 140 characters.
+   * @returns {Either<ValidationError, void>} Either containing ValidationError if validation fails, or void if successful.
    */
-  public setName(name: string) {
+  public setName(name: string): Either<ValidationError, void> {
     if (name.length > 140) {
       return new Left(new ValidationError(ValidationMessages.NAME_TOO_LONG));
     }
     this._name = name;
+    return new Right(undefined);
   }
 
   /**
@@ -138,12 +143,13 @@ export class AssignorEntity {
    * Sets the phone number of the assignor.
    *
    * @param {string} phone - The new phone number of the assignor.
-   * @throws {Error} If the phone number exceeds 20 characters.
+   * @returns {Either<ValidationError, void>} Either containing ValidationError if validation fails, or void if successful.
    */
-  public setPhone(phone: string) {
+  public setPhone(phone: string): Either<ValidationError, void> {
     if (phone.length > 20) {
       return new Left(new ValidationError(ValidationMessages.PHONE_TOO_LONG));;
     }
     this._phone = phone;
+    return new Right(undefined);
   }
 }

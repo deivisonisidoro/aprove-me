@@ -1,9 +1,9 @@
+import { Right } from "../../either/Right";
 import { Either } from "../../either/either";
 import { Left } from "../../either/Left";
 import { ValidationMessages } from "../../enums/assignor/ValidationMessageEnum";
 import { ValidationError } from "../../errors/ValidationErros";
 import { AssignorEntity } from "../assignor/AssignorEntity";
-
 
 /**
  * Class representing a receivable entity.
@@ -49,6 +49,7 @@ export class ReceivablesEntity {
       }
     }
     this._id = id;
+    return new Right(undefined);
   }
 
   /**
