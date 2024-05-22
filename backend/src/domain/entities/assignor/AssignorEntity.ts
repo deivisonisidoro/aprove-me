@@ -13,6 +13,8 @@ export class AssignorEntity {
   private _email: string;
   private _name: string;
   private _phone: string;
+  private _login: string;
+  private _password?: string;
 
   /**
    * Creates an AssignorEntity instance.
@@ -22,13 +24,25 @@ export class AssignorEntity {
    * @param {string} email - The email address of the assignor.
    * @param {string} name - The name of the assignor.
    * @param {string} phone - The phone number of the assignor.
+   * @param {string} login - The login of the assignor.
+   * @param {string} password - The password of the assignor.
    */
-  constructor(id: string | undefined, document: string, email: string, name: string, phone: string) {
+  constructor(
+    id: string | undefined, 
+    document: string, 
+    email: string, 
+    name: string, 
+    phone: string, 
+    login: string, 
+    password?: string
+  ) {
     this._id = id;
     this._document = document;
     this._email = email;
     this._name = name;
     this._phone = phone;
+    this._login = login;
+    this._password = password;
   }
 
   /**
@@ -150,6 +164,58 @@ export class AssignorEntity {
       return new Left(new ValidationError(ValidationMessages.PHONE_TOO_LONG));;
     }
     this._phone = phone;
+    return new Right(undefined);
+  }
+  
+  /**
+   * Gets the login of the entity.
+   * @returns {string} The login of the entity.
+   */
+  public get login(): string {
+    return this._login;
+  }
+
+  /**
+   * Sets the login of the entity.
+   * @param {string} login - The new login of the entity.
+   * @returns {Either<ValidationError, void>} Either a ValidationError or void.
+   */
+  public setLogin(login: string): Either<ValidationError, void> {
+    if (login.length > 50) {
+      return new Left(new ValidationError(ValidationMessages.LOGIN_TOO_LONG));
+    }
+    this._login = login;
+    return new Right(undefined);
+  }
+
+  /**
+   * Gets the password of the entity.
+   * @returns {string} The password of the entity.
+   */
+  public get password(): string {
+    return this._password;
+  }
+
+  /**
+   * Sets the password of the entity.
+   * @param {string} password - The new password of the entity.
+   * @returns {Either<ValidationError, void>} Either a ValidationError or void.
+   */
+  public setPassword(password: string): Either<ValidationError, void> {
+    const passwordMinLength = 8;
+    const passwordMaxLength = 20;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasDigit = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+    if (password.length < passwordMinLength || password.length > passwordMaxLength) {
+      return new Left(new ValidationError(ValidationMessages.PASSWORD_LENGTH_INVALID));
+    }
+    if (!hasUpperCase || !hasLowerCase || !hasDigit || !hasSpecialChar) {
+      return new Left(new ValidationError(ValidationMessages.PASSWORD_COMPLEXITY_INVALID));
+    }
+    this._password = password;
     return new Right(undefined);
   }
 }
