@@ -95,3 +95,20 @@ As fábricas são classes responsáveis pela criação de instâncias de outras 
    - Verificar que as instâncias criadas pelas fábricas são válidas e consistentes.
 
 </details>
+
+<details>
+<summary>DTOs</summary>
+
+### Descrição
+Data Transfer Objects (DTOs) são objetos utilizados para transportar dados entre diferentes camadas da aplicação. Eles são especialmente úteis para encapsular e validar dados recebidos ou enviados pela API, garantindo que a estrutura dos dados seja consistente e segura.
+
+### Tarefas
+1. **Criar DTOs para Atualização**
+   - Implementar classes DTO para a atualização das entidades.
+   - Definir propriedades opcionais para permitir atualizações parciais.
+   - Garantir que as DTOs sejam usadas para validar os dados de entrada ao atualizar uma entidade.
+
+2. **Criar DTOs para Leitura**
+   - Implementar classes DTO para leitura das entidades.
+   - Excluir campos sensíveis, como senhas, que não devem ser expostos ao cliente.
+   - Garantir que as DTOs representem fielmente os dados das entidades sem expor informações desnecessárias.
