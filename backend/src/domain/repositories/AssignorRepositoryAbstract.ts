@@ -1,4 +1,4 @@
-import { ReadAssignorDTO } from '../dtos/ReadAssignorDTO';
+import { ReadAssignorDTO } from '../dtos/assignor/ReadAssignorDTO';
 import { AssignorEntity } from '../entities/assignor/AssignorEntity';
 
 /**
@@ -19,15 +19,15 @@ export abstract class AssignorRepositoryAbstract {
    * @param {string} id - The ID of the assignor to find.
    * @returns {Promise<Either<ValidationError, AssignorEntity>>} A promise that resolves to either a ValidationError or the found AssignorEntity.
    */
-  abstract findById(id: string): Promise<ReadAssignorDTO | undefined>;
+  abstract findById(id: string): Promise<AssignorEntity | undefined>;
 
   /**
    * Updates an assignor entity in the repository.
-   *
+   * @param {string} id - The ID of the assignor to update.
    * @param {AssignorEntity} assignor - The assignor entity to update.
    * @returns {Promise<Either<ValidationError, AssignorEntity>>} A promise that resolves to either a ValidationError or the updated AssignorEntity.
    */
-  abstract update(assignor: AssignorEntity): Promise<ReadAssignorDTO>;
+  abstract update(id: string, assignor: AssignorEntity): Promise<ReadAssignorDTO>;
 
   /**
    * Deletes an assignor entity by its ID.

@@ -37,6 +37,14 @@ export class ReadAssignorUseCase extends ReadAssignorUseCaseAbstract {
         new ValidationError(ValidationMessages.ASSIGNOR_NOT_FOUND),
       );
     }
-    return new Right(assignor);
+    const readAssignorDTO = new ReadAssignorDTO(
+      assignor.id,
+      assignor.document,
+      assignor.email,
+      assignor.name,
+      assignor.phone, 
+      assignor.login
+    )
+    return new Right(readAssignorDTO);
   }
 }
