@@ -1,8 +1,8 @@
-import { CreateAssignorDTO } from "../../../../domain/dtos/CreateAssignorDTO";
+import { CreateAssignorDTO } from "../../../../domain/dtos/assignor/CreateAssignorDTO";
 import { ValidationMessages } from "../../../../domain/enums/assignor/ValidationMessageEnum";
 import { AssignorRepositoryAbstract } from "../../../../domain/repositories/AssignorRepositoryAbstract";
 import { ValidationError } from "../../../../domain/errors/ValidationErros";
-import { ReadAssignorDTO } from "../../../../domain/dtos/ReadAssignorDTO";
+import { ReadAssignorDTO } from "../../../../domain/dtos/assignor/ReadAssignorDTO";
 import { CreateAssignorUseCase } from "./CreateAsignorUseCase";
 import { CreateAssignorUseCaseAbstract } from "../../../../domain/useCases/create/CreateAssignorUseCaseAbstract ";
 import { AssignorEntityFactory } from "../../../../domain/entities/assignor/AssignorEntityFactory";

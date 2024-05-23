@@ -1,4 +1,4 @@
-import { CreateAssignorDTO } from "../../../../domain/dtos/CreateAssignorDTO";
+import { CreateAssignorDTO } from "../../../../domain/dtos/assignor/CreateAssignorDTO";
 import { Left } from "../../../../domain/either/Left";
 import { Right } from "../../../../domain/either/Right";
 import { Either } from "../../../../domain/either/either";
@@ -7,7 +7,7 @@ import { CreateAssignorUseCaseAbstract } from "../../../../domain/useCases/creat
 import { AssignorRepositoryAbstract } from "../../../../domain/repositories/AssignorRepositoryAbstract";
 import { ValidationError } from "../../../../domain/errors/ValidationErros";
 import { AssignorEntityFactory } from "../../../../domain/entities/assignor/AssignorEntityFactory";
-import { ReadAssignorDTO } from "../../../../domain/dtos/ReadAssignorDTO";
+import { ReadAssignorDTO } from "../../../../domain/dtos/assignor/ReadAssignorDTO";
 
 /**
  * Concrete implementation of the CreateAssignorUseCaseAbstract class.

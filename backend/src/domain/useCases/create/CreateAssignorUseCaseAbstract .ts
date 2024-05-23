@@ -1,6 +1,5 @@
-
-import { CreateAssignorDTO } from "src/domain/dtos/CreateAssignorDTO";
-import { ReadAssignorDTO } from "src/domain/dtos/ReadAssignorDTO";
+import { CreateAssignorDTO } from "../../dtos/assignor/CreateAssignorDTO";
+import { ReadAssignorDTO } from "../../dtos/assignor/ReadAssignorDTO";
 import { Either } from "src/domain/either/either";
 import { ValidationError } from "src/domain/errors/ValidationErros";
 

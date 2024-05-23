@@ -1,5 +1,5 @@
 import { ValidationMessages } from "../../../../domain/enums/assignor/ValidationMessageEnum";
-import { ReadAssignorDTO } from "../../../../domain/dtos/ReadAssignorDTO";
+import { ReadAssignorDTO } from "../../../../domain/dtos/assignor/ReadAssignorDTO";
 import { Left } from "../../../../domain/either/Left";
 import { Right } from "../../../../domain/either/Right";
 import { Either } from "../../../../domain/either/either";

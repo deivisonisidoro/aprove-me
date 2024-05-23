@@ -1,5 +1,5 @@
 import { ReadAssignorUseCaseAbstract } from "../../../../domain/useCases/read/ReadAssignorUseCaseAbstract";
-import { ReadAssignorDTO } from "../../../../domain/dtos/ReadAssignorDTO";
+import { ReadAssignorDTO } from "../../../../domain/dtos/assignor/ReadAssignorDTO";
 import { ValidationError } from "../../../../domain/errors/ValidationErros";
 import { AssignorRepositoryAbstract } from "../../../../domain/repositories/AssignorRepositoryAbstract";
 import { ReadAssignorUseCase } from "./ReadAssignorUseCase";
