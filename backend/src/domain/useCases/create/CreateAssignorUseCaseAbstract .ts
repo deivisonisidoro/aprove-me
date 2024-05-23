@@ -1,7 +1,9 @@
-import { CreateAssignorDTO } from "../dtos/CreateAssignorDTO";
-import { Either } from "../either/either";
-import { ReadAssignorDTO } from "../dtos/ReadAssignorDTO";
-import { ValidationError } from "../errors/ValidationErros";
+
+import { CreateAssignorDTO } from "src/domain/dtos/CreateAssignorDTO";
+import { ReadAssignorDTO } from "src/domain/dtos/ReadAssignorDTO";
+import { Either } from "src/domain/either/either";
+import { ValidationError } from "src/domain/errors/ValidationErros";
+
 
 /**
  * Abstract class representing the use case for creating an assignor.

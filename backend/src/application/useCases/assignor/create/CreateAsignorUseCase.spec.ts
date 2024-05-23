@@ -4,7 +4,7 @@ import { AssignorRepositoryAbstract } from "../../../../domain/repositories/Assi
 import { ValidationError } from "../../../../domain/errors/ValidationErros";
 import { ReadAssignorDTO } from "../../../../domain/dtos/ReadAssignorDTO";
 import { CreateAssignorUseCase } from "./CreateAsignorUseCase";
-import { CreateAssignorUseCaseAbstract } from "../../../../domain/useCases/CreateAssignorUseCaseAbstract ";
+import { CreateAssignorUseCaseAbstract } from "../../../../domain/useCases/create/CreateAssignorUseCaseAbstract ";
 import { AssignorEntityFactory } from "../../../../domain/entities/assignor/AssignorEntityFactory";
 import { Left } from "../../../../domain/either/Left";
 
@@ -52,8 +52,7 @@ describe('CreateAssignorUseCase', () => {
   });
 
   it('should return Left with ValidationError when email is missing', async () => {
-    const useCase = new CreateAssignorUseCase(assignorRepositoryMock);
-    const result = await useCase.execute({ ...createAssignorDTO, email: '' });
+    const result = await createAssignorUseCase.execute({ ...createAssignorDTO, email: '' });
     expect(result.isLeft()).toBe(true);
     expect(result.value).toBeInstanceOf(ValidationError);
     if(result.isLeft()){
