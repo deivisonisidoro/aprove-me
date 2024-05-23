@@ -1,13 +1,13 @@
-import { CreateAssignorDTO } from "../../../../domain/dtos/assignor/CreateAssignorDTO";
-import { Left } from "../../../../domain/either/Left";
-import { Right } from "../../../../domain/either/Right";
-import { Either } from "../../../../domain/either/either";
-import { ValidationMessages } from "../../../../domain/enums/assignor/ValidationMessageEnum";
-import { CreateAssignorUseCaseAbstract } from "../../../../domain/useCases/create/CreateAssignorUseCaseAbstract ";
-import { AssignorRepositoryAbstract } from "../../../../domain/repositories/AssignorRepositoryAbstract";
-import { ValidationError } from "../../../../domain/errors/ValidationErros";
-import { AssignorEntityFactory } from "../../../../domain/entities/assignor/AssignorEntityFactory";
-import { ReadAssignorDTO } from "../../../../domain/dtos/assignor/ReadAssignorDTO";
+import { CreateAssignorDTO } from '../../../../domain/dtos/assignor/CreateAssignorDTO';
+import { ReadAssignorDTO } from '../../../../domain/dtos/assignor/ReadAssignorDTO';
+import { Either } from '../../../../domain/either/either';
+import { Left } from '../../../../domain/either/Left';
+import { Right } from '../../../../domain/either/Right';
+import { AssignorEntityFactory } from '../../../../domain/entities/assignor/AssignorEntityFactory';
+import { ValidationMessages } from '../../../../domain/enums/assignor/ValidationMessageEnum';
+import { ValidationError } from '../../../../domain/errors/ValidationErros';
+import { AssignorRepositoryAbstract } from '../../../../domain/repositories/AssignorRepositoryAbstract';
+import { CreateAssignorUseCaseAbstract } from '../../../../domain/useCases/create/CreateAssignorUseCaseAbstract ';
 
 /**
  * Concrete implementation of the CreateAssignorUseCaseAbstract class.
@@ -30,9 +30,13 @@ export class CreateAssignorUseCase extends CreateAssignorUseCaseAbstract {
    * @param {CreateAssignorDTO} createAssignorDTO - The data transfer object containing assignor information.
    * @returns {Promise<Either<ValidationError, ReadAssignorDTO>>} A promise that resolves to either a validation error or the created assignor DTO.
    */
-  async execute(createAssignorDTO: CreateAssignorDTO): Promise<Either<ValidationError, ReadAssignorDTO>> {
+  async execute(
+    createAssignorDTO: CreateAssignorDTO,
+  ): Promise<Either<ValidationError, ReadAssignorDTO>> {
     if (!createAssignorDTO.document) {
-      return new Left(new ValidationError(ValidationMessages.DOCUMENT_REQUIRED));
+      return new Left(
+        new ValidationError(ValidationMessages.DOCUMENT_REQUIRED),
+      );
     }
     if (!createAssignorDTO.email) {
       return new Left(new ValidationError(ValidationMessages.EMAIL_REQUIRED));
@@ -45,12 +49,14 @@ export class CreateAssignorUseCase extends CreateAssignorUseCaseAbstract {
       createAssignorDTO.name,
       createAssignorDTO.phone,
       createAssignorDTO.login,
-      createAssignorDTO.password
+      createAssignorDTO.password,
     );
     if (newAssignor.isLeft()) {
       return newAssignor;
     }
-    const savedAssignor = await this.assignorRepository.create(newAssignor.value);
+    const savedAssignor = await this.assignorRepository.create(
+      newAssignor.value,
+    );
     return new Right(savedAssignor);
   }
 }

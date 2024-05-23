@@ -25,7 +25,7 @@ export class UpdateAssignorDTO {
     name?: string,
     phone?: string,
     login?: string,
-    password?: string
+    password?: string,
   ) {
     this.id = id;
     this.document = document;

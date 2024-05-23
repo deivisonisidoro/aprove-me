@@ -2,7 +2,7 @@
  * Class representing a validation error.
  * @extends Error
  */
-export class ValidationError  extends Error {
+export class ValidationError extends Error {
   private _message: string;
   private _statusCode: number;
 

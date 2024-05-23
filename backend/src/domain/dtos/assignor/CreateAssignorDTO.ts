@@ -22,7 +22,7 @@ export class CreateAssignorDTO {
     name: string,
     phone: string,
     login: string,
-    password?: string
+    password?: string,
   ) {
     this.document = document;
     this.email = email;

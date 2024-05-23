@@ -22,7 +22,7 @@ export class ReadAssignorDTO {
     email: string,
     name: string,
     phone: string,
-    login: string
+    login: string,
   ) {
     this.id = id;
     this.document = document;

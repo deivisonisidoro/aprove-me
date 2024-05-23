@@ -1,8 +1,8 @@
-import { Left } from "../../either/Left";
-import { ValidationMessages } from "../../enums/assignor/ValidationMessageEnum";
-import { ValidationError } from "../../errors/ValidationErros";
-import { Either } from "../../either/either";
-import { Right } from "../../either/Right";
+import { Either } from '../../either/either';
+import { Left } from '../../either/Left';
+import { Right } from '../../either/Right';
+import { ValidationMessages } from '../../enums/assignor/ValidationMessageEnum';
+import { ValidationError } from '../../errors/ValidationErros';
 
 /**
  * Class representing an assignor entity.
@@ -28,13 +28,13 @@ export class AssignorEntity {
    * @param {string} password - The password of the assignor.
    */
   constructor(
-    id: string | undefined, 
-    document: string, 
-    email: string, 
-    name: string, 
-    phone: string, 
-    login: string, 
-    password?: string
+    id: string | undefined,
+    document: string,
+    email: string,
+    name: string,
+    phone: string,
+    login: string,
+    password?: string,
   ) {
     this._id = id;
     this._document = document;
@@ -62,7 +62,8 @@ export class AssignorEntity {
    */
   public setId(id: string | undefined): Either<ValidationError, void> {
     if (id) {
-      const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+      const uuidRegex =
+        /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
       if (!uuidRegex.test(id)) {
         return new Left(new ValidationError(ValidationMessages.INVALID_UUID));
       }
@@ -88,7 +89,9 @@ export class AssignorEntity {
    */
   public setDocument(document: string): Either<ValidationError, void> {
     if (document.length > 30) {
-      return new Left(new ValidationError(ValidationMessages.DOCUMENT_TOO_LONG));
+      return new Left(
+        new ValidationError(ValidationMessages.DOCUMENT_TOO_LONG),
+      );
     }
     this._document = document;
     return new Right(undefined);
@@ -115,7 +118,9 @@ export class AssignorEntity {
       return new Left(new ValidationError(ValidationMessages.EMAIL_TOO_LONG));
     }
     if (!emailRegex.test(email)) {
-      return new Left(new ValidationError(ValidationMessages.INVALID_EMAIL_FORMAT));
+      return new Left(
+        new ValidationError(ValidationMessages.INVALID_EMAIL_FORMAT),
+      );
     }
     this._email = email;
     return new Right(undefined);
@@ -161,12 +166,12 @@ export class AssignorEntity {
    */
   public setPhone(phone: string): Either<ValidationError, void> {
     if (phone.length > 20) {
-      return new Left(new ValidationError(ValidationMessages.PHONE_TOO_LONG));;
+      return new Left(new ValidationError(ValidationMessages.PHONE_TOO_LONG));
     }
     this._phone = phone;
     return new Right(undefined);
   }
-  
+
   /**
    * Gets the login of the entity.
    * @returns {string} The login of the entity.
@@ -209,11 +214,18 @@ export class AssignorEntity {
     const hasDigit = /\d/.test(password);
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
-    if (password.length < passwordMinLength || password.length > passwordMaxLength) {
-      return new Left(new ValidationError(ValidationMessages.PASSWORD_LENGTH_INVALID));
+    if (
+      password.length < passwordMinLength ||
+      password.length > passwordMaxLength
+    ) {
+      return new Left(
+        new ValidationError(ValidationMessages.PASSWORD_LENGTH_INVALID),
+      );
     }
     if (!hasUpperCase || !hasLowerCase || !hasDigit || !hasSpecialChar) {
-      return new Left(new ValidationError(ValidationMessages.PASSWORD_COMPLEXITY_INVALID));
+      return new Left(
+        new ValidationError(ValidationMessages.PASSWORD_COMPLEXITY_INVALID),
+      );
     }
     this._password = password;
     return new Right(undefined);

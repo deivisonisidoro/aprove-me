@@ -1,9 +1,9 @@
-import { Right } from "../../either/Right";
-import { Either } from "../../either/either";
-import { Left } from "../../either/Left";
-import { ValidationMessages } from "../../enums/assignor/ValidationMessageEnum";
-import { ValidationError } from "../../errors/ValidationErros";
-import { AssignorEntity } from "../assignor/AssignorEntity";
+import { Either } from '../../either/either';
+import { Left } from '../../either/Left';
+import { Right } from '../../either/Right';
+import { ValidationMessages } from '../../enums/assignor/ValidationMessageEnum';
+import { ValidationError } from '../../errors/ValidationErros';
+import { AssignorEntity } from '../assignor/AssignorEntity';
 
 /**
  * Class representing a receivable entity.
@@ -21,7 +21,12 @@ export class PayableEntity {
    * @param {AssignorEntity} assignor - The assignor associated with the receivable.
    * @param {string} [id] - The optional id of the receivable.
    */
-  constructor(value: number, emissionDate: Date, assignor: AssignorEntity, id?: string) {
+  constructor(
+    value: number,
+    emissionDate: Date,
+    assignor: AssignorEntity,
+    id?: string,
+  ) {
     this._id = id;
     this._value = value;
     this._emissionDate = emissionDate;
@@ -41,9 +46,10 @@ export class PayableEntity {
    * @param {string | undefined} id - The new id of the assignor.
    * @returns {Either<ValidationError, void>} Either a ValidationError or void.
    */
-  public setId(id: string | undefined): Either<ValidationError, void> {    
+  public setId(id: string | undefined): Either<ValidationError, void> {
     if (id) {
-      const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+      const uuidRegex =
+        /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
       if (!uuidRegex.test(id)) {
         return new Left(new ValidationError(ValidationMessages.INVALID_UUID));
       }

@@ -1,8 +1,8 @@
-import { Left } from "../../either/Left";
-import { Right } from "../../either/Right";
-import { ValidationError } from "../../errors/ValidationErros";
-import { AssignorEntity } from "./AssignorEntity";
-import { Either } from "../../either/either";
+import { Either } from '../../either/either';
+import { Left } from '../../either/Left';
+import { Right } from '../../either/Right';
+import { ValidationError } from '../../errors/ValidationErros';
+import { AssignorEntity } from './AssignorEntity';
 
 /**
  * Factory class for creating instances of AssignorEntity.
@@ -20,15 +20,23 @@ export class AssignorEntityFactory {
    * @returns {Either<ValidationError, AssignorEntity>} Either containing ValidationError if validation fails, or AssignorEntity instance if successful.
    */
   public static createAssignorEntity(
-    id: string | undefined, 
-    document: string, 
-    email: string, 
-    name: string, 
-    phone: string, 
-    login: string, 
-    password?: string
+    id: string | undefined,
+    document: string,
+    email: string,
+    name: string,
+    phone: string,
+    login: string,
+    password?: string,
   ): Either<ValidationError, AssignorEntity> {
-    const assignor = new AssignorEntity(id, document, email, name, phone, login, password);
+    const assignor = new AssignorEntity(
+      id,
+      document,
+      email,
+      name,
+      phone,
+      login,
+      password,
+    );
 
     const idValidation = assignor.setId(id);
     if (idValidation.isLeft()) {

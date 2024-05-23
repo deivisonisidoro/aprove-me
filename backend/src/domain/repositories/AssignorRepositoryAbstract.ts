@@ -1,5 +1,5 @@
-import { AssignorEntity } from "../entities/assignor/AssignorEntity";
-import { ReadAssignorDTO } from "../dtos/ReadAssignorDTO";
+import { ReadAssignorDTO } from '../dtos/ReadAssignorDTO';
+import { AssignorEntity } from '../entities/assignor/AssignorEntity';
 
 /**
  * Abstract class representing the repository for Assignor entities.
@@ -12,7 +12,6 @@ export abstract class AssignorRepositoryAbstract {
    * @returns {Promise<Either<ValidationError, AssignorEntity>>} A promise that resolves to either a ValidationError or the saved AssignorEntity.
    */
   abstract create(assignor: AssignorEntity): Promise<ReadAssignorDTO>;
-
 
   /**
    * Finds an assignor entity by its ID.

@@ -1,9 +1,9 @@
-import { Right } from "../../either/Right";
-import { Either } from "../../either/either";
-import { Left } from "../../either/Left";
-import { ValidationError } from "../../errors/ValidationErros";
-import { PayableEntity } from "./PayableEntity";
-import { AssignorEntity } from "../assignor/AssignorEntity";
+import { Either } from '../../either/either';
+import { Left } from '../../either/Left';
+import { Right } from '../../either/Right';
+import { ValidationError } from '../../errors/ValidationErros';
+import { AssignorEntity } from '../assignor/AssignorEntity';
+import { PayableEntity } from './PayableEntity';
 
 /**
  * Factory class for creating instances of PayableEntity.
@@ -17,7 +17,12 @@ export class PayableEntityFactory {
    * @param {string} [id] - The optional id of the receivable.
    * @returns {Either<ValidationError, PayableEntity>} Either containing ValidationError if validation fails, or PayableEntity instance if successful.
    */
-  public static createPayableEntity(value: number, emissionDate: Date, assignor: AssignorEntity, id?: string): Either<ValidationError, PayableEntity> {
+  public static createPayableEntity(
+    value: number,
+    emissionDate: Date,
+    assignor: AssignorEntity,
+    id?: string,
+  ): Either<ValidationError, PayableEntity> {
     const receivable = new PayableEntity(value, emissionDate, assignor, id);
 
     const idValidation = receivable.setId(id);

@@ -1,11 +1,10 @@
-import { ReadAssignorUseCaseAbstract } from "../../../../domain/useCases/read/ReadAssignorUseCaseAbstract";
-import { ReadAssignorDTO } from "../../../../domain/dtos/assignor/ReadAssignorDTO";
-import { ValidationError } from "../../../../domain/errors/ValidationErros";
-import { AssignorRepositoryAbstract } from "../../../../domain/repositories/AssignorRepositoryAbstract";
-import { ReadAssignorUseCase } from "./ReadAssignorUseCase";
+import { ReadAssignorDTO } from '../../../../domain/dtos/assignor/ReadAssignorDTO';
+import { ValidationError } from '../../../../domain/errors/ValidationErros';
+import { AssignorRepositoryAbstract } from '../../../../domain/repositories/AssignorRepositoryAbstract';
+import { ReadAssignorUseCaseAbstract } from '../../../../domain/useCases/read/ReadAssignorUseCaseAbstract';
+import { ReadAssignorUseCase } from './ReadAssignorUseCase';
 
-
-describe("ReadAssignorUseCase", () => {
+describe('ReadAssignorUseCase', () => {
   let assignorRepositoryMock: AssignorRepositoryAbstract;
   let readAssignorUseCase: ReadAssignorUseCaseAbstract;
   const readAssignorDTO: ReadAssignorDTO = {
@@ -24,30 +23,28 @@ describe("ReadAssignorUseCase", () => {
       deleteById: jest.fn(),
     } as unknown as AssignorRepositoryAbstract;
 
-
-    readAssignorUseCase = new ReadAssignorUseCase(
-      assignorRepositoryMock,
-
-    );
+    readAssignorUseCase = new ReadAssignorUseCase(assignorRepositoryMock);
   });
-  it("should return a Right with the read assignor DTO if assignor is found", async () => {
-    const assignorId = "validId";
-    (assignorRepositoryMock.findById as jest.Mock).mockResolvedValue(readAssignorDTO);
+  it('should return a Right with the read assignor DTO if assignor is found', async () => {
+    const assignorId = 'validId';
+    (assignorRepositoryMock.findById as jest.Mock).mockResolvedValue(
+      readAssignorDTO,
+    );
     const result = await readAssignorUseCase.execute(assignorId);
 
     expect(result.isRight()).toBe(true);
     expect(result.value).toEqual(readAssignorDTO);
   });
 
-  it("should return a Left with a validation error if assignor is not found", async () => {
-    const assignorId = "invalidId";
+  it('should return a Left with a validation error if assignor is not found', async () => {
+    const assignorId = 'invalidId';
 
     const result = await readAssignorUseCase.execute(assignorId);
 
     expect(result.isLeft()).toBe(true);
     expect(result.value).toBeInstanceOf(ValidationError);
-    if(result.isLeft()){
-      expect(result.value.message).toBe("Assignor not found.");
+    if (result.isLeft()) {
+      expect(result.value.message).toBe('Assignor not found.');
     }
   });
 });
