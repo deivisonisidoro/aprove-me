@@ -1,5 +1,4 @@
 import { PayableValidationMessages } from '../../enums/payable/PayableValidationMessageEnum';
-import { AssignorEntity } from '../assignor/AssignorEntity';
 import { PayableEntity } from './PayableEntity';
 
 describe('PayableEntity', () => {
