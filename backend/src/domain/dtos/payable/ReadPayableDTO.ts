@@ -11,7 +11,12 @@ export class ReadPayableDTO {
    * @param {Date} emissionDate - The emission date of the payable.
    * @param {string} assignorId - The id of the payable.
    */
-  constructor(id: string | undefined, value: number, emissionDate: Date, assignorId: string) {
+  constructor(
+    id: string | undefined,
+    value: number,
+    emissionDate: Date,
+    assignorId: string,
+  ) {
     this.value = value;
     this.emissionDate = emissionDate;
     this.assignorId = assignorId;

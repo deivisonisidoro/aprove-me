@@ -38,7 +38,6 @@ export class CreatePayableUseCase extends CreatePayableUseCaseAbstract {
         new ValidationError(PayableValidationMessages.ASSIGNOR_ID_MISSING),
       );
     }
-    
 
     const newPayable = PayableEntityFactory.createPayableEntity(
       createPayableDTO.value,
@@ -49,9 +48,7 @@ export class CreatePayableUseCase extends CreatePayableUseCaseAbstract {
     if (newPayable.isLeft()) {
       return newPayable;
     }
-    const savedPayable = await this.payableRepository.create(
-      newPayable.value,
-    );
+    const savedPayable = await this.payableRepository.create(newPayable.value);
     return new Right(savedPayable);
   }
 }

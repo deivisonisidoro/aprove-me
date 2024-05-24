@@ -1,8 +1,7 @@
-import { Either } from '../../either/either';
-import { ValidationError } from '../../errors/ValidationErros';
-
 import { CreatePayableDTO } from '../../dtos/payable/CreatePayableDTO';
 import { ReadPayableDTO } from '../../dtos/payable/ReadPayableDTO';
+import { Either } from '../../either/either';
+import { ValidationError } from '../../errors/ValidationErros';
 
 /**
  * Abstract class representing the use case for creating an Payable.

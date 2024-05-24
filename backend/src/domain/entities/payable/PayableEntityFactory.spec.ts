@@ -19,7 +19,6 @@ describe('PayableEntityFactory', () => {
     });
 
     it('should create a PayableEntity instance with an optional id', () => {
-
       const result = PayableEntityFactory.createPayableEntity(
         100,
         new Date(),

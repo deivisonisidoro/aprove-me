@@ -27,10 +27,7 @@ export abstract class PayableRepositoryAbstract {
    * @param {PayableEntity} payable - The Payable entity to update.
    * @returns {Promise<Either<ValidationError, PayableEntity>>} A promise that resolves to either a ValidationError or the updated PayableEntity.
    */
-  abstract update(
-    id: string,
-    payable: PayableEntity,
-  ): Promise<ReadPayableDTO>;
+  abstract update(id: string, payable: PayableEntity): Promise<ReadPayableDTO>;
 
   /**
    * Deletes an Payable entity by its ID.

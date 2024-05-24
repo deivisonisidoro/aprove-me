@@ -103,7 +103,7 @@ export class PayableEntity {
    * Sets the assignorId associated with the receivable.
    * @param {string} assignorId - The new assignorId associated with the receivable.
    */
-  public setAssignorId(assignorId: string): Either<ValidationError, void>  {
+  public setAssignorId(assignorId: string): Either<ValidationError, void> {
     if (assignorId) {
       const uuidRegex =
         /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;

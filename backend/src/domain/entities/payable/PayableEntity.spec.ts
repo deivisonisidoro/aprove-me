@@ -4,7 +4,11 @@ import { PayableEntity } from './PayableEntity';
 describe('PayableEntity', () => {
   describe('constructor', () => {
     it('should create a PayableEntity instance with valid parameters', () => {
-      const receivable = new PayableEntity(100, new Date(), '123e4567-e89b-12d3-a456-426614174000' );
+      const receivable = new PayableEntity(
+        100,
+        new Date(),
+        '123e4567-e89b-12d3-a456-426614174000',
+      );
       expect(receivable).toBeInstanceOf(PayableEntity);
     });
 
@@ -87,13 +91,19 @@ describe('PayableEntity', () => {
     });
 
     it('should get the assignor', () => {
-      expect(receivable.assignorId).toBe('123e4567-e89b-12d3-a456-426614174000');
+      expect(receivable.assignorId).toBe(
+        '123e4567-e89b-12d3-a456-426614174000',
+      );
     });
 
     it('should set the assignorId', () => {
-      const result = receivable.setAssignorId('123e4567-e89b-12d3-a456-426614174000');
+      const result = receivable.setAssignorId(
+        '123e4567-e89b-12d3-a456-426614174000',
+      );
       expect(result.isLeft()).toBe(false);
-      expect(receivable.assignorId).toBe('123e4567-e89b-12d3-a456-426614174000');
+      expect(receivable.assignorId).toBe(
+        '123e4567-e89b-12d3-a456-426614174000',
+      );
     });
     it('should return a Left with ValidationError if the assignorId is not a valid UUID', () => {
       const result = receivable.setAssignorId('invalid-id');
