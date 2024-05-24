@@ -1,11 +1,11 @@
-import { DeleteAssignorUseCase } from './DeleteAssignorUseCase';
-import { AssignorRepositoryAbstract } from '../../../../domain/repositories/AssignorRepositoryAbstract';
 import { Left } from '../../../../domain/either/Left';
 import { Right } from '../../../../domain/either/Right';
-import { ValidationError } from '../../../../domain/errors/ValidationErros';
+import { AssignorEntity } from '../../../../domain/entities/assignor/AssignorEntity';
 import { AssignorValidationMessages } from '../../../../domain/enums/assignor/AssignorValidationMessageEnum';
 import { AssignorSuccessMessage } from '../../../../domain/enums/assignor/AssingorSuccessMessages';
-import { AssignorEntity } from '../../../../domain/entities/assignor/AssignorEntity';
+import { ValidationError } from '../../../../domain/errors/ValidationErros';
+import { AssignorRepositoryAbstract } from '../../../../domain/repositories/AssignorRepositoryAbstract';
+import { DeleteAssignorUseCase } from './DeleteAssignorUseCase';
 
 describe('DeleteAssignorUseCase', () => {
   let deleteAssignorUseCase: DeleteAssignorUseCase;
@@ -36,7 +36,9 @@ describe('DeleteAssignorUseCase', () => {
 
     const result = await deleteAssignorUseCase.execute(assignorId);
 
-    expect(result).toEqual(new Right(AssignorSuccessMessage.DELETED_SUCCESSFULLY));
+    expect(result).toEqual(
+      new Right(AssignorSuccessMessage.DELETED_SUCCESSFULLY),
+    );
     expect(assignorRepository.findById).toHaveBeenCalledWith(assignorId);
     expect(assignorRepository.deleteById).toHaveBeenCalledWith(assignorId);
   });
@@ -47,7 +49,11 @@ describe('DeleteAssignorUseCase', () => {
 
     const result = await deleteAssignorUseCase.execute(assignorId);
 
-    expect(result).toEqual(new Left(new ValidationError(AssignorValidationMessages.ASSIGNOR_NOT_FOUND)));
+    expect(result).toEqual(
+      new Left(
+        new ValidationError(AssignorValidationMessages.ASSIGNOR_NOT_FOUND),
+      ),
+    );
     expect(assignorRepository.findById).toHaveBeenCalledWith(assignorId);
     expect(assignorRepository.deleteById).not.toHaveBeenCalled();
   });

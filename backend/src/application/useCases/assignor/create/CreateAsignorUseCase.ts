@@ -39,7 +39,9 @@ export class CreateAssignorUseCase extends CreateAssignorUseCaseAbstract {
       );
     }
     if (!createAssignorDTO.email) {
-      return new Left(new ValidationError(AssignorValidationMessages.EMAIL_REQUIRED));
+      return new Left(
+        new ValidationError(AssignorValidationMessages.EMAIL_REQUIRED),
+      );
     }
 
     const newAssignor = AssignorEntityFactory.createAssignorEntity(

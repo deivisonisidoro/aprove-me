@@ -46,7 +46,9 @@ describe('AssignorEntity', () => {
       const result = assignor.setId('invalid-id');
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
-        expect(result.value.message).toBe(AssignorValidationMessages.INVALID_UUID);
+        expect(result.value.message).toBe(
+          AssignorValidationMessages.INVALID_UUID,
+        );
       }
     });
 
@@ -64,7 +66,9 @@ describe('AssignorEntity', () => {
       const result = assignor.setDocument('1234567890123456789012345678901');
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
-        expect(result.value.message).toBe(AssignorValidationMessages.DOCUMENT_TOO_LONG);
+        expect(result.value.message).toBe(
+          AssignorValidationMessages.DOCUMENT_TOO_LONG,
+        );
       }
     });
 
@@ -83,7 +87,9 @@ describe('AssignorEntity', () => {
       const result = assignor.setEmail(longEmail);
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
-        expect(result.value.message).toBe(AssignorValidationMessages.EMAIL_TOO_LONG);
+        expect(result.value.message).toBe(
+          AssignorValidationMessages.EMAIL_TOO_LONG,
+        );
       }
     });
 
@@ -112,7 +118,9 @@ describe('AssignorEntity', () => {
       const result = assignor.setName(longName);
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
-        expect(result.value.message).toBe(AssignorValidationMessages.NAME_TOO_LONG);
+        expect(result.value.message).toBe(
+          AssignorValidationMessages.NAME_TOO_LONG,
+        );
       }
     });
 
@@ -131,7 +139,9 @@ describe('AssignorEntity', () => {
       const result = assignor.setPhone(longPhone);
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
-        expect(result.value.message).toBe(AssignorValidationMessages.PHONE_TOO_LONG);
+        expect(result.value.message).toBe(
+          AssignorValidationMessages.PHONE_TOO_LONG,
+        );
       }
     });
 
@@ -149,7 +159,9 @@ describe('AssignorEntity', () => {
       const result = assignor.setLogin('a'.repeat(51));
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
-        expect(result.value.message).toBe(AssignorValidationMessages.LOGIN_TOO_LONG);
+        expect(result.value.message).toBe(
+          AssignorValidationMessages.LOGIN_TOO_LONG,
+        );
       }
     });
 

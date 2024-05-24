@@ -74,7 +74,9 @@ describe('PayableEntity', () => {
       const result = receivable.setId('invalid-id');
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
-        expect(result.value.message).toBe(PayableValidationMessages.INVALID_UUID);
+        expect(result.value.message).toBe(
+          PayableValidationMessages.INVALID_UUID,
+        );
       }
     });
 
@@ -88,7 +90,9 @@ describe('PayableEntity', () => {
       const result = receivable.setId('invalid-id');
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
-        expect(result.value.message).toBe(PayableValidationMessages.INVALID_UUID);
+        expect(result.value.message).toBe(
+          PayableValidationMessages.INVALID_UUID,
+        );
       }
     });
 

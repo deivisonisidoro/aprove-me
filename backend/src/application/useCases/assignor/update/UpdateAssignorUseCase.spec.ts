@@ -1,16 +1,15 @@
+import { UpdateAssignorDTO } from '../../../../domain/dtos/assignor/UpdateAssignorDTO';
+import { Left } from '../../../../domain/either/Left';
+import { Right } from '../../../../domain/either/Right';
+import { AssignorEntity } from '../../../../domain/entities/assignor/AssignorEntity';
+import { AssignorEntityFactory } from '../../../../domain/entities/assignor/AssignorEntityFactory';
+import { AssignorValidationMessages } from '../../../../domain/enums/assignor/AssignorValidationMessageEnum';
+import { ValidationError } from '../../../../domain/errors/ValidationErros';
+import { AssignorRepositoryAbstract } from '../../../../domain/repositories/AssignorRepositoryAbstract';
+import { UpdateAssignorUseCaseAbstract } from '../../../../domain/useCases/UpdateUseCaseAbstract';
+import { UpdateAssignorUseCase } from './UpdateAssignorUseCase';
 
-import { UpdateAssignorDTO } from "../../../../domain/dtos/assignor/UpdateAssignorDTO";
-import { Left } from "../../../../domain/either/Left";
-import { Right } from "../../../../domain/either/Right";
-import { AssignorEntity } from "../../../../domain/entities/assignor/AssignorEntity";
-import { AssignorEntityFactory } from "../../../../domain/entities/assignor/AssignorEntityFactory";
-import { AssignorValidationMessages } from "../../../../domain/enums/assignor/AssignorValidationMessageEnum";
-import { AssignorRepositoryAbstract } from "../../../../domain/repositories/AssignorRepositoryAbstract";
-import { UpdateAssignorUseCase } from "./UpdateAssignorUseCase";
-import { ValidationError } from "../../../../domain/errors/ValidationErros";
-import { UpdateAssignorUseCaseAbstract } from "../../../../domain/useCases/UpdateUseCaseAbstract";
-
-describe("UpdateAssignorUseCase", () => {
+describe('UpdateAssignorUseCase', () => {
   let updateAssignorUseCase: UpdateAssignorUseCaseAbstract;
   let assignorRepository: AssignorRepositoryAbstract;
   const assignorEntity = new AssignorEntity(
@@ -31,32 +30,39 @@ describe("UpdateAssignorUseCase", () => {
     updateAssignorUseCase = new UpdateAssignorUseCase(assignorRepository);
   });
 
-  it("should return a validation error if the assignor is not found", async () => {
-    const assignorId = "non-existent-id";
+  it('should return a validation error if the assignor is not found', async () => {
+    const assignorId = 'non-existent-id';
     (assignorRepository.findById as jest.Mock).mockResolvedValue(null);
 
-    const result = await updateAssignorUseCase.execute(assignorId, {} as UpdateAssignorDTO);
+    const result = await updateAssignorUseCase.execute(
+      assignorId,
+      {} as UpdateAssignorDTO,
+    );
 
     expect(result).toBeInstanceOf(Left);
     if (result.isLeft()) {
       expect(result.value).toBeInstanceOf(ValidationError);
-      expect(result.value.message).toBe(AssignorValidationMessages.ASSIGNOR_NOT_FOUND);
+      expect(result.value.message).toBe(
+        AssignorValidationMessages.ASSIGNOR_NOT_FOUND,
+      );
     }
   });
 
-  it("should update an assignor successfully", async () => {
-    const assignorId = "existing-id";
+  it('should update an assignor successfully', async () => {
+    const assignorId = 'existing-id';
 
     const updateAssignorDTO: UpdateAssignorDTO = {
-      document: "new-document",
-      email: "new-email@example.com",
-      name: "new-name",
-      phone: "new-phone",
-      login: "new-login",
-      password: "NewValid1@Password",
+      document: 'new-document',
+      email: 'new-email@example.com',
+      name: 'new-name',
+      phone: 'new-phone',
+      login: 'new-login',
+      password: 'NewValid1@Password',
     };
 
-    (assignorRepository.findById as jest.Mock).mockResolvedValue(assignorEntity);
+    (assignorRepository.findById as jest.Mock).mockResolvedValue(
+      assignorEntity,
+    );
     const updatedAssignorEntity = AssignorEntityFactory.updateAssignorEntity(
       assignorEntity,
       updateAssignorDTO.document,
@@ -66,9 +72,14 @@ describe("UpdateAssignorUseCase", () => {
       updateAssignorDTO.login,
       updateAssignorDTO.password,
     );
-    (assignorRepository.update as jest.Mock).mockResolvedValue(updatedAssignorEntity.value);
+    (assignorRepository.update as jest.Mock).mockResolvedValue(
+      updatedAssignorEntity.value,
+    );
 
-    const result = await updateAssignorUseCase.execute(assignorId, updateAssignorDTO);
+    const result = await updateAssignorUseCase.execute(
+      assignorId,
+      updateAssignorDTO,
+    );
 
     expect(result).toBeInstanceOf(Right);
     if (result.isRight()) {
@@ -76,21 +87,30 @@ describe("UpdateAssignorUseCase", () => {
     }
   });
 
-  it("should return a validation error if the updated assignor entity is invalid", async () => {
-    const assignorId = "existing-id";
+  it('should return a validation error if the updated assignor entity is invalid', async () => {
+    const assignorId = 'existing-id';
     const updateAssignorDTO: UpdateAssignorDTO = {
-      document: "new-document",
-      email: "invalid-email",
-      name: "new-name",
-      phone: "new-phone",
-      login: "new-login",
-      password: "new-password",
+      document: 'new-document',
+      email: 'invalid-email',
+      name: 'new-name',
+      phone: 'new-phone',
+      login: 'new-login',
+      password: 'new-password',
     };
 
-    (assignorRepository.findById as jest.Mock).mockResolvedValue(assignorEntity);
-    jest.spyOn(AssignorEntityFactory, "updateAssignorEntity").mockReturnValue(new Left(new ValidationError('Failed to update AssignorEntity')),);
+    (assignorRepository.findById as jest.Mock).mockResolvedValue(
+      assignorEntity,
+    );
+    jest
+      .spyOn(AssignorEntityFactory, 'updateAssignorEntity')
+      .mockReturnValue(
+        new Left(new ValidationError('Failed to update AssignorEntity')),
+      );
 
-    const result = await updateAssignorUseCase.execute(assignorId, updateAssignorDTO);
+    const result = await updateAssignorUseCase.execute(
+      assignorId,
+      updateAssignorDTO,
+    );
 
     expect(result).toBeInstanceOf(Left);
     if (result instanceof Left) {

@@ -96,7 +96,7 @@ export class AssignorEntityFactory {
     name?: string,
     phone?: string,
     login?: string,
-    password?: string
+    password?: string,
   ): Either<ValidationError, AssignorEntity> {
     if (document !== undefined) {
       const documentValidation = assignor.setDocument(document);

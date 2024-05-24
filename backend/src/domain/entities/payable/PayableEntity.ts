@@ -51,7 +51,9 @@ export class PayableEntity {
       const uuidRegex =
         /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
       if (!uuidRegex.test(id)) {
-        return new Left(new ValidationError(PayableValidationMessages.INVALID_UUID));
+        return new Left(
+          new ValidationError(PayableValidationMessages.INVALID_UUID),
+        );
       }
     }
     this._id = id;

@@ -46,7 +46,9 @@ describe('CreateAssignorUseCase', () => {
     expect(result.isLeft()).toBe(true);
     expect(result.value).toBeInstanceOf(ValidationError);
     if (result.isLeft()) {
-      expect(result.value.message).toBe(AssignorValidationMessages.DOCUMENT_REQUIRED);
+      expect(result.value.message).toBe(
+        AssignorValidationMessages.DOCUMENT_REQUIRED,
+      );
     }
   });
 
@@ -58,7 +60,9 @@ describe('CreateAssignorUseCase', () => {
     expect(result.isLeft()).toBe(true);
     expect(result.value).toBeInstanceOf(ValidationError);
     if (result.isLeft()) {
-      expect(result.value.message).toBe(AssignorValidationMessages.EMAIL_REQUIRED);
+      expect(result.value.message).toBe(
+        AssignorValidationMessages.EMAIL_REQUIRED,
+      );
     }
   });
 

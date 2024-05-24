@@ -65,7 +65,9 @@ export class AssignorEntity {
       const uuidRegex =
         /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
       if (!uuidRegex.test(id)) {
-        return new Left(new ValidationError(AssignorValidationMessages.INVALID_UUID));
+        return new Left(
+          new ValidationError(AssignorValidationMessages.INVALID_UUID),
+        );
       }
     }
     this._id = id;
@@ -115,7 +117,9 @@ export class AssignorEntity {
   public setEmail(email: string): Either<ValidationError, void> {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (email.length > 140) {
-      return new Left(new ValidationError(AssignorValidationMessages.EMAIL_TOO_LONG));
+      return new Left(
+        new ValidationError(AssignorValidationMessages.EMAIL_TOO_LONG),
+      );
     }
     if (!emailRegex.test(email)) {
       return new Left(
@@ -143,7 +147,9 @@ export class AssignorEntity {
    */
   public setName(name: string): Either<ValidationError, void> {
     if (name.length > 140) {
-      return new Left(new ValidationError(AssignorValidationMessages.NAME_TOO_LONG));
+      return new Left(
+        new ValidationError(AssignorValidationMessages.NAME_TOO_LONG),
+      );
     }
     this._name = name;
     return new Right(undefined);
@@ -166,7 +172,9 @@ export class AssignorEntity {
    */
   public setPhone(phone: string): Either<ValidationError, void> {
     if (phone.length > 20) {
-      return new Left(new ValidationError(AssignorValidationMessages.PHONE_TOO_LONG));
+      return new Left(
+        new ValidationError(AssignorValidationMessages.PHONE_TOO_LONG),
+      );
     }
     this._phone = phone;
     return new Right(undefined);
@@ -187,7 +195,9 @@ export class AssignorEntity {
    */
   public setLogin(login: string): Either<ValidationError, void> {
     if (login.length > 50) {
-      return new Left(new ValidationError(AssignorValidationMessages.LOGIN_TOO_LONG));
+      return new Left(
+        new ValidationError(AssignorValidationMessages.LOGIN_TOO_LONG),
+      );
     }
     this._login = login;
     return new Right(undefined);
@@ -224,7 +234,9 @@ export class AssignorEntity {
     }
     if (!hasUpperCase || !hasLowerCase || !hasDigit || !hasSpecialChar) {
       return new Left(
-        new ValidationError(AssignorValidationMessages.PASSWORD_COMPLEXITY_INVALID),
+        new ValidationError(
+          AssignorValidationMessages.PASSWORD_COMPLEXITY_INVALID,
+        ),
       );
     }
     this._password = password;

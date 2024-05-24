@@ -1,11 +1,11 @@
-import { DeleteAssignorUseCaseAbstract } from '../../../../domain/useCases/DeleteAssignorUseCaseAbstract';
 import { Either } from '../../../../domain/either/either';
 import { Left } from '../../../../domain/either/Left';
 import { Right } from '../../../../domain/either/Right';
 import { AssignorValidationMessages } from '../../../../domain/enums/assignor/AssignorValidationMessageEnum';
+import { AssignorSuccessMessage } from '../../../../domain/enums/assignor/AssingorSuccessMessages';
 import { ValidationError } from '../../../../domain/errors/ValidationErros';
 import { AssignorRepositoryAbstract } from '../../../../domain/repositories/AssignorRepositoryAbstract';
-import { AssignorSuccessMessage } from '../../../../domain/enums/assignor/AssingorSuccessMessages';
+import { DeleteAssignorUseCaseAbstract } from '../../../../domain/useCases/DeleteAssignorUseCaseAbstract';
 
 /**
  * Concrete implementation of the `DeleteAssignorUseCase` abstract class.
@@ -28,9 +28,7 @@ export class DeleteAssignorUseCase extends DeleteAssignorUseCaseAbstract {
    * @param {string} assignorId - The unique identifier of the assignor to be deleted.
    * @returns {Promise<Either<ValidationError, string>>} A promise that resolves to either a validation error or a success message.
    */
-  async execute(
-    assignorId: string,
-  ): Promise<Either<ValidationError, string>> {
+  async execute(assignorId: string): Promise<Either<ValidationError, string>> {
     const assignor = await this.assignorRepository.findById(assignorId);
     if (!assignor) {
       return new Left(

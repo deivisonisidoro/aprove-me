@@ -1,13 +1,13 @@
-import { ReadAssignorDTO } from "../../../../domain/dtos/assignor/ReadAssignorDTO";
-import { UpdateAssignorDTO } from "../../../../domain/dtos/assignor/UpdateAssignorDTO";
-import { Left } from "../../../../domain/either/Left";
-import { Right } from "../../../../domain/either/Right";
-import { Either } from "../../../../domain/either/either";
-import { AssignorEntityFactory } from "../../../../domain/entities/assignor/AssignorEntityFactory";
-import { AssignorValidationMessages } from "../../../../domain/enums/assignor/AssignorValidationMessageEnum";
-import { ValidationError } from "../../../../domain/errors/ValidationErros";
-import { AssignorRepositoryAbstract } from "../../../../domain/repositories/AssignorRepositoryAbstract";
-import { UpdateAssignorUseCaseAbstract } from "../../../../domain/useCases/UpdateUseCaseAbstract";
+import { ReadAssignorDTO } from '../../../../domain/dtos/assignor/ReadAssignorDTO';
+import { UpdateAssignorDTO } from '../../../../domain/dtos/assignor/UpdateAssignorDTO';
+import { Either } from '../../../../domain/either/either';
+import { Left } from '../../../../domain/either/Left';
+import { Right } from '../../../../domain/either/Right';
+import { AssignorEntityFactory } from '../../../../domain/entities/assignor/AssignorEntityFactory';
+import { AssignorValidationMessages } from '../../../../domain/enums/assignor/AssignorValidationMessageEnum';
+import { ValidationError } from '../../../../domain/errors/ValidationErros';
+import { AssignorRepositoryAbstract } from '../../../../domain/repositories/AssignorRepositoryAbstract';
+import { UpdateAssignorUseCaseAbstract } from '../../../../domain/useCases/UpdateUseCaseAbstract';
 
 /**
  * Concrete implementation of the UpdateAssignorUseCaseAbstract class.
@@ -33,12 +33,14 @@ export class UpdateAssignorUseCase extends UpdateAssignorUseCaseAbstract {
    */
   async execute(
     assignorId: string,
-    updateAssignorDTO: UpdateAssignorDTO
+    updateAssignorDTO: UpdateAssignorDTO,
   ): Promise<Either<ValidationError, ReadAssignorDTO>> {
     const assignorEntity = await this.assignorRepository.findById(assignorId);
 
     if (!assignorEntity) {
-      return new Left(new ValidationError(AssignorValidationMessages.ASSIGNOR_NOT_FOUND));
+      return new Left(
+        new ValidationError(AssignorValidationMessages.ASSIGNOR_NOT_FOUND),
+      );
     }
 
     const updatedAssignor = AssignorEntityFactory.updateAssignorEntity(
@@ -50,10 +52,13 @@ export class UpdateAssignorUseCase extends UpdateAssignorUseCaseAbstract {
       updateAssignorDTO.login,
       updateAssignorDTO.password,
     );
-    if(updatedAssignor.isLeft()){
-      return updatedAssignor
+    if (updatedAssignor.isLeft()) {
+      return updatedAssignor;
     }
-    const savedAssignor = await this.assignorRepository.update(assignorId, updatedAssignor.value);
+    const savedAssignor = await this.assignorRepository.update(
+      assignorId,
+      updatedAssignor.value,
+    );
 
     return new Right(savedAssignor);
   }

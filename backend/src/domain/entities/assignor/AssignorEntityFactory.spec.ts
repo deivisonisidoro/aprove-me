@@ -52,7 +52,9 @@ describe('AssignorEntityFactory', () => {
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
         expect(result.value).toBeInstanceOf(ValidationError);
-        expect(result.value.message).toBe(AssignorValidationMessages.LOGIN_TOO_LONG);
+        expect(result.value.message).toBe(
+          AssignorValidationMessages.LOGIN_TOO_LONG,
+        );
       }
     });
 
@@ -134,7 +136,9 @@ describe('AssignorEntityFactory', () => {
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
         expect(result.value).toBeInstanceOf(ValidationError);
-        expect(result.value.message).toBe(AssignorValidationMessages.INVALID_EMAIL_FORMAT);
+        expect(result.value.message).toBe(
+          AssignorValidationMessages.INVALID_EMAIL_FORMAT,
+        );
       }
     });
   });
@@ -176,36 +180,62 @@ describe('AssignorEntityFactory', () => {
     it('should return a Left with ValidationError if updating with invalid email format', () => {
       const email = 'invalid-email';
 
-      const result = AssignorEntityFactory.updateAssignorEntity(assignor, undefined, email);
+      const result = AssignorEntityFactory.updateAssignorEntity(
+        assignor,
+        undefined,
+        email,
+      );
 
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
         expect(result.value).toBeInstanceOf(ValidationError);
-        expect(result.value.message).toBe(AssignorValidationMessages.INVALID_EMAIL_FORMAT);
+        expect(result.value.message).toBe(
+          AssignorValidationMessages.INVALID_EMAIL_FORMAT,
+        );
       }
     });
 
     it('should return a Left with ValidationError if updating with invalid password length', () => {
       const password = 'short';
 
-      const result = AssignorEntityFactory.updateAssignorEntity(assignor, undefined, undefined, undefined, undefined, undefined, password);
+      const result = AssignorEntityFactory.updateAssignorEntity(
+        assignor,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        password,
+      );
 
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
         expect(result.value).toBeInstanceOf(ValidationError);
-        expect(result.value.message).toBe(AssignorValidationMessages.PASSWORD_LENGTH_INVALID);
+        expect(result.value.message).toBe(
+          AssignorValidationMessages.PASSWORD_LENGTH_INVALID,
+        );
       }
     });
 
     it('should return a Left with ValidationError if updating with invalid password complexity', () => {
       const password = 'simplepassword';
 
-      const result = AssignorEntityFactory.updateAssignorEntity(assignor, undefined, undefined, undefined, undefined, undefined, password);
+      const result = AssignorEntityFactory.updateAssignorEntity(
+        assignor,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        password,
+      );
 
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
         expect(result.value).toBeInstanceOf(ValidationError);
-        expect(result.value.message).toBe(AssignorValidationMessages.PASSWORD_COMPLEXITY_INVALID);
+        expect(result.value.message).toBe(
+          AssignorValidationMessages.PASSWORD_COMPLEXITY_INVALID,
+        );
       }
     });
   });

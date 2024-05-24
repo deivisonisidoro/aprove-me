@@ -42,9 +42,9 @@ export class ReadAssignorUseCase extends ReadAssignorUseCaseAbstract {
       assignor.document,
       assignor.email,
       assignor.name,
-      assignor.phone, 
-      assignor.login
-    )
+      assignor.phone,
+      assignor.login,
+    );
     return new Right(readAssignorDTO);
   }
 }

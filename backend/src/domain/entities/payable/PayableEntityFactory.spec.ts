@@ -81,7 +81,9 @@ describe('PayableEntityFactory', () => {
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
         expect(result.value).toBeInstanceOf(ValidationError);
-        expect(result.value.message).toBe(PayableValidationMessages.INVALID_UUID);
+        expect(result.value.message).toBe(
+          PayableValidationMessages.INVALID_UUID,
+        );
       }
     });
   });
