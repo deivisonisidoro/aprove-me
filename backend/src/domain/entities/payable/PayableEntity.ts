@@ -3,7 +3,6 @@ import { Left } from '../../either/Left';
 import { Right } from '../../either/Right';
 import { PayableValidationMessages } from '../../enums/payable/PayableValidationMessageEnum';
 import { ValidationError } from '../../errors/ValidationErros';
-import { AssignorEntity } from '../assignor/AssignorEntity';
 
 /**
  * Class representing a receivable entity.
@@ -12,25 +11,25 @@ export class PayableEntity {
   private _id?: string;
   private _value: number;
   private _emissionDate: Date;
-  private _assignor: AssignorEntity;
+  private _assignorId: string;
 
   /**
    * Creates a PayableEntity instance.
    * @param {number} value - The value of the receivable.
    * @param {Date} emissionDate - The emission date of the receivable.
-   * @param {AssignorEntity} assignor - The assignor associated with the receivable.
+   * @param {string} assignorId - The assignorId associated with the receivable.
    * @param {string} [id] - The optional id of the receivable.
    */
   constructor(
     value: number,
     emissionDate: Date,
-    assignor: AssignorEntity,
+    assignorId: string,
     id?: string,
   ) {
     this._id = id;
     this._value = value;
     this._emissionDate = emissionDate;
-    this._assignor = assignor;
+    this._assignorId = assignorId;
   }
 
   /**
@@ -43,7 +42,7 @@ export class PayableEntity {
 
   /**
    * Sets the id of the receivable.
-   * @param {string | undefined} id - The new id of the assignor.
+   * @param {string | undefined} id - The new id of the assignorId.
    * @returns {Either<ValidationError, void>} Either a ValidationError or void.
    */
   public setId(id: string | undefined): Either<ValidationError, void> {
@@ -93,18 +92,28 @@ export class PayableEntity {
   }
 
   /**
-   * Gets the assignor associated with the receivable.
-   * @returns {AssignorEntity} The assignor associated with the receivable.
+   * Gets the assignorId associated with the receivable.
+   * @returns {string} The assignorId associated with the receivable.
    */
-  public get assignor(): AssignorEntity {
-    return this._assignor;
+  public get assignorId(): string {
+    return this._assignorId;
   }
 
   /**
-   * Sets the assignor associated with the receivable.
-   * @param {AssignorEntity} assignor - The new assignor associated with the receivable.
+   * Sets the assignorId associated with the receivable.
+   * @param {string} assignorId - The new assignorId associated with the receivable.
    */
-  public set assignor(assignor: AssignorEntity) {
-    this._assignor = assignor;
+  public setAssignorId(assignorId: string): Either<ValidationError, void>  {
+    if (assignorId) {
+      const uuidRegex =
+        /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+      if (!uuidRegex.test(assignorId)) {
+        return new Left(
+          new ValidationError(PayableValidationMessages.INVALID_UUID),
+        );
+      }
+    }
+    this._assignorId = assignorId;
+    return new Right(undefined);
   }
 }
