@@ -1,5 +1,5 @@
-import { Either } from 'src/domain/either/either';
-import { ValidationError } from 'src/domain/errors/ValidationErros';
+import { Either } from '../../either/either';
+import { ValidationError } from '../../errors/ValidationErros';
 
 import { CreateAssignorDTO } from '../../dtos/assignor/CreateAssignorDTO';
 import { ReadAssignorDTO } from '../../dtos/assignor/ReadAssignorDTO';

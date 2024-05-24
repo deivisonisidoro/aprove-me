@@ -1,7 +1,7 @@
-import { ReadAssignorDTO } from '../dtos/assignor/ReadAssignorDTO';
-import { UpdateAssignorDTO } from '../dtos/assignor/UpdateAssignorDTO';
-import { Either } from '../either/either';
-import { ValidationError } from '../errors/ValidationErros';
+import { ReadAssignorDTO } from '../../dtos/assignor/ReadAssignorDTO';
+import { UpdateAssignorDTO } from '../../dtos/assignor/UpdateAssignorDTO';
+import { Either } from '../../either/either';
+import { ValidationError } from '../../errors/ValidationErros';
 
 /**
  * Abstract class representing the use case for updating an assignor.

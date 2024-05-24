@@ -6,7 +6,7 @@ import { AssignorEntityFactory } from '../../../../domain/entities/assignor/Assi
 import { AssignorValidationMessages } from '../../../../domain/enums/assignor/AssignorValidationMessageEnum';
 import { ValidationError } from '../../../../domain/errors/ValidationErros';
 import { AssignorRepositoryAbstract } from '../../../../domain/repositories/AssignorRepositoryAbstract';
-import { UpdateAssignorUseCaseAbstract } from '../../../../domain/useCases/UpdateUseCaseAbstract';
+import { UpdateAssignorUseCaseAbstract } from '../../../../domain/useCases/assignor/UpdateUseCaseAbstract';
 import { UpdateAssignorUseCase } from './UpdateAssignorUseCase';
 
 describe('UpdateAssignorUseCase', () => {

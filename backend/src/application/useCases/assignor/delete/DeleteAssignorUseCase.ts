@@ -5,7 +5,7 @@ import { AssignorValidationMessages } from '../../../../domain/enums/assignor/As
 import { AssignorSuccessMessage } from '../../../../domain/enums/assignor/AssingorSuccessMessages';
 import { ValidationError } from '../../../../domain/errors/ValidationErros';
 import { AssignorRepositoryAbstract } from '../../../../domain/repositories/AssignorRepositoryAbstract';
-import { DeleteAssignorUseCaseAbstract } from '../../../../domain/useCases/DeleteAssignorUseCaseAbstract';
+import { DeleteAssignorUseCaseAbstract } from '../../../../domain/useCases/assignor/DeleteAssignorUseCaseAbstract';
 
 /**
  * Concrete implementation of the `DeleteAssignorUseCase` abstract class.

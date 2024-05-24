@@ -7,7 +7,7 @@ import { AssignorEntityFactory } from '../../../../domain/entities/assignor/Assi
 import { AssignorValidationMessages } from '../../../../domain/enums/assignor/AssignorValidationMessageEnum';
 import { ValidationError } from '../../../../domain/errors/ValidationErros';
 import { AssignorRepositoryAbstract } from '../../../../domain/repositories/AssignorRepositoryAbstract';
-import { CreateAssignorUseCaseAbstract } from '../../../../domain/useCases/create/CreateAssignorUseCaseAbstract ';
+import { CreateAssignorUseCaseAbstract } from '../../../../domain/useCases/assignor/CreateAssignorUseCaseAbstract ';
 
 /**
  * Concrete implementation of the CreateAssignorUseCaseAbstract class.

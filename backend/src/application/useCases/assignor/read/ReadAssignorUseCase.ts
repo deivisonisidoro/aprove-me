@@ -5,7 +5,7 @@ import { Right } from '../../../../domain/either/Right';
 import { AssignorValidationMessages } from '../../../../domain/enums/assignor/AssignorValidationMessageEnum';
 import { ValidationError } from '../../../../domain/errors/ValidationErros';
 import { AssignorRepositoryAbstract } from '../../../../domain/repositories/AssignorRepositoryAbstract';
-import { ReadAssignorUseCaseAbstract } from '../../../../domain/useCases/read/ReadAssignorUseCaseAbstract';
+import { ReadAssignorUseCaseAbstract } from '../../../../domain/useCases/assignor/ReadAssignorUseCaseAbstract';
 
 /**
  * Concrete implementation of the `ReadAssignorUseCase` abstract class.
