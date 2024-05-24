@@ -1,4 +1,4 @@
-import { ValidationMessages } from '../../enums/assignor/ValidationMessageEnum';
+import { AssignorValidationMessages } from '../../enums/assignor/AssignorValidationMessageEnum';
 import { ValidationError } from '../../errors/ValidationErros';
 import { AssignorEntity } from './AssignorEntity';
 import { AssignorEntityFactory } from './AssignorEntityFactory';
@@ -52,7 +52,7 @@ describe('AssignorEntityFactory', () => {
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
         expect(result.value).toBeInstanceOf(ValidationError);
-        expect(result.value.message).toBe(ValidationMessages.LOGIN_TOO_LONG);
+        expect(result.value.message).toBe(AssignorValidationMessages.LOGIN_TOO_LONG);
       }
     });
 
@@ -79,7 +79,7 @@ describe('AssignorEntityFactory', () => {
       if (result.isLeft()) {
         expect(result.value).toBeInstanceOf(ValidationError);
         expect(result.value.message).toBe(
-          ValidationMessages.PASSWORD_LENGTH_INVALID,
+          AssignorValidationMessages.PASSWORD_LENGTH_INVALID,
         );
       }
     });
@@ -107,7 +107,7 @@ describe('AssignorEntityFactory', () => {
       if (result.isLeft()) {
         expect(result.value).toBeInstanceOf(ValidationError);
         expect(result.value.message).toBe(
-          ValidationMessages.PASSWORD_COMPLEXITY_INVALID,
+          AssignorValidationMessages.PASSWORD_COMPLEXITY_INVALID,
         );
       }
     });
@@ -134,7 +134,7 @@ describe('AssignorEntityFactory', () => {
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
         expect(result.value).toBeInstanceOf(ValidationError);
-        expect(result.value.message).toBe(ValidationMessages.INVALID_EMAIL_FORMAT);
+        expect(result.value.message).toBe(AssignorValidationMessages.INVALID_EMAIL_FORMAT);
       }
     });
   });
@@ -181,7 +181,7 @@ describe('AssignorEntityFactory', () => {
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
         expect(result.value).toBeInstanceOf(ValidationError);
-        expect(result.value.message).toBe(ValidationMessages.INVALID_EMAIL_FORMAT);
+        expect(result.value.message).toBe(AssignorValidationMessages.INVALID_EMAIL_FORMAT);
       }
     });
 
@@ -193,7 +193,7 @@ describe('AssignorEntityFactory', () => {
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
         expect(result.value).toBeInstanceOf(ValidationError);
-        expect(result.value.message).toBe(ValidationMessages.PASSWORD_LENGTH_INVALID);
+        expect(result.value.message).toBe(AssignorValidationMessages.PASSWORD_LENGTH_INVALID);
       }
     });
 
@@ -205,7 +205,7 @@ describe('AssignorEntityFactory', () => {
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
         expect(result.value).toBeInstanceOf(ValidationError);
-        expect(result.value.message).toBe(ValidationMessages.PASSWORD_COMPLEXITY_INVALID);
+        expect(result.value.message).toBe(AssignorValidationMessages.PASSWORD_COMPLEXITY_INVALID);
       }
     });
   });

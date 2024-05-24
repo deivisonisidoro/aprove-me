@@ -4,7 +4,7 @@ import { Left } from "../../../../domain/either/Left";
 import { Right } from "../../../../domain/either/Right";
 import { Either } from "../../../../domain/either/either";
 import { AssignorEntityFactory } from "../../../../domain/entities/assignor/AssignorEntityFactory";
-import { ValidationMessages } from "../../../../domain/enums/assignor/ValidationMessageEnum";
+import { AssignorValidationMessages } from "../../../../domain/enums/assignor/AssignorValidationMessageEnum";
 import { ValidationError } from "../../../../domain/errors/ValidationErros";
 import { AssignorRepositoryAbstract } from "../../../../domain/repositories/AssignorRepositoryAbstract";
 import { UpdateAssignorUseCaseAbstract } from "../../../../domain/useCases/UpdateUseCaseAbstract";
@@ -38,7 +38,7 @@ export class UpdateAssignorUseCase extends UpdateAssignorUseCaseAbstract {
     const assignorEntity = await this.assignorRepository.findById(assignorId);
 
     if (!assignorEntity) {
-      return new Left(new ValidationError(ValidationMessages.ASSIGNOR_NOT_FOUND));
+      return new Left(new ValidationError(AssignorValidationMessages.ASSIGNOR_NOT_FOUND));
     }
 
     const updatedAssignor = AssignorEntityFactory.updateAssignorEntity(

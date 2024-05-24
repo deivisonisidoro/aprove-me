@@ -1,4 +1,4 @@
-import { ValidationMessages } from '../../enums/assignor/ValidationMessageEnum';
+import { AssignorValidationMessages } from '../../enums/assignor/AssignorValidationMessageEnum';
 import { AssignorEntity } from './AssignorEntity';
 
 describe('AssignorEntity', () => {
@@ -46,7 +46,7 @@ describe('AssignorEntity', () => {
       const result = assignor.setId('invalid-id');
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
-        expect(result.value.message).toBe(ValidationMessages.INVALID_UUID);
+        expect(result.value.message).toBe(AssignorValidationMessages.INVALID_UUID);
       }
     });
 
@@ -64,7 +64,7 @@ describe('AssignorEntity', () => {
       const result = assignor.setDocument('1234567890123456789012345678901');
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
-        expect(result.value.message).toBe(ValidationMessages.DOCUMENT_TOO_LONG);
+        expect(result.value.message).toBe(AssignorValidationMessages.DOCUMENT_TOO_LONG);
       }
     });
 
@@ -83,7 +83,7 @@ describe('AssignorEntity', () => {
       const result = assignor.setEmail(longEmail);
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
-        expect(result.value.message).toBe(ValidationMessages.EMAIL_TOO_LONG);
+        expect(result.value.message).toBe(AssignorValidationMessages.EMAIL_TOO_LONG);
       }
     });
 
@@ -92,7 +92,7 @@ describe('AssignorEntity', () => {
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
         expect(result.value.message).toBe(
-          ValidationMessages.INVALID_EMAIL_FORMAT,
+          AssignorValidationMessages.INVALID_EMAIL_FORMAT,
         );
       }
     });
@@ -112,7 +112,7 @@ describe('AssignorEntity', () => {
       const result = assignor.setName(longName);
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
-        expect(result.value.message).toBe(ValidationMessages.NAME_TOO_LONG);
+        expect(result.value.message).toBe(AssignorValidationMessages.NAME_TOO_LONG);
       }
     });
 
@@ -131,7 +131,7 @@ describe('AssignorEntity', () => {
       const result = assignor.setPhone(longPhone);
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
-        expect(result.value.message).toBe(ValidationMessages.PHONE_TOO_LONG);
+        expect(result.value.message).toBe(AssignorValidationMessages.PHONE_TOO_LONG);
       }
     });
 
@@ -149,7 +149,7 @@ describe('AssignorEntity', () => {
       const result = assignor.setLogin('a'.repeat(51));
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
-        expect(result.value.message).toBe(ValidationMessages.LOGIN_TOO_LONG);
+        expect(result.value.message).toBe(AssignorValidationMessages.LOGIN_TOO_LONG);
       }
     });
 
@@ -168,7 +168,7 @@ describe('AssignorEntity', () => {
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
         expect(result.value.message).toBe(
-          ValidationMessages.PASSWORD_LENGTH_INVALID,
+          AssignorValidationMessages.PASSWORD_LENGTH_INVALID,
         );
       }
     });
@@ -178,7 +178,7 @@ describe('AssignorEntity', () => {
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
         expect(result.value.message).toBe(
-          ValidationMessages.PASSWORD_COMPLEXITY_INVALID,
+          AssignorValidationMessages.PASSWORD_COMPLEXITY_INVALID,
         );
       }
     });

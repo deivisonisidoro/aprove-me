@@ -3,7 +3,7 @@
  *
  * @enum {string}
  */
-export enum ValidationMessages {
+export enum AssignorValidationMessages {
   /** Error message for invalid UUID format. */
   INVALID_UUID = 'Invalid UUID format.',
 

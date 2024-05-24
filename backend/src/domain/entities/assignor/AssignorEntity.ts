@@ -1,7 +1,7 @@
 import { Either } from '../../either/either';
 import { Left } from '../../either/Left';
 import { Right } from '../../either/Right';
-import { ValidationMessages } from '../../enums/assignor/ValidationMessageEnum';
+import { AssignorValidationMessages } from '../../enums/assignor/AssignorValidationMessageEnum';
 import { ValidationError } from '../../errors/ValidationErros';
 
 /**
@@ -65,7 +65,7 @@ export class AssignorEntity {
       const uuidRegex =
         /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
       if (!uuidRegex.test(id)) {
-        return new Left(new ValidationError(ValidationMessages.INVALID_UUID));
+        return new Left(new ValidationError(AssignorValidationMessages.INVALID_UUID));
       }
     }
     this._id = id;
@@ -90,7 +90,7 @@ export class AssignorEntity {
   public setDocument(document: string): Either<ValidationError, void> {
     if (document.length > 30) {
       return new Left(
-        new ValidationError(ValidationMessages.DOCUMENT_TOO_LONG),
+        new ValidationError(AssignorValidationMessages.DOCUMENT_TOO_LONG),
       );
     }
     this._document = document;
@@ -115,11 +115,11 @@ export class AssignorEntity {
   public setEmail(email: string): Either<ValidationError, void> {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (email.length > 140) {
-      return new Left(new ValidationError(ValidationMessages.EMAIL_TOO_LONG));
+      return new Left(new ValidationError(AssignorValidationMessages.EMAIL_TOO_LONG));
     }
     if (!emailRegex.test(email)) {
       return new Left(
-        new ValidationError(ValidationMessages.INVALID_EMAIL_FORMAT),
+        new ValidationError(AssignorValidationMessages.INVALID_EMAIL_FORMAT),
       );
     }
     this._email = email;
@@ -143,7 +143,7 @@ export class AssignorEntity {
    */
   public setName(name: string): Either<ValidationError, void> {
     if (name.length > 140) {
-      return new Left(new ValidationError(ValidationMessages.NAME_TOO_LONG));
+      return new Left(new ValidationError(AssignorValidationMessages.NAME_TOO_LONG));
     }
     this._name = name;
     return new Right(undefined);
@@ -166,7 +166,7 @@ export class AssignorEntity {
    */
   public setPhone(phone: string): Either<ValidationError, void> {
     if (phone.length > 20) {
-      return new Left(new ValidationError(ValidationMessages.PHONE_TOO_LONG));
+      return new Left(new ValidationError(AssignorValidationMessages.PHONE_TOO_LONG));
     }
     this._phone = phone;
     return new Right(undefined);
@@ -187,7 +187,7 @@ export class AssignorEntity {
    */
   public setLogin(login: string): Either<ValidationError, void> {
     if (login.length > 50) {
-      return new Left(new ValidationError(ValidationMessages.LOGIN_TOO_LONG));
+      return new Left(new ValidationError(AssignorValidationMessages.LOGIN_TOO_LONG));
     }
     this._login = login;
     return new Right(undefined);
@@ -219,12 +219,12 @@ export class AssignorEntity {
       password.length > passwordMaxLength
     ) {
       return new Left(
-        new ValidationError(ValidationMessages.PASSWORD_LENGTH_INVALID),
+        new ValidationError(AssignorValidationMessages.PASSWORD_LENGTH_INVALID),
       );
     }
     if (!hasUpperCase || !hasLowerCase || !hasDigit || !hasSpecialChar) {
       return new Left(
-        new ValidationError(ValidationMessages.PASSWORD_COMPLEXITY_INVALID),
+        new ValidationError(AssignorValidationMessages.PASSWORD_COMPLEXITY_INVALID),
       );
     }
     this._password = password;

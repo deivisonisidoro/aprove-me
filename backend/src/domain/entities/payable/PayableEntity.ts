@@ -1,7 +1,7 @@
 import { Either } from '../../either/either';
 import { Left } from '../../either/Left';
 import { Right } from '../../either/Right';
-import { ValidationMessages } from '../../enums/assignor/ValidationMessageEnum';
+import { PayableValidationMessages } from '../../enums/payable/PayableValidationMessageEnum';
 import { ValidationError } from '../../errors/ValidationErros';
 import { AssignorEntity } from '../assignor/AssignorEntity';
 
@@ -51,7 +51,7 @@ export class PayableEntity {
       const uuidRegex =
         /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
       if (!uuidRegex.test(id)) {
-        return new Left(new ValidationError(ValidationMessages.INVALID_UUID));
+        return new Left(new ValidationError(PayableValidationMessages.INVALID_UUID));
       }
     }
     this._id = id;

@@ -2,7 +2,7 @@ import { CreateAssignorDTO } from '../../../../domain/dtos/assignor/CreateAssign
 import { ReadAssignorDTO } from '../../../../domain/dtos/assignor/ReadAssignorDTO';
 import { Left } from '../../../../domain/either/Left';
 import { AssignorEntityFactory } from '../../../../domain/entities/assignor/AssignorEntityFactory';
-import { ValidationMessages } from '../../../../domain/enums/assignor/ValidationMessageEnum';
+import { AssignorValidationMessages } from '../../../../domain/enums/assignor/AssignorValidationMessageEnum';
 import { ValidationError } from '../../../../domain/errors/ValidationErros';
 import { AssignorRepositoryAbstract } from '../../../../domain/repositories/AssignorRepositoryAbstract';
 import { CreateAssignorUseCaseAbstract } from '../../../../domain/useCases/create/CreateAssignorUseCaseAbstract ';
@@ -46,7 +46,7 @@ describe('CreateAssignorUseCase', () => {
     expect(result.isLeft()).toBe(true);
     expect(result.value).toBeInstanceOf(ValidationError);
     if (result.isLeft()) {
-      expect(result.value.message).toBe(ValidationMessages.DOCUMENT_REQUIRED);
+      expect(result.value.message).toBe(AssignorValidationMessages.DOCUMENT_REQUIRED);
     }
   });
 
@@ -58,7 +58,7 @@ describe('CreateAssignorUseCase', () => {
     expect(result.isLeft()).toBe(true);
     expect(result.value).toBeInstanceOf(ValidationError);
     if (result.isLeft()) {
-      expect(result.value.message).toBe(ValidationMessages.EMAIL_REQUIRED);
+      expect(result.value.message).toBe(AssignorValidationMessages.EMAIL_REQUIRED);
     }
   });
 

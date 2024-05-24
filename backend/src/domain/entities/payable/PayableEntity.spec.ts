@@ -1,4 +1,4 @@
-import { ValidationMessages } from '../../enums/assignor/ValidationMessageEnum';
+import { PayableValidationMessages } from '../../enums/payable/PayableValidationMessageEnum';
 import { AssignorEntity } from '../assignor/AssignorEntity';
 import { PayableEntity } from './PayableEntity';
 
@@ -74,7 +74,7 @@ describe('PayableEntity', () => {
       const result = receivable.setId('invalid-id');
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
-        expect(result.value.message).toBe(ValidationMessages.INVALID_UUID);
+        expect(result.value.message).toBe(PayableValidationMessages.INVALID_UUID);
       }
     });
 
@@ -88,7 +88,7 @@ describe('PayableEntity', () => {
       const result = receivable.setId('invalid-id');
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
-        expect(result.value.message).toBe(ValidationMessages.INVALID_UUID);
+        expect(result.value.message).toBe(PayableValidationMessages.INVALID_UUID);
       }
     });
 

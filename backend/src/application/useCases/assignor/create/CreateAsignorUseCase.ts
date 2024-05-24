@@ -4,7 +4,7 @@ import { Either } from '../../../../domain/either/either';
 import { Left } from '../../../../domain/either/Left';
 import { Right } from '../../../../domain/either/Right';
 import { AssignorEntityFactory } from '../../../../domain/entities/assignor/AssignorEntityFactory';
-import { ValidationMessages } from '../../../../domain/enums/assignor/ValidationMessageEnum';
+import { AssignorValidationMessages } from '../../../../domain/enums/assignor/AssignorValidationMessageEnum';
 import { ValidationError } from '../../../../domain/errors/ValidationErros';
 import { AssignorRepositoryAbstract } from '../../../../domain/repositories/AssignorRepositoryAbstract';
 import { CreateAssignorUseCaseAbstract } from '../../../../domain/useCases/create/CreateAssignorUseCaseAbstract ';
@@ -35,11 +35,11 @@ export class CreateAssignorUseCase extends CreateAssignorUseCaseAbstract {
   ): Promise<Either<ValidationError, ReadAssignorDTO>> {
     if (!createAssignorDTO.document) {
       return new Left(
-        new ValidationError(ValidationMessages.DOCUMENT_REQUIRED),
+        new ValidationError(AssignorValidationMessages.DOCUMENT_REQUIRED),
       );
     }
     if (!createAssignorDTO.email) {
-      return new Left(new ValidationError(ValidationMessages.EMAIL_REQUIRED));
+      return new Left(new ValidationError(AssignorValidationMessages.EMAIL_REQUIRED));
     }
 
     const newAssignor = AssignorEntityFactory.createAssignorEntity(

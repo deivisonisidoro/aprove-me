@@ -4,7 +4,7 @@ import { Left } from "../../../../domain/either/Left";
 import { Right } from "../../../../domain/either/Right";
 import { AssignorEntity } from "../../../../domain/entities/assignor/AssignorEntity";
 import { AssignorEntityFactory } from "../../../../domain/entities/assignor/AssignorEntityFactory";
-import { ValidationMessages } from "../../../../domain/enums/assignor/ValidationMessageEnum";
+import { AssignorValidationMessages } from "../../../../domain/enums/assignor/AssignorValidationMessageEnum";
 import { AssignorRepositoryAbstract } from "../../../../domain/repositories/AssignorRepositoryAbstract";
 import { UpdateAssignorUseCase } from "./UpdateAssignorUseCase";
 import { ValidationError } from "../../../../domain/errors/ValidationErros";
@@ -40,7 +40,7 @@ describe("UpdateAssignorUseCase", () => {
     expect(result).toBeInstanceOf(Left);
     if (result.isLeft()) {
       expect(result.value).toBeInstanceOf(ValidationError);
-      expect(result.value.message).toBe(ValidationMessages.ASSIGNOR_NOT_FOUND);
+      expect(result.value.message).toBe(AssignorValidationMessages.ASSIGNOR_NOT_FOUND);
     }
   });
 
