@@ -91,9 +91,7 @@ describe('PayableEntity', () => {
     });
 
     it('should get the assignor', () => {
-      expect(payable.assignorId).toBe(
-        '123e4567-e89b-12d3-a456-426614174000',
-      );
+      expect(payable.assignorId).toBe('123e4567-e89b-12d3-a456-426614174000');
     });
 
     it('should set the assignorId', () => {
@@ -101,9 +99,7 @@ describe('PayableEntity', () => {
         '123e4567-e89b-12d3-a456-426614174000',
       );
       expect(result.isLeft()).toBe(false);
-      expect(payable.assignorId).toBe(
-        '123e4567-e89b-12d3-a456-426614174000',
-      );
+      expect(payable.assignorId).toBe('123e4567-e89b-12d3-a456-426614174000');
     });
     it('should return a Left with ValidationError if the assignorId is not a valid UUID', () => {
       const result = payable.setAssignorId('invalid-id');

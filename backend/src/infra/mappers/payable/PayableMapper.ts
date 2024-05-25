@@ -1,8 +1,6 @@
-import { Injectable } from "@nestjs/common";
-import { ReadPayableDTO } from "../../../domain/dtos/payable/ReadPayableDTO";
-import { PayableEntity } from "../../../domain/entities/payable/PayableEntity";
+import { ReadPayableDTO } from '../../../domain/dtos/payable/ReadPayableDTO';
+import { PayableEntity } from '../../../domain/entities/payable/PayableEntity';
 
-@Injectable()
 export class PayableMapper {
   /**
    * Converts a PayableEntity to a ReadPayableDTO.
@@ -11,7 +9,6 @@ export class PayableMapper {
    * @returns {ReadPayableDTO} The converted ReadPayableDTO.
    */
   toDTO(entity: PayableEntity): ReadPayableDTO {
-    
     const dto = new ReadPayableDTO(
       entity.id,
       entity.value,
@@ -32,7 +29,7 @@ export class PayableMapper {
       dto.value,
       dto.emissionDate,
       dto.assignorId,
-      dto.id
+      dto.id,
     );
     return entity;
   }

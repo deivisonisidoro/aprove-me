@@ -1,8 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
+
+import { ReadPayableDTO } from '../../../domain/dtos/payable/ReadPayableDTO';
+import { PayableEntity } from '../../../domain/entities/payable/PayableEntity';
 import { PrismaService } from '../../database/prisma.service';
 import { PayableMapper } from '../../mappers/payable/PayableMapper';
-import { PayableEntity } from '../../../domain/entities/payable/PayableEntity';
-import { ReadPayableDTO } from '../../../domain/dtos/payable/ReadPayableDTO';
 import { PayableRepository } from './PayableRepository';
 
 describe('PayableRepository', () => {
@@ -42,8 +43,18 @@ describe('PayableRepository', () => {
 
   describe('create', () => {
     it('should create a new payable and return the DTO', async () => {
-      const payableEntity = new PayableEntity(1000, new Date('2024-01-01'), 'assignorId123', 'id123');
-      const payableDTO = new ReadPayableDTO('id123', 1000, new Date('2024-01-01'), 'assignorId123');
+      const payableEntity = new PayableEntity(
+        1000,
+        new Date('2024-01-01'),
+        'assignorId123',
+        'id123',
+      );
+      const payableDTO = new ReadPayableDTO(
+        'id123',
+        1000,
+        new Date('2024-01-01'),
+        'assignorId123',
+      );
 
       (prismaService.payable.create as jest.Mock).mockResolvedValue(payableDTO);
 
@@ -58,10 +69,22 @@ describe('PayableRepository', () => {
 
   describe('findById', () => {
     it('should find a payable by ID and return the entity', async () => {
-      const payableDTO = new ReadPayableDTO('id123', 1000, new Date('2024-01-01'), 'assignorId123');
-      const payableEntity = new PayableEntity(1000, new Date('2024-01-01'), 'assignorId123', 'id123');
+      const payableDTO = new ReadPayableDTO(
+        'id123',
+        1000,
+        new Date('2024-01-01'),
+        'assignorId123',
+      );
+      const payableEntity = new PayableEntity(
+        1000,
+        new Date('2024-01-01'),
+        'assignorId123',
+        'id123',
+      );
 
-      (prismaService.payable.findUnique as jest.Mock).mockResolvedValue(payableDTO);
+      (prismaService.payable.findUnique as jest.Mock).mockResolvedValue(
+        payableDTO,
+      );
       (payableMapper.toEntity as jest.Mock).mockReturnValue(payableEntity);
 
       const result = await repository.findById('id123');
@@ -75,8 +98,18 @@ describe('PayableRepository', () => {
 
   describe('update', () => {
     it('should update a payable and return the updated DTO', async () => {
-      const payableEntity = new PayableEntity(1000, new Date('2024-01-01'), 'assignorId123', 'id123');
-      const payableDTO = new ReadPayableDTO('id123', 1000, new Date('2024-01-01'), 'assignorId123');
+      const payableEntity = new PayableEntity(
+        1000,
+        new Date('2024-01-01'),
+        'assignorId123',
+        'id123',
+      );
+      const payableDTO = new ReadPayableDTO(
+        'id123',
+        1000,
+        new Date('2024-01-01'),
+        'assignorId123',
+      );
 
       (prismaService.payable.update as jest.Mock).mockResolvedValue(payableDTO);
 
