@@ -17,7 +17,7 @@ export class UpdateAssignorUseCase extends UpdateAssignorUseCaseAbstract {
   private assignorRepository: AssignorRepositoryAbstract;
 
   /**
-   * Creates an instance of UpdateAssignorUseCase.
+   * Updates an instance of UpdateAssignorUseCase.
    * @param {AssignorRepositoryAbstract} assignorRepository - The repository for assignor entities.
    */
   constructor(assignorRepository: AssignorRepositoryAbstract) {
