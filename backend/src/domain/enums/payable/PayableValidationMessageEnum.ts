@@ -18,4 +18,7 @@ export enum PayableValidationMessages {
 
   /** Error message for assignor id missing. */
   ASSIGNOR_ID_MISSING = 'Assignor ID is missing.',
+  
+  /** Error message when assignor not found. */
+  PAYABLE_NOT_FOUND = 'Payable not found.',
 }
