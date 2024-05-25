@@ -51,23 +51,23 @@ export class PayableEntityFactory {
     value?: number,
     emissionDate?: Date,
     assignorId?: string,
-    id?: string
+    id?: string,
   ): Either<ValidationError, PayableEntity> {
-    if(value){
+    if (value) {
       payable.value = value;
     }
-    if(emissionDate){
+    if (emissionDate) {
       payable.emissionDate = emissionDate;
     }
-    if(assignorId){
+    if (assignorId) {
       const assignorIdValidation = payable.setAssignorId(assignorId);
-      if(assignorIdValidation.isLeft()){
+      if (assignorIdValidation.isLeft()) {
         return new Left(assignorIdValidation.value);
       }
     }
-    if(id){
+    if (id) {
       const idValidation = payable.setId(id);
-      if(idValidation.isLeft()){
+      if (idValidation.isLeft()) {
         return new Left(idValidation.value);
       }
     }

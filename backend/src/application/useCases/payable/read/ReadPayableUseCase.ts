@@ -41,7 +41,7 @@ export class ReadPayableUseCase extends ReadPayableUseCaseAbstract {
       payable.id,
       payable.value,
       payable.emissionDate,
-      payable.assignorId      
+      payable.assignorId,
     );
     return new Right(readPayableDTO);
   }

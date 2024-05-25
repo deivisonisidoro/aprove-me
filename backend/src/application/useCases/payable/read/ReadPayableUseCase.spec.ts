@@ -1,11 +1,9 @@
-import { Left } from "../../../../domain/either/Left";
-import { Right } from "../../../../domain/either/Right";
-import { PayableValidationMessages } from "../../../../domain/enums/payable/PayableValidationMessageEnum";
-import { PayableRepositoryAbstract } from "../../../../domain/repositories/PayableRepositoryAbstract";
-import { ReadPayableUseCase } from "./ReadPayableUseCase";
-import { PayableEntity } from "../../../../domain/entities/payable/PayableEntity";
-
-
+import { Left } from '../../../../domain/either/Left';
+import { Right } from '../../../../domain/either/Right';
+import { PayableEntity } from '../../../../domain/entities/payable/PayableEntity';
+import { PayableValidationMessages } from '../../../../domain/enums/payable/PayableValidationMessageEnum';
+import { PayableRepositoryAbstract } from '../../../../domain/repositories/PayableRepositoryAbstract';
+import { ReadPayableUseCase } from './ReadPayableUseCase';
 
 describe('ReadPayableUseCase', () => {
   let payableRepository: PayableRepositoryAbstract;
@@ -14,7 +12,7 @@ describe('ReadPayableUseCase', () => {
   beforeEach(() => {
     payableRepository = {
       findById: jest.fn(),
-    }as unknown as PayableRepositoryAbstract;
+    } as unknown as PayableRepositoryAbstract;
     readPayableUseCase = new ReadPayableUseCase(payableRepository);
   });
 
@@ -38,8 +36,10 @@ describe('ReadPayableUseCase', () => {
     const result = await readPayableUseCase.execute('1');
 
     expect(result).toBeInstanceOf(Left);
-   if(result.isLeft()){
-    expect(result.value.message).toEqual(PayableValidationMessages.PAYABLE_NOT_FOUND);
-   }
+    if (result.isLeft()) {
+      expect(result.value.message).toEqual(
+        PayableValidationMessages.PAYABLE_NOT_FOUND,
+      );
+    }
   });
 });

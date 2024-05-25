@@ -1,13 +1,12 @@
-import { UpdatePayableDTO } from "../../../../domain/dtos/payable/UpdatePayableDTO";
-import { Left } from "../../../../domain/either/Left";
-import { Right } from "../../../../domain/either/Right";
-import { PayableEntity } from "../../../../domain/entities/payable/PayableEntity";
-import { PayableEntityFactory } from "../../../../domain/entities/payable/PayableEntityFactory";
-import { PayableValidationMessages } from "../../../../domain/enums/payable/PayableValidationMessageEnum";
-import { PayableRepositoryAbstract } from "../../../../domain/repositories/PayableRepositoryAbstract";
-import { UpdatePayableUseCase } from "./UpdatePayableUseCase";
-import { ValidationError } from "../../../../domain/errors/ValidationErros";
-
+import { UpdatePayableDTO } from '../../../../domain/dtos/payable/UpdatePayableDTO';
+import { Left } from '../../../../domain/either/Left';
+import { Right } from '../../../../domain/either/Right';
+import { PayableEntity } from '../../../../domain/entities/payable/PayableEntity';
+import { PayableEntityFactory } from '../../../../domain/entities/payable/PayableEntityFactory';
+import { PayableValidationMessages } from '../../../../domain/enums/payable/PayableValidationMessageEnum';
+import { ValidationError } from '../../../../domain/errors/ValidationErros';
+import { PayableRepositoryAbstract } from '../../../../domain/repositories/PayableRepositoryAbstract';
+import { UpdatePayableUseCase } from './UpdatePayableUseCase';
 
 describe('UpdatePayableUseCase', () => {
   let updatePayableUseCase: UpdatePayableUseCase;
@@ -32,12 +31,17 @@ describe('UpdatePayableUseCase', () => {
       assignorId: 'assignor-id',
     };
 
-    const result = await updatePayableUseCase.execute(payableId, updatePayableDTO);
+    const result = await updatePayableUseCase.execute(
+      payableId,
+      updatePayableDTO,
+    );
 
     expect(result).toBeInstanceOf(Left);
     expect(result.value).toBeInstanceOf(ValidationError);
-    if(result.isLeft()){
-      expect(result.value.message).toBe(PayableValidationMessages.PAYABLE_NOT_FOUND);
+    if (result.isLeft()) {
+      expect(result.value.message).toBe(
+        PayableValidationMessages.PAYABLE_NOT_FOUND,
+      );
     }
   });
 
@@ -57,7 +61,9 @@ describe('UpdatePayableUseCase', () => {
 
     payableRepository.findById.mockResolvedValue(existingPayableEntity);
     payableRepository.update.mockResolvedValue(updatedPayableEntity);
-    jest.spyOn(PayableEntityFactory, 'updatePayableEntity').mockReturnValue(new Right(updatedPayableEntity));
+    jest
+      .spyOn(PayableEntityFactory, 'updatePayableEntity')
+      .mockReturnValue(new Right(updatedPayableEntity));
 
     const payableId = 'existing-id';
     const updatePayableDTO: UpdatePayableDTO = {
@@ -66,12 +72,18 @@ describe('UpdatePayableUseCase', () => {
       assignorId: 'assignor-id',
     };
 
-    const result = await updatePayableUseCase.execute(payableId, updatePayableDTO);
+    const result = await updatePayableUseCase.execute(
+      payableId,
+      updatePayableDTO,
+    );
 
     expect(result).toBeInstanceOf(Right);
     expect(result.value).toEqual(updatedPayableEntity);
     expect(payableRepository.findById).toHaveBeenCalledWith(payableId);
-    expect(payableRepository.update).toHaveBeenCalledWith(payableId, updatedPayableEntity);
+    expect(payableRepository.update).toHaveBeenCalledWith(
+      payableId,
+      updatedPayableEntity,
+    );
   });
 
   it('should return validation error during update', async () => {
@@ -79,7 +91,9 @@ describe('UpdatePayableUseCase', () => {
     const validationError = new ValidationError('Some validation error');
 
     payableRepository.findById.mockResolvedValue(existingPayableEntity);
-    jest.spyOn(PayableEntityFactory, 'updatePayableEntity').mockReturnValue(new Left(validationError));
+    jest
+      .spyOn(PayableEntityFactory, 'updatePayableEntity')
+      .mockReturnValue(new Left(validationError));
 
     const payableId = 'existing-id';
     const updatePayableDTO: UpdatePayableDTO = {
@@ -88,13 +102,16 @@ describe('UpdatePayableUseCase', () => {
       assignorId: 'assignor-id',
     };
 
-    const result = await updatePayableUseCase.execute(payableId, updatePayableDTO);
+    const result = await updatePayableUseCase.execute(
+      payableId,
+      updatePayableDTO,
+    );
 
     expect(result).toBeInstanceOf(Left);
     expect(result.value).toBeInstanceOf(ValidationError);
     expect(payableRepository.findById).toHaveBeenCalledWith(payableId);
     expect(payableRepository.update).not.toHaveBeenCalled();
-    if(result.isLeft()){
+    if (result.isLeft()) {
       expect(result.value.message).toBe('Some validation error');
     }
   });

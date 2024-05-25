@@ -51,7 +51,11 @@ describe('PayableEntityFactory', () => {
   });
   describe('updatePayableEntity', () => {
     it('should update a PayableEntity instance with valid parameters', () => {
-      const payable = new PayableEntity(100, new Date(), '123e4567-e89b-12d3-a456-426614174000');
+      const payable = new PayableEntity(
+        100,
+        new Date(),
+        '123e4567-e89b-12d3-a456-426614174000',
+      );
       const updatedValue = 200;
       const updatedEmissionDate = new Date();
       const updatedAssignorId = '123e4567-e89b-12d3-a456-426614174001';
@@ -76,7 +80,11 @@ describe('PayableEntityFactory', () => {
     });
 
     it('should return a Left with ValidationError if the assignorId is invalid', () => {
-      const payable = new PayableEntity(100, new Date(), '123e4567-e89b-12d3-a456-426614174000');
+      const payable = new PayableEntity(
+        100,
+        new Date(),
+        '123e4567-e89b-12d3-a456-426614174000',
+      );
       const invalidAssignorId = 'invalid-assignor-id';
 
       const result = PayableEntityFactory.updatePayableEntity(
@@ -89,12 +97,18 @@ describe('PayableEntityFactory', () => {
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
         expect(result.value).toBeInstanceOf(ValidationError);
-        expect(result.value.message).toBe(PayableValidationMessages.INVALID_UUID);
+        expect(result.value.message).toBe(
+          PayableValidationMessages.INVALID_UUID,
+        );
       }
     });
 
     it('should return a Left with ValidationError if the id is invalid', () => {
-      const payable = new PayableEntity(100, new Date(), '123e4567-e89b-12d3-a456-426614174000');
+      const payable = new PayableEntity(
+        100,
+        new Date(),
+        '123e4567-e89b-12d3-a456-426614174000',
+      );
       const invalidId = 'invalid-id';
 
       const result = PayableEntityFactory.updatePayableEntity(
@@ -108,7 +122,9 @@ describe('PayableEntityFactory', () => {
       expect(result.isLeft()).toBe(true);
       if (result.isLeft()) {
         expect(result.value).toBeInstanceOf(ValidationError);
-        expect(result.value.message).toBe(PayableValidationMessages.INVALID_UUID);
+        expect(result.value.message).toBe(
+          PayableValidationMessages.INVALID_UUID,
+        );
       }
     });
   });

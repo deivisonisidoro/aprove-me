@@ -48,7 +48,7 @@ export class UpdatePayableUseCase extends UpdatePayableUseCaseAbstract {
       updatePayableDTO.value,
       updatePayableDTO.emissionDate,
       updatePayableDTO.assignorId,
-      undefined
+      undefined,
     );
     if (updatedPayable.isLeft()) {
       return updatedPayable;
