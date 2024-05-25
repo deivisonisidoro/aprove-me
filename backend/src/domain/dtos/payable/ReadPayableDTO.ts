@@ -17,6 +17,7 @@ export class ReadPayableDTO {
     emissionDate: Date,
     assignorId: string,
   ) {
+    this.id = id;
     this.value = value;
     this.emissionDate = emissionDate;
     this.assignorId = assignorId;
