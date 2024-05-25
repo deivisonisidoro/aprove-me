@@ -112,3 +112,32 @@ Data Transfer Objects (DTOs) são objetos utilizados para transportar dados entr
    - Implementar classes DTO para leitura das entidades.
    - Excluir campos sensíveis, como senhas, que não devem ser expostos ao cliente.
    - Garantir que as DTOs representem fielmente os dados das entidades sem expor informações desnecessárias.
+
+</details>
+
+## Application
+
+
+<details>
+<summary>Use Cases</summary>
+
+### Descrição
+Os casos de uso (use cases) são responsáveis por orquestrar a lógica de negócios específica de cada funcionalidade da aplicação. Eles representam as operações que podem ser realizadas no sistema e servem como uma camada intermediária entre os controladores e as entidades, garantindo que a lógica de negócios seja aplicada de maneira consistente.
+
+### Tarefas
+1. **Criar Casos de Uso**
+   - Implementar classes que representam os casos de uso do domínio.
+   - Definir métodos específicos para cada operação de negócio, como criação, leitura, atualização e exclusão de entidades.
+   - Garantir que as validações e regras de negócios sejam aplicadas de forma consistente.
+
+2. **Testar Casos de Uso**
+   - Escrever testes usando Jest para garantir o comportamento correto dos casos de uso.
+   - Cobrir casos de sucesso e falha nas operações.
+   - Verificar que os métodos dos casos de uso interagem corretamente com os repositórios e entidades.
+
+3. **Integrar Casos de Uso com Controladores**
+   - Adaptar os controladores da aplicação para utilizar os casos de uso.
+   - Garantir que as respostas aos clientes sejam adequadas e contenham as informações necessárias.
+   - Manter a separação de responsabilidades, deixando os casos de uso responsáveis pela lógica de negócios e os controladores responsáveis pela interface com o cliente.
+
+</details>
