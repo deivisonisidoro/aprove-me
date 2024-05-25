@@ -10,10 +10,10 @@ import { PayableEntity } from './PayableEntity';
 export class PayableEntityFactory {
   /**
    * Creates a PayableEntity instance.
-   * @param {number} value - The value of the receivable.
-   * @param {Date} emissionDate - The emission date of the receivable.
-   * @param {string} assignorId - The assignor associated with the receivable.
-   * @param {string} [id] - The optional id of the receivable.
+   * @param {number} value - The value of the payable.
+   * @param {Date} emissionDate - The emission date of the payable.
+   * @param {string} assignorId - The assignor associated with the payable.
+   * @param {string} [id] - The optional id of the payable.
    * @returns {Either<ValidationError, PayableEntity>} Either containing ValidationError if validation fails, or PayableEntity instance if successful.
    */
   public static createPayableEntity(
@@ -22,18 +22,55 @@ export class PayableEntityFactory {
     assignorId: string,
     id?: string,
   ): Either<ValidationError, PayableEntity> {
-    const receivable = new PayableEntity(value, emissionDate, assignorId, id);
+    const payable = new PayableEntity(value, emissionDate, assignorId, id);
 
-    const idValidation = receivable.setId(id);
+    const idValidation = payable.setId(id);
     if (idValidation.isLeft()) {
       return new Left(idValidation.value);
     }
 
-    const assignorIdValidation = receivable.setAssignorId(assignorId);
+    const assignorIdValidation = payable.setAssignorId(assignorId);
     if (assignorIdValidation.isLeft()) {
       return new Left(assignorIdValidation.value);
     }
 
-    return new Right(receivable);
+    return new Right(payable);
+  }
+
+  /**
+   * Update a PayableEntity instance.
+   * @param {PayableEntity} payable - The existing payable entity to update.
+   * @param {number | undefined} value - The value of the payable.
+   * @param {Date | undefined} emissionDate - The emission date of the payable.
+   * @param {string | undefined} assignorId - The assignor associated with the payable.
+   * @param {string | undefined} [id] - The optional id of the payable.
+   * @returns {Either<ValidationError, PayableEntity>} Either containing ValidationError if validation fails, or PayableEntity instance if successful.
+   */
+  public static updatePayableEntity(
+    payable: PayableEntity,
+    value?: number,
+    emissionDate?: Date,
+    assignorId?: string,
+    id?: string
+  ): Either<ValidationError, PayableEntity> {
+    if(value){
+      payable.value = value;
+    }
+    if(emissionDate){
+      payable.emissionDate = emissionDate;
+    }
+    if(assignorId){
+      const assignorIdValidation = payable.setAssignorId(assignorId);
+      if(assignorIdValidation.isLeft()){
+        return new Left(assignorIdValidation.value);
+      }
+    }
+    if(id){
+      const idValidation = payable.setId(id);
+      if(idValidation.isLeft()){
+        return new Left(idValidation.value);
+      }
+    }
+    return new Right(payable);
   }
 }
