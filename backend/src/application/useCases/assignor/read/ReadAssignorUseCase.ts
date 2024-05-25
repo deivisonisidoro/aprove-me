@@ -15,7 +15,7 @@ export class ReadAssignorUseCase extends ReadAssignorUseCaseAbstract {
   private assignorRepository: AssignorRepositoryAbstract;
 
   /**
-   * Creates an instance of `ReadAssignorUseCaseImpl`.
+   * Read an instance of `ReadAssignorUseCaseImpl`.
    * @param {AssignorRepositoryAbstract} assignorRepository - The repository for assignor entities.
    */
   constructor(assignorRepository: AssignorRepositoryAbstract) {

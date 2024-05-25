@@ -5,7 +5,7 @@ export class ReadPayableDTO {
   assignorId: string;
 
   /**
-   * Creates a CreatePayableDTO instance.
+   * Creates a ReadPayableDTO instance.
    * @param {string | undefined} id - The unique identifier for the payable.
    * @param {number} value - The value of the payable.
    * @param {Date} emissionDate - The emission date of the payable.

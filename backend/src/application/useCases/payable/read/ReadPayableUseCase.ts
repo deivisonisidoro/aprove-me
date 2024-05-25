@@ -15,7 +15,7 @@ export class ReadPayableUseCase extends ReadPayableUseCaseAbstract {
   private PayableRepository: PayableRepositoryAbstract;
 
   /**
-   * Creates an instance of `ReadPayableUseCaseImpl`.
+   * Read an instance of `ReadPayableUseCaseImpl`.
    * @param {PayableRepositoryAbstract} PayableRepository - The repository for Payable entities.
    */
   constructor(PayableRepository: PayableRepositoryAbstract) {
