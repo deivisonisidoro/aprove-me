@@ -141,3 +141,27 @@ Os casos de uso (use cases) são responsáveis por orquestrar a lógica de negó
    - Manter a separação de responsabilidades, deixando os casos de uso responsáveis pela lógica de negócios e os controladores responsáveis pela interface com o cliente.
 
 </details>
+
+## Infra
+
+<details>
+<summary>Prisma</summary>
+
+### Descrição
+O Prisma é um ORM (Object-Relational Mapping) moderno que facilita a interação com bancos de dados em aplicações Node.js e TypeScript. Ele permite definir o modelo de dados utilizando um esquema declarativo, gerando consultas SQL otimizadas e abstraindo as operações comuns de CRUD (Create, Read, Update, Delete).
+
+### Tarefas
+1. **Configurar Prisma**
+   - Instalar o Prisma CLI e configurar o arquivo de esquema (`schema.prisma`) com as tabelas necessárias.
+   - Definir os modelos de dados para as entidades do domínio no arquivo de esquema.
+   - Executar as migrações para criar as tabelas no banco de dados.
+
+2. **Criar Repositórios**
+   - Implementar classes de repositório para cada entidade, utilizando o Prisma Client para interagir com o banco de dados.
+   - Definir métodos para operações de CRUD e outras consultas específicas.
+   - Garantir que os métodos de repositório sejam testados adequadamente.
+
+</details>
+
+
+
