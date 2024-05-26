@@ -1,3 +1,4 @@
+import { PayableEntityFactory } from '../../../../domain/entities/payable/PayableEntityFactory';
 import { CreatePayableDTO } from '../../../../domain/dtos/payable/CreatePayableDTO';
 import { ReadPayableDTO } from '../../../../domain/dtos/payable/ReadPayableDTO';
 import { Left } from '../../../../domain/either/Left';
@@ -18,7 +19,7 @@ describe('CreatePayableUseCase', () => {
     createPayableUseCase = new CreatePayableUseCase(mockPayableRepository);
   });
 
-  it('should return an error if assignorId is missing', async () => {
+  it('should return an error if PayableId is missing', async () => {
     const createPayableDTO: CreatePayableDTO = {
       value: 100,
       emissionDate: new Date(),
@@ -32,6 +33,27 @@ describe('CreatePayableUseCase', () => {
       expect(result.value.message).toBe(
         PayableValidationMessages.ASSIGNOR_ID_MISSING,
       );
+    }
+  });
+
+  it('should return Left with ValidationError when PayableEntity creation fails', async () => {
+    const createPayableDTO: CreatePayableDTO = {
+      value: 100,
+      emissionDate: new Date(),
+      assignorId: '123e4567-e89b-12d3-a456-426614174000',
+    };
+    jest
+      .spyOn(PayableEntityFactory, 'createPayableEntity')
+      .mockReturnValueOnce(
+        new Left(new ValidationError('Failed to create PayableEntity')),
+      );
+
+    const result = await createPayableUseCase.execute(createPayableDTO);
+
+    expect(result.isLeft()).toBe(true);
+    expect(result.value).toBeInstanceOf(ValidationError);
+    if (result.isLeft()) {
+      expect(result.value.message).toBe('Failed to create PayableEntity');
     }
   });
 
