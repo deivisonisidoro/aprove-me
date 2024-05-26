@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+
 import { Either } from '../../../../domain/either/either';
 import { Left } from '../../../../domain/either/Left';
 import { Right } from '../../../../domain/either/Right';

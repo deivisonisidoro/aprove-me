@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+
 import { ReadAssignorDTO } from '../../../../domain/dtos/assignor/ReadAssignorDTO';
 import { UpdateAssignorDTO } from '../../../../domain/dtos/assignor/UpdateAssignorDTO';
 import { Either } from '../../../../domain/either/either';
