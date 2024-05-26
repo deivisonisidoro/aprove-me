@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import { ReadAssignorDTO } from '../../../../domain/dtos/assignor/ReadAssignorDTO';
 import { UpdateAssignorDTO } from '../../../../domain/dtos/assignor/UpdateAssignorDTO';
 import { Either } from '../../../../domain/either/either';
@@ -13,6 +14,7 @@ import { UpdateAssignorUseCaseAbstract } from '../../../../domain/useCases/assig
  * Concrete implementation of the UpdateAssignorUseCaseAbstract class.
  * Handles the use case of updating an assignor.
  */
+@Injectable()
 export class UpdateAssignorUseCase extends UpdateAssignorUseCaseAbstract {
   private assignorRepository: AssignorRepositoryAbstract;
 

@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import { Either } from '../../../../domain/either/either';
 import { Left } from '../../../../domain/either/Left';
 import { Right } from '../../../../domain/either/Right';
@@ -11,6 +12,7 @@ import { DeleteAssignorUseCaseAbstract } from '../../../../domain/useCases/assig
  * Concrete implementation of the `DeleteAssignorUseCase` abstract class.
  * Handles the use case of deleting an assignor.
  */
+@Injectable()
 export class DeleteAssignorUseCase extends DeleteAssignorUseCaseAbstract {
   private assignorRepository: AssignorRepositoryAbstract;
 

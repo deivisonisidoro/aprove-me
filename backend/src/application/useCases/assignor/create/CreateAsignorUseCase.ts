@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import { CreateAssignorDTO } from '../../../../domain/dtos/assignor/CreateAssignorDTO';
 import { ReadAssignorDTO } from '../../../../domain/dtos/assignor/ReadAssignorDTO';
 import { Either } from '../../../../domain/either/either';
@@ -13,6 +14,7 @@ import { CreateAssignorUseCaseAbstract } from '../../../../domain/useCases/assig
  * Concrete implementation of the CreateAssignorUseCaseAbstract class.
  * Handles the use case of creating a new assignor.
  */
+@Injectable()
 export class CreateAssignorUseCase extends CreateAssignorUseCaseAbstract {
   private assignorRepository: AssignorRepositoryAbstract;
 

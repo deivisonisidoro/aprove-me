@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import { ReadAssignorDTO } from '../../../../domain/dtos/assignor/ReadAssignorDTO';
 import { Either } from '../../../../domain/either/either';
 import { Left } from '../../../../domain/either/Left';
@@ -11,6 +12,7 @@ import { ReadAssignorUseCaseAbstract } from '../../../../domain/useCases/assigno
  * Concrete implementation of the `ReadAssignorUseCase` abstract class.
  * Handles the use case of reading an assignor.
  */
+@Injectable()
 export class ReadAssignorUseCase extends ReadAssignorUseCaseAbstract {
   private assignorRepository: AssignorRepositoryAbstract;
 

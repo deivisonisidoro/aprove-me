@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import { Either } from '../../../../domain/either/either';
 import { Left } from '../../../../domain/either/Left';
 import { Right } from '../../../../domain/either/Right';
@@ -11,6 +12,7 @@ import { DeletePayableUseCaseAbstract } from '../../../../domain/useCases/payabl
  * Concrete implementation of the `DeletePayableUseCase` abstract class.
  * Handles the use case of deleting an Payable.
  */
+@Injectable()
 export class DeletePayableUseCase extends DeletePayableUseCaseAbstract {
   private payableRepository: PayableRepositoryAbstract;
 

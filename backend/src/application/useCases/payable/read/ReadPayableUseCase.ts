@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import { ReadPayableDTO } from '../../../../domain/dtos/payable/ReadPayableDTO';
 import { Either } from '../../../../domain/either/either';
 import { Left } from '../../../../domain/either/Left';
@@ -11,6 +12,7 @@ import { ReadPayableUseCaseAbstract } from '../../../../domain/useCases/payable/
  * Concrete implementation of the `ReadPayableUseCase` abstract class.
  * Handles the use case of reading an Payable.
  */
+@Injectable()
 export class ReadPayableUseCase extends ReadPayableUseCaseAbstract {
   private PayableRepository: PayableRepositoryAbstract;
 
