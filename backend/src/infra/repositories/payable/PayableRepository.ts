@@ -1,13 +1,15 @@
-import { ReadPayableDTO } from '../../../domain/dtos/payable/ReadPayableDTO';
-import { PayableEntity } from '../../../domain/entities/payable/PayableEntity';
-import { PayableRepositoryAbstract } from '../../../domain/repositories/PayableRepositoryAbstract';
-import { PrismaService } from '../../database/prisma.service';
-import { PayableMapper } from '../../mappers/payable/PayableMapper';
+import { Injectable } from "@nestjs/common";
+import { ReadPayableDTO } from "../../../domain/dtos/payable/ReadPayableDTO";
+import { PayableEntity } from "../../../domain/entities/payable/PayableEntity";
+import { PayableRepositoryAbstract } from "../../../domain/repositories/PayableRepositoryAbstract";
+import { PrismaService } from "../../database/prisma.service";
+import { PayableMapper } from "../../mappers/payable/PayableMapper";
 
+@Injectable()
 export class PayableRepository extends PayableRepositoryAbstract {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly mapper: PayableMapper,
+    private readonly mapper: PayableMapper
   ) {
     super();
   }
@@ -40,7 +42,7 @@ export class PayableRepository extends PayableRepositoryAbstract {
 
   /**
    * Updates a Payable entity in the repository.
-   *
+   * 
    * @param {string} id - The ID of the Payable to update.
    * @param {PayableEntity} payable - The Payable entity to update.
    * @returns {Promise<ReadPayableDTO>} A promise that resolves to the updated PayableEntity.

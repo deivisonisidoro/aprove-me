@@ -1,3 +1,5 @@
+import { Injectable } from '@nestjs/common';
+
 import { ReadAssignorDTO } from '../../../domain/dtos/assignor/ReadAssignorDTO';
 import { AssignorEntity } from '../../../domain/entities/assignor/AssignorEntity';
 import { AssignorRepositoryAbstract } from '../../../domain/repositories/AssignorRepositoryAbstract';
@@ -7,6 +9,7 @@ import { AssignorMapper } from '../../mappers/assignor/AssignorMapper';
 /**
  * Repository implementation for Assignor entities using Prisma.
  */
+@Injectable()
 export class AssignorRepository extends AssignorRepositoryAbstract {
   constructor(
     private readonly prisma: PrismaService,
