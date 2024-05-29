@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 
 import { ReadAssignorDTO } from '../../../../domain/dtos/assignor/ReadAssignorDTO';
 import { UpdateAssignorDTO } from '../../../../domain/dtos/assignor/UpdateAssignorDTO';
@@ -39,10 +39,12 @@ export class UpdateAssignorUseCase extends UpdateAssignorUseCaseAbstract {
     updateAssignorDTO: UpdateAssignorDTO,
   ): Promise<Either<ValidationError, ReadAssignorDTO>> {
     const assignorEntity = await this.assignorRepository.findById(assignorId);
-
     if (!assignorEntity) {
       return new Left(
-        new ValidationError(AssignorValidationMessages.ASSIGNOR_NOT_FOUND),
+        new ValidationError(
+          AssignorValidationMessages.ASSIGNOR_NOT_FOUND,
+          HttpStatus.NOT_FOUND,
+        ),
       );
     }
 

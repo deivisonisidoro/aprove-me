@@ -1,3 +1,5 @@
+import { Injectable } from '@nestjs/common';
+
 import { ReadPayableDTO } from '../../../../domain/dtos/payable/ReadPayableDTO';
 import { UpdatePayableDTO } from '../../../../domain/dtos/payable/UpdatePayableDTO';
 import { Either } from '../../../../domain/either/either';
@@ -13,6 +15,7 @@ import { UpdatePayableUseCaseAbstract } from '../../../../domain/useCases/payabl
  * Concrete implementation of the UpdatePayableUseCaseAbstract class.
  * Handles the use case of updating an Payable.
  */
+@Injectable()
 export class UpdatePayableUseCase extends UpdatePayableUseCaseAbstract {
   private payableRepository: PayableRepositoryAbstract;
 
@@ -48,7 +51,7 @@ export class UpdatePayableUseCase extends UpdatePayableUseCaseAbstract {
       updatePayableDTO.value,
       updatePayableDTO.emissionDate,
       updatePayableDTO.assignorId,
-      undefined,
+      payableId,
     );
     if (updatedPayable.isLeft()) {
       return updatedPayable;
