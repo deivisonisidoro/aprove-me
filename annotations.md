@@ -147,7 +147,7 @@ Os casos de uso (use cases) são responsáveis por orquestrar a lógica de negó
 
 ## Infra
 
-A camada de infraestrutura é responsável por fornecer as ferramentas e bibliotecas que suportam a aplicação. Ela inclui a configuração do ORM, repositórios, e outras dependências que permitem a comunicação com o banco de dados e outros serviços externos.
+A camada de infraestrutura é responsável por fornecer as ferramentas e bibliotecas que suportam a aplicação. Ela inclui a configuração do ORM, repositórios, mapeadores e outras dependências que permitem a comunicação com o banco de dados e outros serviços externos.
 
 <details>
 <summary>Prisma</summary>
@@ -168,5 +168,83 @@ O Prisma é um ORM (Object-Relational Mapping) moderno que facilita a interaçã
 
 </details>
 
+<details>
+<summary>Repositories</summary>
+
+### Descrição
+Os repositórios são classes que encapsulam a lógica de acesso a dados, fornecendo uma interface para realizar operações de CRUD e consultas específicas no banco de dados. Eles utilizam o Prisma Client para interagir com as tabelas definidas no esquema do Prisma.
+
+### Tarefas
+1. **Implementar Repositórios**
+   - Criar classes de repositório para cada entidade do domínio.
+   - Implementar métodos de CRUD (Create, Read, Update, Delete) e outras consultas específicas.
+   - Utilizar o Prisma Client para executar as operações no banco de dados.
+
+2. **Testar Repositórios**
+   - Escrever testes para garantir que os métodos dos repositórios funcionem corretamente.
+   - Cobrir casos de sucesso e falha nas operações de banco de dados.
+   - Assegurar que os dados sejam manipulados de forma correta e segura.
+
+</details>
+
+<details>
+<summary>Mappers</summary>
+
+### Descrição
+Os mapeadores são responsáveis por converter objetos de domínio em entidades de banco de dados e vice-versa. Eles garantem que os dados sejam transformados corretamente entre as diferentes camadas da aplicação.
+
+### Tarefas
+1. **Criar Mapeadores**
+   - Implementar classes de mapeamento para converter entre objetos de domínio e entidades do banco de dados.
+   - Garantir que todos os atributos sejam mapeados corretamente.
+   - Tratar casos especiais, como formatação de dados ou conversão de tipos.
+
+2. **Testar Mapeadores**
+   - Escrever testes para garantir que os mapeadores funcionem corretamente.
+   - Cobrir casos de sucesso e falha na conversão de dados.
+   - Assegurar que os dados sejam transformados de forma correta e consistente.
 
 
+</details>
+
+<details>
+<summary>Modules</summary>
+
+### Descrição
+Os módulos são componentes organizacionais no NestJS que agrupam funcionalidades relacionadas. Eles podem conter controladores, provedores e serviços, facilitando a estruturação e manutenção do código.
+
+### Tarefas
+1. **Criar Módulos**
+   - Implementar módulos para cada funcionalidade da aplicação.
+   - Definir controladores, provedores e serviços necessários em cada módulo.
+   - Garantir que os módulos estejam devidamente configurados e exportem as funcionalidades necessárias.
+
+2. **Testar Módulos**
+   - Escrever testes para garantir que os módulos funcionem corretamente.
+   - Cobrir interações entre controladores, provedores e serviços.
+   - Assegurar que os módulos possam ser integrados sem problemas na aplicação principal.
+
+</details>
+
+## Presentation
+
+A camada de apresentação é responsável pela interação direta com o usuário, geralmente através de uma API. Ela contém os controladores que lidam com as requisições HTTP, chamam os casos de uso apropriados e retornam as respostas adequadas.
+
+<details>
+<summary>Controllers</summary>
+
+### Descrição
+Os controladores são responsáveis por gerenciar as requisições HTTP recebidas pela aplicação. Eles atuam como intermediários entre a camada de apresentação e a camada de aplicação, invocando os casos de uso apropriados e retornando as respostas aos clientes.
+
+### Tarefas
+1. **Criar Controladores**
+   - Implementar controladores para lidar com as rotas da aplicação.
+   - Definir métodos para gerenciar requisições de criação, leitura, atualização e exclusão de recursos.
+   - Invocar casos de uso da camada de aplicação e retornar as respostas adequadas.
+
+2. **Testar Controladores**
+   - Escrever testes para garantir que os controladores funcionem corretamente.
+   - Cobrir casos de sucesso e falha nas requisições HTTP.
+   - Assegurar que os controladores retornem os status HTTP e mensagens apropriadas.
+
+</details>
