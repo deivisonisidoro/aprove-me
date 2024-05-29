@@ -7,18 +7,18 @@ import { Right } from '../../../../domain/either/Right';
 import { AssignorValidationMessages } from '../../../../domain/enums/assignor/AssignorValidationMessageEnum';
 import { ValidationError } from '../../../../domain/errors/ValidationErros';
 import { AssignorRepositoryAbstract } from '../../../../domain/repositories/AssignorRepositoryAbstract';
-import { ReadAssignorUseCaseAbstract } from '../../../../domain/useCases/assignor/ReadAssignorUseCaseAbstract';
+import { ReadAssignorByIdUseCaseAbstract } from '../../../../domain/useCases/assignor/ReadAssignorByIdUseCaseAbstract';
 
 /**
- * Concrete implementation of the `ReadAssignorUseCase` abstract class.
+ * Concrete implementation of the `ReadAssignorByIdUseCase` abstract class.
  * Handles the use case of reading an assignor.
  */
 @Injectable()
-export class ReadAssignorUseCase extends ReadAssignorUseCaseAbstract {
+export class ReadAssignorByIdUseCase extends ReadAssignorByIdUseCaseAbstract {
   private assignorRepository: AssignorRepositoryAbstract;
 
   /**
-   * Read an instance of `ReadAssignorUseCaseImpl`.
+   * Read an instance of `ReadAssignorByIdUseCaseImpl`.
    * @param {AssignorRepositoryAbstract} assignorRepository - The repository for assignor entities.
    */
   constructor(assignorRepository: AssignorRepositoryAbstract) {

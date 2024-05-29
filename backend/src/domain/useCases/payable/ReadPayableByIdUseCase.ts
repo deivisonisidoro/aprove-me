@@ -5,7 +5,7 @@ import { ValidationError } from '../../errors/ValidationErros';
 /**
  * Abstract class for the use case of reading payable.
  */
-export abstract class ReadPayableUseCaseAbstract {
+export abstract class ReadPayableByIdUseCaseAbstract {
   /**
    * Executes the use case to read an payable.
    * @param {string} payableId - The unique identifier of the payable to be read.

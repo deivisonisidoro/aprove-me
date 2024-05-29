@@ -5,7 +5,7 @@ import { ValidationError } from '../../errors/ValidationErros';
 /**
  * Abstract class for the use case of reading assignors.
  */
-export abstract class ReadAssignorUseCaseAbstract {
+export abstract class ReadAssignorByIdUseCaseAbstract {
   /**
    * Executes the use case to read an assignor.
    * @param {string} assignorId - The unique identifier of the assignor to be read.
