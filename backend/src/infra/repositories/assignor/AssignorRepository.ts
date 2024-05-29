@@ -36,6 +36,7 @@ export class AssignorRepository extends AssignorRepositoryAbstract {
         password: assignor.password,
       },
       select: {
+        id: true,
         name: true,
         email: true,
         phone: true,
@@ -81,6 +82,7 @@ export class AssignorRepository extends AssignorRepositoryAbstract {
         document: assignor.document,
       },
       select: {
+        id: true,
         name: true,
         email: true,
         phone: true,

@@ -23,9 +23,13 @@ export class PayableRepository extends PayableRepositoryAbstract {
    */
   async create(payable: PayableEntity): Promise<ReadPayableDTO> {
     const createdPayable = await this.prisma.payable.create({
-      data: payable,
+      data: {
+        value: payable.value,
+        emissionDate: payable.emissionDate,
+        assignorId: payable.assignorId,
+      },
     });
-    return createdPayable as ReadPayableDTO;
+    return createdPayable;
   }
 
   /**
@@ -38,7 +42,8 @@ export class PayableRepository extends PayableRepositoryAbstract {
     const payable = await this.prisma.payable.findUnique({
       where: { id },
     });
-    return this.mapper.toEntity(payable) || undefined;
+    const entity = this.mapper.toEntity(payable);
+    return entity;
   }
 
   /**
@@ -51,7 +56,11 @@ export class PayableRepository extends PayableRepositoryAbstract {
   async update(id: string, payable: PayableEntity): Promise<ReadPayableDTO> {
     const updatedPayable = await this.prisma.payable.update({
       where: { id },
-      data: payable,
+      data: {
+        value: payable.value,
+        emissionDate: payable.emissionDate,
+        assignorId: payable.assignorId,
+      },
     });
     return updatedPayable as ReadPayableDTO;
   }

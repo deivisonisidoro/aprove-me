@@ -77,6 +77,7 @@ describe('AssignorRepository', () => {
           password: assignorEntity.password,
         },
         select: {
+          id: true,
           name: true,
           email: true,
           phone: true,
@@ -167,6 +168,7 @@ describe('AssignorRepository', () => {
           document: assignorEntity.document,
         },
         select: {
+          id: true,
           name: true,
           email: true,
           phone: true,

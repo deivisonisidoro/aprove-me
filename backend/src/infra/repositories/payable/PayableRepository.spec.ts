@@ -61,7 +61,11 @@ describe('PayableRepository', () => {
       const result = await repository.create(payableEntity);
 
       expect(prismaService.payable.create).toHaveBeenCalledWith({
-        data: payableEntity,
+        data: {
+          value: payableEntity.value,
+          emissionDate: payableEntity.emissionDate,
+          assignorId: payableEntity.assignorId,
+        },
       });
       expect(result).toEqual(payableDTO);
     });
