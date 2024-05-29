@@ -2,6 +2,8 @@
 
 ## Domain
 
+O domínio é a camada que contém a lógica de negócios e as regras específicas da aplicação. Ela inclui as entidades, erros customizados, enums, classes Either, fábricas e DTOs, que juntos definem a estrutura e comportamento dos dados e operações do sistema.
+
 <details>
 <summary>Entidades</summary>
 
@@ -117,6 +119,7 @@ Data Transfer Objects (DTOs) são objetos utilizados para transportar dados entr
 
 ## Application
 
+A camada de aplicação é responsável por orquestrar a lógica de negócios específica de cada funcionalidade da aplicação. Ela contém os casos de uso que interagem com as entidades e repositórios para executar operações de negócio, garantindo que as regras sejam aplicadas corretamente.
 
 <details>
 <summary>Use Cases</summary>
@@ -143,6 +146,8 @@ Os casos de uso (use cases) são responsáveis por orquestrar a lógica de negó
 </details>
 
 ## Infra
+
+A camada de infraestrutura é responsável por fornecer as ferramentas e bibliotecas que suportam a aplicação. Ela inclui a configuração do ORM, repositórios, e outras dependências que permitem a comunicação com o banco de dados e outros serviços externos.
 
 <details>
 <summary>Prisma</summary>
