@@ -37,6 +37,8 @@ export enum AssignorValidationMessages {
   /** Error message when document is required. */
   DOCUMENT_REQUIRED = 'Document is required.',
 
+  /** Error message when document is required. */
+  ID_REQUIRED = 'ID is required.',
   /** Error message when email is required. */
   EMAIL_REQUIRED = 'Email is required.',
 }
