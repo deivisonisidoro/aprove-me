@@ -20,6 +20,9 @@ dependencies:
   '@prisma/client':
     specifier: 5.14.0
     version: 5.14.0(prisma@5.14.0)
+  dotenv:
+    specifier: ^16.4.5
+    version: 16.4.5
   reflect-metadata:
     specifier: ^0.2.0
     version: 0.2.2
