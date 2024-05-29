@@ -115,7 +115,7 @@ export class AssignorEntity {
    * @returns {Either<ValidationError, void>} Either containing ValidationError if validation fails, or void if successful.
    */
   public setEmail(email: string): Either<ValidationError, void> {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     if (email.length > 140) {
       return new Left(
         new ValidationError(AssignorValidationMessages.EMAIL_TOO_LONG),
