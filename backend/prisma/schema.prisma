@@ -19,12 +19,23 @@ model Payable {
 }
 
 model Assignor {
-  id       String   @id @default(uuid())
-  document String   @unique
-  email    String   @unique
-  phone    String
-  name     String
-  login    String   @unique
-  password String
-  payables Payable[]
+  id            String        @id @default(uuid())
+  document      String        @unique
+  email         String        @unique
+  phone         String
+  name          String
+  login         String        @unique
+  password      String
+  payables      Payable[]
+  refresh_token RefreshToken?
+}
+
+model RefreshToken {
+  id          String   @id @default(uuid())
+  expires_in  Int
+  assignor_id String   @unique
+  assignor    Assignor @relation(fields: [assignor_id], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+
+  @@map("refresh_token")
 }
