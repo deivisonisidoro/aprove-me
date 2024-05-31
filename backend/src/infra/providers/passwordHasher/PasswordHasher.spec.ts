@@ -8,7 +8,7 @@ import { PasswordHasher } from './PasswordHasher';
 
 /**
  * Test suite for the PasswordHasher class.
- * @function 
+ * @function
  * @name PasswordHasherTests
  */
 describe('PasswordHasher', () => {

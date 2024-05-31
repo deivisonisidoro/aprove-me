@@ -1,8 +1,8 @@
+import { Injectable } from '@nestjs/common';
 import { sign } from 'jsonwebtoken';
+
 import { GenerateRefreshTokenProviderAbstract } from '../../../domain/providers/GenerateRefreshToken';
 import { EnvironmentVariables } from '../../configs/EnvironmentVariables';
-import { Injectable } from '@nestjs/common';
-
 
 /**
  * Implementation of the refresh token generation provider.
@@ -11,9 +11,7 @@ import { Injectable } from '@nestjs/common';
  * @extends {GenerateRefreshTokenProviderAbstract}
  */
 @Injectable()
-export class GenerateRefreshTokenProvider
-  extends GenerateRefreshTokenProviderAbstract
-{
+export class GenerateRefreshTokenProvider extends GenerateRefreshTokenProviderAbstract {
   /**
    * Generates a new refresh token based on the provided token.
    *

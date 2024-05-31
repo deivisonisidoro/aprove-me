@@ -4,6 +4,7 @@
  */
 
 import { GenerateRefreshTokenProviderAbstract } from 'src/domain/providers/GenerateRefreshToken';
+
 import { GenerateRefreshTokenProvider } from './GenerateRefreshToken';
 
 /**

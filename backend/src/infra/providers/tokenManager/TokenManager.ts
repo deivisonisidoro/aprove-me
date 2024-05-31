@@ -1,8 +1,8 @@
+import { Injectable } from '@nestjs/common';
 import * as dayjs from 'dayjs';
 import { verify } from 'jsonwebtoken';
-import { TokenManagerProviderAbstract } from '../../../domain/providers/TokenMagerProvider';
-import { Injectable } from '@nestjs/common';
 
+import { TokenManagerProviderAbstract } from '../../../domain/providers/TokenMagerProvider';
 
 /**
  * Provider for managing and validating authentication tokens.

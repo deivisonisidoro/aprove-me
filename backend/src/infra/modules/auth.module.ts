@@ -1,23 +1,33 @@
 import { Module } from '@nestjs/common';
-import { PrismaService } from '../database/prisma.service';
-import { GenerateRefreshTokenProviderAbstract } from '../../domain/providers/GenerateRefreshToken';
-import { GenerateRefreshTokenProvider } from '../providers/generateRefreshToken/GenerateRefreshToken';
-import { RefreshTokenRepositoryAbstract } from '../../domain/repositories/RefreshToken';
-import { RefreshTokenRepository } from '../repositories/refreshToken/RefreshTokenRepository';
-import { TokenManagerProvider } from '../providers/tokenManager/TokenManager';
-import { TokenManagerProviderAbstract } from '../../domain/providers/TokenMagerProvider';
+
 import { RefreshTokenUseCase } from '../../application/useCases/auth/refreshToken/RefreshTokenUseCase';
-import { RefreshTokenUseCaseAbstract } from '../../domain/useCases/auth/RefreshTokenUseCaseAbstract';
 import { SignInUseCase } from '../../application/useCases/auth/signIn/SignInUseCase';
+import { GenerateRefreshTokenProviderAbstract } from '../../domain/providers/GenerateRefreshToken';
+import { TokenManagerProviderAbstract } from '../../domain/providers/TokenMagerProvider';
+import { AssignorRepositoryAbstract } from '../../domain/repositories/AssignorRepositoryAbstract';
+import { RefreshTokenRepositoryAbstract } from '../../domain/repositories/RefreshToken';
+import { RefreshTokenUseCaseAbstract } from '../../domain/useCases/auth/RefreshTokenUseCaseAbstract';
 import { SignInUseCaseAbstract } from '../../domain/useCases/auth/SignInUseCaseAbstract';
+import { AuthController } from '../../presentation/controllers/auth/auth.controller';
+import { PrismaService } from '../database/prisma.service';
+import { AssignorMapper } from '../mappers/assignor/AssignorMapper';
+import { GenerateRefreshTokenProvider } from '../providers/generateRefreshToken/GenerateRefreshToken';
+import { TokenManagerProvider } from '../providers/tokenManager/TokenManager';
+import { AssignorRepository } from '../repositories/assignor/AssignorRepository';
+import { RefreshTokenRepository } from '../repositories/refreshToken/RefreshTokenRepository';
 
 @Module({
-  controllers: [],
+  controllers: [AuthController],
   providers: [
     PrismaService,
+    AssignorMapper,
     {
       provide: GenerateRefreshTokenProviderAbstract,
       useClass: GenerateRefreshTokenProvider,
+    },
+    {
+      provide: AssignorRepositoryAbstract,
+      useClass: AssignorRepository,
     },
     {
       provide: RefreshTokenRepositoryAbstract,
@@ -25,16 +35,16 @@ import { SignInUseCaseAbstract } from '../../domain/useCases/auth/SignInUseCaseA
     },
     {
       provide: TokenManagerProviderAbstract,
-      useClass: TokenManagerProvider
+      useClass: TokenManagerProvider,
     },
     {
       provide: RefreshTokenUseCaseAbstract,
-      useClass: RefreshTokenUseCase
+      useClass: RefreshTokenUseCase,
     },
     {
       provide: SignInUseCaseAbstract,
-      useClass: SignInUseCase
-    }
+      useClass: SignInUseCase,
+    },
   ],
   imports: [],
 })

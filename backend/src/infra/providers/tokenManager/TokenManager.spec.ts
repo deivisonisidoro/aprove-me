@@ -1,7 +1,8 @@
 import * as dayjs from 'dayjs';
-import { TokenManagerProvider } from './TokenManager';
 import { verify } from 'jsonwebtoken';
+
 import { TokenManagerProviderAbstract } from '../../../domain/providers/TokenMagerProvider';
+import { TokenManagerProvider } from './TokenManager';
 
 jest.mock('jsonwebtoken', () => ({
   __esModule: true,

@@ -1,7 +1,7 @@
-import * as bcrypt from 'bcryptjs';
-import { PasswordHasherAbstract } from '../../../domain/providers/PasswordHasher';
 import { Injectable } from '@nestjs/common';
+import * as bcrypt from 'bcryptjs';
 
+import { PasswordHasherAbstract } from '../../../domain/providers/PasswordHasher';
 
 /**
  * Implementation of the password hashing provider using bcrypt.
