@@ -22,6 +22,14 @@ export abstract class AssignorRepositoryAbstract {
   abstract findById(id: string): Promise<AssignorEntity | undefined>;
 
   /**
+   * Finds an assignor entity by its login.
+   *
+   * @param {string} login - The login of the assignor to find.
+   * @returns {Promise<Either<ValidationError, AssignorEntity>>} A promise that resolves to either a ValidationError or the found AssignorEntity.
+   */
+  abstract findByLogin(login: string): Promise<AssignorEntity | undefined>;
+
+  /**
    * Updates an assignor entity in the repository.
    * @param {string} id - The ID of the assignor to update.
    * @param {AssignorEntity} assignor - The assignor entity to update.
