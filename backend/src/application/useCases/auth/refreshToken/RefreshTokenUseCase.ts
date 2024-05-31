@@ -22,8 +22,8 @@ export class RefreshTokenUseCase extends RefreshTokenUseCaseAbstract {
    * Creates an instance of RefreshTokencustomerUseCase.
    *
    * @constructor
-   * @param {AbstractGenerateRefreshTokenProvider} generateRefreshTokenProvider - The refresh token generator provider.
-   * @param {AbstractRefreshTokenRepository} refreshTokenRepository - The repository for refresh tokens.
+   * @param {GenerateRefreshTokenProviderAbstract} generateRefreshTokenProvider - The refresh token generator provider.
+   * @param {RefreshTokenRepositoryAbstract} refreshTokenRepository - The repository for refresh tokens.
    * @param {TokenManagerProviderAbstract} tokenManager - The token manager provider.
    */
   constructor(
