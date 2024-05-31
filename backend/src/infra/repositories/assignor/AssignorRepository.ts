@@ -69,7 +69,9 @@ export class AssignorRepository extends AssignorRepositoryAbstract {
    * @returns {Promise<AssignorEntity | undefined>} A promise that resolves to the found AssignorEntity or undefined if not found.
    */
   async findByLogin(login: string): Promise<AssignorEntity | undefined> {
-    const assignor = await this.prisma.assignor.findUnique({ where: { login } });
+    const assignor = await this.prisma.assignor.findUnique({
+      where: { login },
+    });
     if (!assignor) {
       return undefined;
     }

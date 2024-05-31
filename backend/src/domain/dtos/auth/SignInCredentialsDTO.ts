@@ -4,9 +4,12 @@
 export class SignInCredentialsDTO {
   /**
    * Cria uma instância de SignInUseCaseCredentialsDTO.
-   * 
+   *
    * @param login - O nome de usuário (login) do cedente.
    * @param password - A senha do cedente.
    */
-  constructor(public login: string, public password: string) {}
+  constructor(
+    public login: string,
+    public password: string,
+  ) {}
 }

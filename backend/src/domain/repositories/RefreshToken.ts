@@ -1,4 +1,4 @@
-import { RefreshTokenDTO } from "../dtos/auth/RefreshTokenDTO";
+import { RefreshTokenDTO } from '../dtos/auth/RefreshTokenDTO';
 
 /**
  * class for the repository handling refresh tokens.

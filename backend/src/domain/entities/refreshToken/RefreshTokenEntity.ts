@@ -1,4 +1,4 @@
-import { AssignorEntity } from "../assignor/AssignorEntity";
+import { AssignorEntity } from '../assignor/AssignorEntity';
 
 /**
  * Interface representing the structure of a refresh token.

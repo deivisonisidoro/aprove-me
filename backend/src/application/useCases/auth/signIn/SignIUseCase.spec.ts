@@ -1,17 +1,16 @@
-import { left } from "../../../../domain/either/either";
-import { AuthErrorMessageEnum } from "../../../../domain/enums/auth/AuthErrorMessageEnum";
-import { GenerateRefreshTokenProviderAbstract } from "../../../../domain/providers/GenerateRefreshToken";
-import { AssignorRepositoryAbstract } from "../../../../domain/repositories/AssignorRepositoryAbstract";
-import { RefreshTokenRepositoryAbstract } from "../../../../domain/repositories/RefreshToken";
-import { SignInUseCase } from "./SignInUseCase";
-import { ValidationError } from "../../../../domain/errors/ValidationErros";
-import { SignInCredentialsDTO } from "../../../../domain/dtos/auth/SignInCredentialsDTO";
-
+import { SignInCredentialsDTO } from '../../../../domain/dtos/auth/SignInCredentialsDTO';
+import { left } from '../../../../domain/either/either';
+import { AuthErrorMessageEnum } from '../../../../domain/enums/auth/AuthErrorMessageEnum';
+import { ValidationError } from '../../../../domain/errors/ValidationErros';
+import { GenerateRefreshTokenProviderAbstract } from '../../../../domain/providers/GenerateRefreshToken';
+import { AssignorRepositoryAbstract } from '../../../../domain/repositories/AssignorRepositoryAbstract';
+import { RefreshTokenRepositoryAbstract } from '../../../../domain/repositories/RefreshToken';
+import { SignInUseCase } from './SignInUseCase';
 
 describe('SignInUseCase', () => {
   let assignorRepository: AssignorRepositoryAbstract;
   let generateRefreshTokenProvider: GenerateRefreshTokenProviderAbstract;
-  let refreshTokenRepository: RefreshTokenRepositoryAbstract
+  let refreshTokenRepository: RefreshTokenRepositoryAbstract;
   let signInUseCase: SignInUseCase;
 
   const emailOrPasswordWrong = left(
@@ -40,9 +39,9 @@ describe('SignInUseCase', () => {
   describe('execute', () => {
     it('should return an access token when authentication is successful', async () => {
       const credentials: SignInCredentialsDTO = {
-        login: "test",
-        password: 'password'
-      } 
+        login: 'test',
+        password: 'password',
+      };
       const mockassignor = {
         id: '1',
         email: 'test@example.com',
@@ -51,9 +50,10 @@ describe('SignInUseCase', () => {
       assignorRepository.findByLogin = jest
         .fn()
         .mockResolvedValue(mockassignor);
-      generateRefreshTokenProvider.generateToken = jest.fn().mockResolvedValue('mock-token')
+      generateRefreshTokenProvider.generateToken = jest
+        .fn()
+        .mockResolvedValue('mock-token');
 
-      
       const result = await signInUseCase.execute(credentials);
 
       expect(result.isRight()).toBe(true);
@@ -64,9 +64,9 @@ describe('SignInUseCase', () => {
 
     it('should return an error when the assignor does not exist', async () => {
       const credentials: SignInCredentialsDTO = {
-        login: "test",
-        password: 'password'
-      } 
+        login: 'test',
+        password: 'password',
+      };
       assignorRepository.findByLogin = jest.fn().mockResolvedValue(null);
 
       const result = await signInUseCase.execute(credentials);
@@ -78,9 +78,9 @@ describe('SignInUseCase', () => {
 
     it('should return an error when the password is incorrect', async () => {
       const credentials: SignInCredentialsDTO = {
-        login: "test",
-        password: 'password'
-      } 
+        login: 'test',
+        password: 'password',
+      };
       const mockassignor = {
         id: '1',
         email: 'test@example.com',
