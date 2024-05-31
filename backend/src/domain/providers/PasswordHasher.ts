@@ -1,7 +1,7 @@
 /**
  * Abstract class defining a provider responsible for hashing passwords and comparing them.
  */
-export abstract class AbstractPasswordHasher {
+export abstract class PasswordHasherAbstract {
   /**
    * Hashes the provided password.
    * @async
