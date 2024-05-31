@@ -1,6 +1,6 @@
 /**
- * Unit tests for the RefreshTokenUserUseCase class using Vitest.
- * @module RefreshTokenUserUseCaseTests
+ * Unit tests for the RefreshTokenAssignorUseCase class using Vitest.
+ * @module RefreshTokenAssignorUseCaseTests
  */
 
 import { left } from '../../../../domain/either/either';
@@ -12,18 +12,18 @@ import { RefreshTokenRepositoryAbstract } from '../../../../domain/repositories/
 import { RefreshTokenUseCase } from './RefreshTokenUseCase';
 
 /**
- * Test suite for the RefreshTokenUserUseCase class.
+ * Test suite for the RefreshTokenAssignorUseCase class.
  * @function
- * @name RefreshTokenUserUseCaseTests
+ * @name RefreshTokenUseCaseTests
  */
-describe('RefreshTokenUserUseCase', () => {
-  let refreshTokenUserUseCase: RefreshTokenUseCase;
+describe('RefreshTokenUseCase', () => {
+  let refreshTokenAssignorUseCase: RefreshTokenUseCase;
   let generateRefreshTokenProvider: GenerateRefreshTokenProviderAbstract;
   let refreshTokenRepository: RefreshTokenRepositoryAbstract;
   let tokenManager: TokenManagerProviderAbstract;
   const mockRefreshTokenId = { refreshTokenId: 'mockRefreshTokenId' };
   const mockRefreshToken = {
-    customer_id: 'mockUserId',
+    assignor_id: 'mockAssignorId',
     expires_in: 'mockExpiresIn',
   };
   const tokenInvalidOrExpired = left(
@@ -49,7 +49,7 @@ describe('RefreshTokenUserUseCase', () => {
       validateToken: jest.fn(),
       validateTokenAge: jest.fn(),
     };
-    refreshTokenUserUseCase = new RefreshTokenUseCase(
+    refreshTokenAssignorUseCase = new RefreshTokenUseCase(
       generateRefreshTokenProvider,
       refreshTokenRepository,
       tokenManager,
@@ -66,7 +66,7 @@ describe('RefreshTokenUserUseCase', () => {
   });
 
   /**
-   * Test suite for the execute method of RefreshTokenUserUseCase.
+   * Test suite for the execute method of RefreshTokenAssignorUseCase.
    * @function
    * @name execute
    */
@@ -79,7 +79,8 @@ describe('RefreshTokenUserUseCase', () => {
     it('should return an error response when the refresh token is invalid', async () => {
       refreshTokenRepository.findById = jest.fn().mockResolvedValueOnce(null);
 
-      const result = await refreshTokenUserUseCase.execute(mockRefreshTokenId);
+      const result =
+        await refreshTokenAssignorUseCase.execute(mockRefreshTokenId);
 
       expect(result.value).toEqual(tokenInvalidOrExpired.value);
       expect(refreshTokenRepository.findById).toHaveBeenCalledWith(
@@ -101,15 +102,16 @@ describe('RefreshTokenUserUseCase', () => {
         .fn()
         .mockResolvedValueOnce('newMockRefreshToken');
 
-      const result = await refreshTokenUserUseCase.execute(mockRefreshTokenId);
+      const result =
+        await refreshTokenAssignorUseCase.execute(mockRefreshTokenId);
 
       expect(result.value).toHaveProperty('token');
       expect(result.value).toHaveProperty('refreshToken');
       expect(refreshTokenRepository.delete).toHaveBeenCalledWith(
-        mockRefreshToken.customer_id,
+        mockRefreshToken.assignor_id,
       );
       expect(generateRefreshTokenProvider.generateToken).toHaveBeenCalledWith(
-        mockRefreshToken.customer_id,
+        mockRefreshToken.assignor_id,
       );
     });
 
@@ -127,7 +129,8 @@ describe('RefreshTokenUserUseCase', () => {
         .fn()
         .mockResolvedValueOnce('mockGeneratedToken');
 
-      const result = await refreshTokenUserUseCase.execute(mockRefreshTokenId);
+      const result =
+        await refreshTokenAssignorUseCase.execute(mockRefreshTokenId);
 
       expect(result.value).toEqual({ token: 'mockGeneratedToken' });
       expect(refreshTokenRepository.delete).not.toHaveBeenCalled();

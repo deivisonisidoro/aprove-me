@@ -58,13 +58,13 @@ export class RefreshTokenUseCase extends RefreshTokenUseCaseAbstract {
       refreshToken.expires_in,
     );
     const token = await this.generateRefreshTokenProvider.generateToken(
-      refreshToken.customer_id,
+      refreshToken.assignor_id,
     );
 
     if (refreshTokenExpired) {
-      await this.refreshTokenRepository.delete(refreshToken.customer_id);
+      await this.refreshTokenRepository.delete(refreshToken.assignor_id);
       const newRefreshToken = await this.refreshTokenRepository.create(
-        refreshToken.customer_id,
+        refreshToken.assignor_id,
       );
       return right({ refreshToken: newRefreshToken, token });
     }
