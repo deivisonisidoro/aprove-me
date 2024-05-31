@@ -3,7 +3,7 @@
  *
  * @class
  */
-export abstract class AbstractTokenManagerProvider {
+export abstract class TokenManagerProviderAbstract {
   /**
    * Validates the age of a token based on its expiration time.
    *
