@@ -62,6 +62,19 @@ export class AssignorRepository extends AssignorRepositoryAbstract {
     }
     return this.mapper.toAssignorEntity(assignor);
   }
+  /**
+   * Finds an assignor entity by its Login.
+   *
+   * @param {string} login - The Login of the assignor to find.
+   * @returns {Promise<AssignorEntity | undefined>} A promise that resolves to the found AssignorEntity or undefined if not found.
+   */
+  async findByLogin(login: string): Promise<AssignorEntity | undefined> {
+    const assignor = await this.prisma.assignor.findUnique({ where: { login } });
+    if (!assignor) {
+      return undefined;
+    }
+    return this.mapper.toAssignorEntity(assignor);
+  }
 
   /**
    * Updates an existing assignor entity in the repository.

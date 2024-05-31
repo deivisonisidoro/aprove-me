@@ -131,6 +131,47 @@ describe('AssignorRepository', () => {
     });
   });
 
+  describe('findByLogin', () => {
+    it('should return an assignor entity if found', async () => {
+      const login = 'testlogin';
+      const assignor = {
+        i: 'some-id',
+        name: 'Test Name',
+        email: 'test@example.com',
+        document: '123456789',
+        phone: '1234567890',
+        login,
+        password: 'password',
+      };
+
+      (prismaService.assignor.findUnique as jest.Mock).mockResolvedValue(
+        assignor,
+      );
+      (assignorMapper.toAssignorEntity as jest.Mock).mockReturnValue(assignor);
+
+      const result = await repository.findByLogin(assignor.login);
+
+      expect(prismaService.assignor.findUnique).toHaveBeenCalledWith({
+        where: { login },
+      });
+      expect(assignorMapper.toAssignorEntity).toHaveBeenCalledWith(assignor);
+      expect(result).toEqual(assignor);
+    });
+
+    it('should return undefined if assignor not found', async () => {
+      const login = 'testlogin';
+
+      (prismaService.assignor.findUnique as jest.Mock).mockResolvedValue(null);
+
+      const result = await repository.findByLogin(login);
+
+      expect(prismaService.assignor.findUnique).toHaveBeenCalledWith({
+        where: { login },
+      });
+      expect(result).toBeUndefined();
+    });
+  });
+
   describe('update', () => {
     it('should update an existing assignor entity', async () => {
       const id = 'some-id';
