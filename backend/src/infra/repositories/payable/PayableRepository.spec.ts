@@ -121,7 +121,11 @@ describe('PayableRepository', () => {
 
       expect(prismaService.payable.update).toHaveBeenCalledWith({
         where: { id: 'id123' },
-        data: payableEntity,
+        data: {
+          value: payableEntity.value,
+          emissionDate: payableEntity.emissionDate,
+          assignorId: payableEntity.assignorId,
+        },
       });
       expect(result).toEqual(payableDTO);
     });
