@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 
-import { ReadAssignorDTO } from '../../../domain/dtos/assignor/ReadAssignorDTO';
 import { AssignorEntity } from '../../../domain/entities/assignor/AssignorEntity';
 
 /**
@@ -14,7 +13,7 @@ export class AssignorMapper {
    * @param {ReadAssignorDTO} assignor - The plain object representing the assignor.
    * @returns {AssignorEntity} The converted AssignorEntity.
    */
-  toAssignorEntity(assignor: ReadAssignorDTO): AssignorEntity {
+  toAssignorEntity(assignor: any): AssignorEntity {
     return new AssignorEntity(
       assignor.id,
       assignor.document,
@@ -22,6 +21,7 @@ export class AssignorMapper {
       assignor.email,
       assignor.phone,
       assignor.login,
+      assignor.password,
     );
   }
 }
