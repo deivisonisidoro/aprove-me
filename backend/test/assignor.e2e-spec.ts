@@ -8,6 +8,7 @@ import { AppModule } from '../src/infra/modules/app.module';
 
 describe('AssignorController (e2e)', () => {
   let app: INestApplication;
+  let accessToken: string;
   let createResponse: any;
 
   beforeAll(async () => {
@@ -32,6 +33,15 @@ describe('AssignorController (e2e)', () => {
     createResponse = await request(app.getHttpServer())
       .post('/assignor')
       .send(dto);
+
+      const loginResponse = await request(app.getHttpServer())
+      .post('/auth/login')
+      .send({
+        login: dto.login,
+        password: dto.password,
+      });
+
+    accessToken = loginResponse.body.access_token;
   });
 
   afterAll(async () => {
@@ -91,6 +101,7 @@ describe('AssignorController (e2e)', () => {
 
       const response = await request(app.getHttpServer())
         .get(`/assignor/${assignorId}`)
+        .set('Authorization', 'Bearer ' + accessToken)
         .expect(HttpStatus.OK);
 
       expect(response.body).toHaveProperty('id');
@@ -100,6 +111,7 @@ describe('AssignorController (e2e)', () => {
     it('should return 404 if assignor is not found', async () => {
       await request(app.getHttpServer())
         .get('/assignor/nonexistent-id')
+        .set('Authorization', 'Bearer ' + accessToken)
         .expect(HttpStatus.NOT_FOUND);
     });
   });
@@ -119,6 +131,7 @@ describe('AssignorController (e2e)', () => {
 
       const response = await request(app.getHttpServer())
         .put(`/assignor/${assignorId}`)
+        .set('Authorization', 'Bearer ' + accessToken)
         .send(updateAssignorDto)
         .expect(HttpStatus.OK);
 
@@ -130,6 +143,7 @@ describe('AssignorController (e2e)', () => {
       await request(app.getHttpServer())
         .put('/assignor/1')
         .send({})
+        .set('Authorization', 'Bearer ' + accessToken)
         .expect(HttpStatus.UNPROCESSABLE_ENTITY);
     });
 
@@ -148,6 +162,7 @@ describe('AssignorController (e2e)', () => {
       await request(app.getHttpServer())
         .put(`/assignor/${assignorId}`)
         .send(updateAssignorDto)
+        .set('Authorization', 'Bearer ' + accessToken)
         .expect(HttpStatus.BAD_REQUEST);
     });
   });
@@ -155,16 +170,19 @@ describe('AssignorController (e2e)', () => {
   describe('/DELETE assignor/:id', () => {
     it('should return 204 if assignor is deleted successfully', async () => {
       const assignorId = createResponse.body.id;
-      const response = await request(app.getHttpServer()).delete(
+      const response = await request(app.getHttpServer())
+      .delete(
         `/assignor/${assignorId}`,
-      );
+      )
+      .set('Authorization', 'Bearer ' + accessToken);
 
       expect(response.status).toBe(HttpStatus.NO_CONTENT);
     });
 
     it('should return 404 if assignor is not found', async () => {
       await request(app.getHttpServer())
-        .delete('/assignor/nonexistent-id')
+      .delete('/assignor/nonexistent-id')
+      .set('Authorization', 'Bearer ' + accessToken)
         .expect(HttpStatus.NOT_FOUND);
     });
   });

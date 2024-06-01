@@ -9,6 +9,7 @@ import { AppModule } from '../src/infra/modules/app.module';
 
 describe('PayableController (e2e)', () => {
   let app: INestApplication;
+  let accessToken: string;
   let createAssignorResponse: any;
   let createPayableResponse: any;
 
@@ -29,6 +30,7 @@ describe('PayableController (e2e)', () => {
     app = moduleFixture.createNestApplication();
     await app.init();
   });
+
   beforeEach(async () => {
     createAssignorResponse = await request(app.getHttpServer())
       .post('/assignor')
@@ -38,8 +40,16 @@ describe('PayableController (e2e)', () => {
       emissionDate: new Date(),
       assignorId: createAssignorResponse.body.id,
     };
+    const loginResponse = await request(app.getHttpServer())
+    .post('/auth/login')
+    .send({
+      login: createAssignorDto.login,
+      password: createAssignorDto.password,
+    });
+    accessToken = loginResponse.body.access_token;
     createPayableResponse = await request(app.getHttpServer())
       .post('/payables')
+      .set('Authorization', 'Bearer ' + accessToken)
       .send(dto);
   });
 
@@ -57,6 +67,7 @@ describe('PayableController (e2e)', () => {
 
       const response = await request(app.getHttpServer())
         .post('/payables')
+        .set('Authorization', 'Bearer ' + accessToken)
         .send(createPayableDto)
         .expect(HttpStatus.CREATED);
 
@@ -68,6 +79,7 @@ describe('PayableController (e2e)', () => {
 
       await request(app.getHttpServer())
         .post('/payables')
+        .set('Authorization', 'Bearer ' + accessToken)
         .send(createPayableDto)
         .expect(HttpStatus.UNPROCESSABLE_ENTITY);
     });
@@ -81,6 +93,7 @@ describe('PayableController (e2e)', () => {
 
       await request(app.getHttpServer())
         .post('/payables')
+        .set('Authorization', 'Bearer ' + accessToken)
         .send(createPayableDto)
         .expect(HttpStatus.BAD_REQUEST);
     });
@@ -92,6 +105,7 @@ describe('PayableController (e2e)', () => {
 
       const response = await request(app.getHttpServer())
         .get(`/payables/${payableId}`)
+        .set('Authorization', 'Bearer ' + accessToken)
         .expect(HttpStatus.OK);
 
       expect(response.body).toHaveProperty('id');
@@ -100,7 +114,8 @@ describe('PayableController (e2e)', () => {
 
     it('should return 404 if payable is not found', async () => {
       await request(app.getHttpServer())
-        .get('/payables/nonexistent-id')
+      .get('/payables/nonexistent-id')
+      .set('Authorization', 'Bearer ' + accessToken)
         .expect(HttpStatus.NOT_FOUND);
     });
   });
@@ -116,6 +131,7 @@ describe('PayableController (e2e)', () => {
 
       const response = await request(app.getHttpServer())
         .put(`/payables/${payableId}`)
+        .set('Authorization', 'Bearer ' + accessToken)
         .send(updatePayableDto)
         .expect(HttpStatus.OK);
 
@@ -125,6 +141,7 @@ describe('PayableController (e2e)', () => {
     it('should return 422 if no fields are provided for update', async () => {
       await request(app.getHttpServer())
         .put('/payables/1')
+        .set('Authorization', 'Bearer ' + accessToken)
         .send({})
         .expect(HttpStatus.UNPROCESSABLE_ENTITY);
     });
@@ -140,6 +157,7 @@ describe('PayableController (e2e)', () => {
 
       await request(app.getHttpServer())
         .put(`/payables/${payableId}`)
+        .set('Authorization', 'Bearer ' + accessToken)
         .send(updatePayableDto)
         .expect(HttpStatus.BAD_REQUEST);
     });
@@ -147,16 +165,17 @@ describe('PayableController (e2e)', () => {
 
   describe('/DELETE payables/:id', () => {
     it('should return 204 if payable is deleted successfully', async () => {
-      const payableId = createPayableResponse.body.id;
 
       await request(app.getHttpServer())
-        .delete(`/payables/${payableId}`)
+        .delete(`/payables/${createPayableResponse.body.id}`)
+        .set('Authorization', 'Bearer ' + accessToken)
         .expect(HttpStatus.NO_CONTENT);
     });
 
     it('should return 404 if payable is not found', async () => {
       await request(app.getHttpServer())
-        .delete('/payables/nonexistent-id')
+      .delete('/payables/nonexistent-id')
+      .set('Authorization', 'Bearer ' + accessToken)
         .expect(HttpStatus.NOT_FOUND);
     });
   });

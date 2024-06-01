@@ -11,6 +11,9 @@ describe('AuthController (e2e)', () => {
   let app: INestApplication;
   let prisma: PrismaService;
   let refreshToken: RefreshTokenDTO;
+  let accessToken: string;
+
+
   const assignorData: CreateAssignorDTO = {
     document: '4w42432324',
     email: 'AuthControllerTest@example.com',
@@ -42,6 +45,8 @@ describe('AuthController (e2e)', () => {
       });
 
     refreshToken = loginResponse.body.refreshToken;
+    accessToken = loginResponse.body.access_token;
+
   });
 
   afterAll(async () => {
@@ -77,6 +82,7 @@ describe('AuthController (e2e)', () => {
     it('should refresh the token successfully', async () => {
       const response = await request(app.getHttpServer())
         .post('/auth/refresh-token')
+        .set('Authorization', 'Bearer ' + accessToken)
         .send({
           refreshTokenId: refreshToken.id,
         });
@@ -88,6 +94,7 @@ describe('AuthController (e2e)', () => {
     it('should fail to refresh the token with an invalid refresh token', async () => {
       const response = await request(app.getHttpServer())
         .post('/auth/refresh-token')
+        .set('Authorization', 'Bearer ' + accessToken)
         .send({
           refreshTokenId: 'invalid-refresh-token',
         });
