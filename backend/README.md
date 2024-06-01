@@ -1,73 +1,67 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Avaliação Técnica - Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Aqui você encontrará a implementação do backend utilizando NestJS, uma estrutura de aplicativo Node.js altamente modular, e Prisma ORM para interação com o banco de dados SQLite.
+A arquitetura do projeto segue os princípios da arquitetura limpa, também conhecida como Clean Architecture. Essa abordagem permite a separação clara de responsabilidades e a manutenção de uma base de código modular e escalável. O código é organizado em camadas, com uma ênfase na separação de conceitos de negócios, infraestrutura e apresentação.
+Para mais detalhes sobre a implementação e decisões de design, consulte o arquivo [annotations.md](./annotations.md).
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Sumário
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- [Pré-requisitos](#pré-requisitos)
+- [Instalação](#instalação)
+- [Configuração](#configuração)
+- [Execução](#execução)
+- [Testes](#testes)
 
-## Installation
+
+## Pré-requisitos
+
+Antes de começar, você precisará ter as seguintes ferramentas instaladas em sua máquina:
+
+- [Node.js](https://nodejs.org/en/) (versão 18.x ou superior)
+- [pnpm](https://pnpm.io/)
+
+## Instalação
+
+1. Instale as dependências:
 
 ```bash
-$ pnpm install
+pnpm install
 ```
+## Configuração
 
-## Running the app
+1. Crie um arquivo .env na raiz do projeto com base no arquivo .env.example. Configure as variáveis de ambiente conforme necessário.
+  ```bash
+  cp .env.example .env
+  ```
+Edite o arquivo .env conforme necessário:
+  ```env
+  DATABASE_URL= file:./dev.db
+  SECRET_KEY=api_nest
+  ACCESS_TOKEN_EXPIRES_IN = 1h
+  REFRESH_TOKEN_EXPIRES_IN = 2
+  ```
+2. Configure o Prisma executando as migrações para criar as tabelas no banco de dados:
+ ```bash
+ pnpm prisma migrate dev
+ ```
+## Execução
 
+Para iniciar o servidor de desenvolvimento, utilize:
 ```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+pnpm run start:dev
 ```
+A API estará disponível em http://localhost:3000.
 
-## Test
+## Testes
 
+### Testes Unitários
+Para executar os testes unitários, utilize:
 ```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+pnpm run test
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+### Testes de Ponta a Ponta (E2E)
+Para executar os testes E2E, utilize:
+```bash
+pnpm run test:e2e
+```
