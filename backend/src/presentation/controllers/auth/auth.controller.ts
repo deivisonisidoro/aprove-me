@@ -7,8 +7,11 @@ import {
   Post,
 } from '@nestjs/common';
 
+import { RefreshTokenAssignorDTO } from '../../../domain/dtos/auth/RefreshTokenAssignorDTO';
+import { RefreshTokenDTO } from '../../../domain/dtos/auth/RefreshTokenDTO';
 import { SignInCredentialsDTO } from '../../../domain/dtos/auth/SignInCredentialsDTO';
 import { SignInResponseDTO } from '../../../domain/dtos/auth/SignInResponseDTO';
+import { RefreshTokenUseCaseAbstract } from '../../../domain/useCases/auth/RefreshTokenUseCaseAbstract';
 import { SignInUseCaseAbstract } from '../../../domain/useCases/auth/SignInUseCaseAbstract';
 
 /**
@@ -16,7 +19,10 @@ import { SignInUseCaseAbstract } from '../../../domain/useCases/auth/SignInUseCa
  */
 @Controller('auth')
 export class AuthController {
-  constructor(private signInUseCase: SignInUseCaseAbstract) {}
+  constructor(
+    private signInUseCase: SignInUseCaseAbstract,
+    private refreshTokenUseCase: RefreshTokenUseCaseAbstract,
+  ) {}
 
   /**
    * Endpoint for customer login.
@@ -33,6 +39,25 @@ export class AuthController {
       credentials.password,
     );
     const result = await this.signInUseCase.execute(dto);
+    if (result.isLeft()) {
+      throw new BadRequestException(result.value.message);
+    }
+    return result.value;
+  }
+
+  /**
+   * Endpoint for refreshing token.
+   * @param {RefreshTokenAssignorDTO} refreshTokenAssignorDTO - The refresh token request DTO.
+   * @returns {Promise<{ refreshToken?: RefreshTokenDTO; token: string }>} The result of the refresh token operation.
+   */
+  @HttpCode(HttpStatus.OK)
+  @Post('refresh-token')
+  async refreshToken(
+    @Body() refreshTokenAssignorDTO: RefreshTokenAssignorDTO,
+  ): Promise<{ refreshToken?: RefreshTokenDTO; token: string }> {
+    const result = await this.refreshTokenUseCase.execute(
+      refreshTokenAssignorDTO,
+    );
     if (result.isLeft()) {
       throw new BadRequestException(result.value.message);
     }

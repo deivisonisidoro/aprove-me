@@ -1,3 +1,5 @@
+import { Injectable } from '@nestjs/common';
+
 import { RefreshTokenAssignorDTO } from '../../../../domain/dtos/auth/RefreshTokenAssignorDTO';
 import { RefreshTokenDTO } from '../../../../domain/dtos/auth/RefreshTokenDTO';
 import { left, right } from '../../../../domain/either/either';
@@ -17,6 +19,7 @@ import {
  * @class
  * @extends {RefreshTokenUseCaseAbstract}
  */
+@Injectable()
 export class RefreshTokenUseCase extends RefreshTokenUseCaseAbstract {
   /**
    * Creates an instance of RefreshTokencustomerUseCase.

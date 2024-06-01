@@ -45,6 +45,10 @@ import { RefreshTokenRepository } from '../repositories/refreshToken/RefreshToke
       provide: SignInUseCaseAbstract,
       useClass: SignInUseCase,
     },
+    {
+      provide: RefreshTokenUseCaseAbstract,
+      useClass: RefreshTokenUseCase,
+    },
   ],
   imports: [],
 })
