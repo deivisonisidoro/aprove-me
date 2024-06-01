@@ -248,3 +248,23 @@ Os controladores são responsáveis por gerenciar as requisições HTTP recebida
    - Assegurar que os controladores retornem os status HTTP e mensagens apropriadas.
 
 </details>
+
+
+<details>
+<summary>Middlewares</summary>
+
+### Descrição
+Middlewares são funções que têm acesso ao objeto de solicitação (req), ao objeto de resposta (res) e à próxima função middleware no ciclo de solicitação/resposta da aplicação. A função de autenticação é um middleware específico que controla o acesso às rotas, garantindo que apenas usuários autenticados possam acessar determinadas rotas.
+
+### Tarefas
+1. **Criar Middleware de Autenticação**
+   - Implementar um middleware para verificar a autenticidade dos tokens de acesso.
+   - Garantir que o middleware rejeite requisições não autenticadas com um status apropriado (por exemplo, 401 Unauthorized).
+   - Permitir que requisições autenticadas prossigam para os controladores.
+
+2. **Integrar Middleware nas Rotas**
+   - Aplicar o middleware de autenticação às rotas que necessitam de proteção.
+   - Testar a integração para assegurar que o middleware está protegendo as rotas corretamente.
+   - Escrever testes para cobrir casos de sucesso (requisições autenticadas) e falha (requisições não autenticadas).
+
+</details>
