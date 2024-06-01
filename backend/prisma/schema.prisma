@@ -16,6 +16,7 @@ model Payable {
   emissionDate DateTime
   assignorId   String
   assignor     Assignor @relation(fields: [assignorId], references: [id])
+  @@map("payable")
 }
 
 model Assignor {
@@ -28,6 +29,8 @@ model Assignor {
   password      String
   payables      Payable[]
   refresh_token RefreshToken?
+  @@map("assignor")
+
 }
 
 model RefreshToken {
