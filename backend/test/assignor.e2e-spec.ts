@@ -14,6 +14,12 @@ describe('AssignorController (e2e)', () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
+
+    app = moduleFixture.createNestApplication();
+    await app.init();
+  });
+
+  beforeEach(async () => {
     const dto: CreateAssignorDTO = {
       document: '123456789',
       email: 'AssignorControllerTest@example.com',
@@ -22,9 +28,6 @@ describe('AssignorController (e2e)', () => {
       login: 'AssignorControllerTestlogin',
       password: 'test@Password1',
     };
-
-    app = moduleFixture.createNestApplication();
-    await app.init();
 
     createResponse = await request(app.getHttpServer())
       .post('/assignor')
